@@ -1,7 +1,6 @@
 "use client";
 
-import { useState } from "react";
-import { Quote } from "lucide-react";
+import { motion } from "framer-motion";
 
 const testimonials = [
   {
@@ -48,7 +47,7 @@ const testimonials = [
   },
   {
     id: 7,
-    quote: "He helped us build the business plan that started everything. Three years later we're still running on the foundations he helped us lay.",
+    quote: "He helped us build the business plan that started everything. We didn't just get a document. We got a way of thinking about the business that we still use today.",
     author: "Suprano Clothing",
     role: "CEO",
     initials: "SC"
@@ -76,79 +75,81 @@ const testimonials = [
   },
   {
     id: 11,
-    quote: "More focused. More driven. Better decisions. I could give you the long version but that's the whole story.",
+    quote: "More focused. More driven. Better decisions. Revenue followed. I could give you the long version but that's the whole story.",
     author: "James",
     role: "Entrepreneur",
     initials: "J"
   }
 ];
 
+// Split into two rows
+const row1 = testimonials.slice(0, 6);
+const row2 = testimonials.slice(6);
+
 function TestimonialCard({ testimonial }: { testimonial: typeof testimonials[0] }) {
   return (
-    <div className="card-hover w-[400px] flex-shrink-0 p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
-      <Quote className="w-8 h-8 text-[#008E97] mb-4" />
-      <p className="text-white/80 text-base leading-relaxed mb-6">
-        "{testimonial.quote}"
-      </p>
-      <div className="flex items-center gap-3">
-        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#008E97] to-[#C8963E] flex items-center justify-center text-white font-semibold text-sm">
+    <div className="flex-shrink-0 w-[400px] bg-[#0A0A0A] border border-[#F7F4EF]/10 rounded-2xl p-6 mx-3 hover:border-[#008E97]/50 transition-all duration-300 hover:scale-[1.03] group">
+      <div className="flex items-start gap-4 mb-4">
+        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#008E97] to-[#C8963E] flex items-center justify-center text-white font-bold text-sm">
           {testimonial.initials}
         </div>
         <div>
-          <div className="text-white font-semibold text-sm">{testimonial.author}</div>
-          <div className="text-white/50 text-xs">{testimonial.role}</div>
+          <div className="font-semibold text-[#F7F4EF]">{testimonial.author}</div>
+          <div className="text-sm text-[#6B7280]">{testimonial.role}</div>
         </div>
       </div>
+      <p className="text-[#F7F4EF]/80 text-sm leading-relaxed italic">
+        "{testimonial.quote}"
+      </p>
+    </div>
+  );
+}
+
+function MarqueeRow({ items, direction = "left" }: { items: typeof testimonials; direction?: "left" | "right" }) {
+  const duplicated = [...items, ...items, ...items];
+  
+  return (
+    <div className="relative overflow-hidden py-2 group/marquee">
+      <motion.div
+        className="flex"
+        animate={{
+          x: direction === "left" ? [0, -50 * items.length * 8] : [-50 * items.length * 8, 0]
+        }}
+        transition={{
+          x: {
+            repeat: Infinity,
+            repeatType: "loop",
+            duration: 40,
+            ease: "linear"
+          }
+        }}
+        style={{
+          width: "fit-content"
+        }}
+      >
+        {duplicated.map((testimonial, idx) => (
+          <TestimonialCard key={`${testimonial.id}-${idx}`} testimonial={testimonial} />
+        ))}
+      </motion.div>
     </div>
   );
 }
 
 export function TestimonialsMarquee() {
-  const [isPaused, setIsPaused] = useState(false);
-
-  const row1 = testimonials.slice(0, 6);
-  const row2 = testimonials.slice(5, 11);
-
   return (
-    <section id="testimonials" className="py-24 bg-[#0A0A0A] relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-[#0A0A0A] via-[#0a0f14] to-[#0A0A0A]" />
+    <section className="py-24 bg-[#0A0A0A] overflow-hidden">
+      <div className="max-w-6xl mx-auto px-6 lg:px-8 mb-12">
+        <div className="section-label mb-4 text-[#008E97]">Testimonials</div>
+        <h2 className="headline-lg text-white">
+          What people say
+          <br />
+          <span className="italic text-[#C8963E]">about the work</span>
+        </h2>
+      </div>
 
-      <div className="relative z-10">
-        <div className="max-w-6xl mx-auto px-6 lg:px-8 mb-16 text-center">
-          <div className="section-label mb-4">Testimonials</div>
-          <h2 className="headline-lg text-white">
-            Leaders who have transformed<br />
-            <span className="text-[#008E97]">their trajectory</span>
-          </h2>
-        </div>
-
-        <div 
-          className="space-y-6"
-          onMouseEnter={() => setIsPaused(true)}
-          onMouseLeave={() => setIsPaused(false)}
-        >
-          <div className="marquee-container">
-            <div 
-              className={`flex gap-6 ${isPaused ? '' : 'animate-marquee-left'}`}
-              style={{ width: "max-content" }}
-            >
-              {[...row1, ...row1].map((testimonial, index) => (
-                <TestimonialCard key={`row1-${index}`} testimonial={testimonial} />
-              ))}
-            </div>
-          </div>
-
-          <div className="marquee-container">
-            <div 
-              className={`flex gap-6 ${isPaused ? '' : 'animate-marquee-right'}`}
-              style={{ width: "max-content" }}
-            >
-              {[...row2, ...row2].map((testimonial, index) => (
-                <TestimonialCard key={`row2-${index}`} testimonial={testimonial} />
-              ))}
-            </div>
-          </div>
-        </div>
+      <div className="space-y-6">
+        <MarqueeRow items={row1} direction="left" />
+        <MarqueeRow items={row2} direction="right" />
       </div>
     </section>
   );

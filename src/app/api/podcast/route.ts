@@ -1,6 +1,15 @@
 import { NextResponse } from "next/server";
 import { parseStringPromise } from "xml2js";
 
+// Strip CDATA wrappers
+function stripCDATA(text: string): string {
+  if (!text) return "";
+  return text
+    .replace(/<!\[CDATA\[/g, '')
+    .replace(/\]\]>/g, '')
+    .trim();
+}
+
 export async function GET() {
   try {
     const response = await fetch("https://anchor.fm/s/25456800/podcast/rss", {
@@ -23,8 +32,8 @@ export async function GET() {
     const items = Array.isArray(channel.item) ? channel.item : [channel.item];
 
     const episodes = items.slice(0, 5).map((item: any) => ({
-      title: item.title,
-      description: item.description,
+      title: stripCDATA(item.title),
+      description: stripCDATA(item.description),
       pubDate: item.pubDate,
       link: item.link,
       enclosure: item.enclosure ? {
@@ -33,14 +42,15 @@ export async function GET() {
         length: item.enclosure.length
       } : null,
       duration: item["itunes:duration"] || null,
+      // Episode-level image takes priority over show-level
       image: item["itunes:image"]?.href || channel["itunes:image"]?.href || null
     }));
 
     return NextResponse.json({
       success: true,
       podcast: {
-        title: channel.title,
-        description: channel.description,
+        title: stripCDATA(channel.title),
+        description: stripCDATA(channel.description),
         image: channel["itunes:image"]?.href,
         author: channel["itunes:author"],
         episodes
@@ -50,8 +60,8 @@ export async function GET() {
   } catch (error) {
     console.error("Podcast fetch error:", error);
     return NextResponse.json(
-      { 
-        success: false, 
+      {
+        success: false,
         error: "Failed to fetch podcast data",
         message: error instanceof Error ? error.message : "Unknown error"
       },

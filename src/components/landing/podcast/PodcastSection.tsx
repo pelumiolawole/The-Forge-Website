@@ -16,6 +16,15 @@ interface PodcastEpisode {
   link: string;
 }
 
+// Strip CDATA wrappers from XML content
+function stripCDATA(text: string): string {
+  if (!text) return "";
+  return text
+    .replace(/<!\[CDATA\[/g, '')
+    .replace(/\]\]>/g, '')
+    .trim();
+}
+
 async function fetchLatestEpisode(): Promise<PodcastEpisode | null> {
   try {
     const response = await fetch("https://anchor.fm/s/25456800/podcast/rss", {
@@ -29,38 +38,53 @@ async function fetchLatestEpisode(): Promise<PodcastEpisode | null> {
 
     const xmlText = await response.text();
 
-    // Parse XML manually since we don't have DOMParser in Node
-    const titleMatch = xmlText.match(/<item>.*?<title>(.*?)<\/title>/s);
-    const descMatch = xmlText.match(/<item>.*?<description>(.*?)<\/description>/s);
-    const pubDateMatch = xmlText.match(/<item>.*?<pubDate>(.*?)<\/pubDate>/s);
-    const enclosureMatch = xmlText.match(/<enclosure url="(.*?)".*?type="(.*?)"/);
-    const imageMatch = xmlText.match(/<itunes:image[^>]*href="(.*?)"/);
-    const durationMatch = xmlText.match(/<itunes:duration>(.*?)<\/itunes:duration>/);
-    const linkMatch = xmlText.match(/<item>.*?<link>(.*?)<\/link>/s);
+    // Extract first item (latest episode) with proper CDATA handling
+    const itemMatch = xmlText.match(/<item>([\s\S]*?)<\/item>/);
+    if (!itemMatch) {
+      console.error("Could not find item in RSS");
+      return null;
+    }
+    
+    const itemContent = itemMatch[1];
+
+    // Parse individual fields from the episode item
+    const titleMatch = itemContent.match(/<title>([\s\S]*?)<\/title>/);
+    const descMatch = itemContent.match(/<description>([\s\S]*?)<\/description>/);
+    const pubDateMatch = itemContent.match(/<pubDate>([\s\S]*?)<\/pubDate>/);
+    const enclosureMatch = itemContent.match(/<enclosure url="(.*?)"[\s\S]*?type="(.*?)"/);
+    // Get episode-level image, not show-level
+    const episodeImageMatch = itemContent.match(/<itunes:image[\s\S]*?href="(.*?)"/);
+    const durationMatch = itemContent.match(/<itunes:duration>([\s\S]*?)<\/itunes:duration>/);
+    const linkMatch = itemContent.match(/<link>([\s\S]*?)<\/link>/);
 
     if (!titleMatch) {
-      console.error("Could not parse episode from RSS");
+      console.error("Could not parse title from RSS item");
       return null;
     }
 
     // Clean up description (remove HTML tags)
-    const cleanDescription = descMatch ? 
-      descMatch[1].replace(/<[^>]*>/g, '').substring(0, 150) + '...' : 
-      "";
+    const rawDescription = descMatch ? descMatch[1] : "";
+    const cleanDescription = stripCDATA(rawDescription)
+      .replace(/<[^>]*>/g, '')
+      .substring(0, 150) + '...';
+
+    // Use episode-specific image, fallback to show-level if not present
+    const showImageMatch = xmlText.match(/<itunes:image[\s\S]*?href="(.*?)"/);
+    const imageUrl = episodeImageMatch ? episodeImageMatch[1] : (showImageMatch ? showImageMatch[1] : undefined);
 
     return {
-      title: titleMatch[1].trim(),
+      title: stripCDATA(titleMatch[1]).trim(),
       description: cleanDescription,
-      pubDate: pubDateMatch ? pubDateMatch[1].trim() : new Date().toISOString(),
+      pubDate: pubDateMatch ? stripCDATA(pubDateMatch[1]).trim() : new Date().toISOString(),
       enclosure: {
         url: enclosureMatch ? enclosureMatch[1] : "",
         type: enclosureMatch ? enclosureMatch[2] : "audio/mpeg"
       },
       itunes: {
-        image: imageMatch ? imageMatch[1] : undefined,
-        duration: durationMatch ? durationMatch[1] : undefined
+        image: imageUrl,
+        duration: durationMatch ? stripCDATA(durationMatch[1]).trim() : undefined
       },
-      link: linkMatch ? linkMatch[1].trim() : "https://podcasts.apple.com/ng/podcast/influence-podcast/id1520163267"
+      link: linkMatch ? stripCDATA(linkMatch[1]).trim() : "https://podcasts.apple.com/ng/podcast/influence-podcast/id1520163267"
     };
 
   } catch (error) {
@@ -74,8 +98,8 @@ export async function PodcastSection() {
 
   // Fallback if RSS fails
   const fallbackEpisode: PodcastEpisode = {
-    title: "Unable to load episode",
-    description: "Please check back later or subscribe on Apple Podcasts or Spotify.",
+    title: "Ripples of Influence",
+    description: "A monthly podcast about identity, leadership, and what it actually takes to change.",
     pubDate: new Date().toISOString(),
     enclosure: {
       url: "",
@@ -85,7 +109,7 @@ export async function PodcastSection() {
   };
 
   const displayEpisode = episode || fallbackEpisode;
-  const formattedDate = displayEpisode.pubDate 
+  const formattedDate = displayEpisode.pubDate
     ? format(new Date(displayEpisode.pubDate), "MMMM d, yyyy")
     : "";
 
@@ -96,14 +120,14 @@ export async function PodcastSection() {
           <div>
             <div className="section-label mb-4 text-[#008E97]">The Podcast</div>
             <h2 className="headline-lg text-[#0A0A0A] mb-6">
-              Listen to the
+              Ripples of
               <br />
-              <span className="italic">FORGE Podcast</span>
+              <span className="italic">Influence</span>
             </h2>
 
             <p className="text-[#6B7280] text-lg leading-relaxed mb-8">
-              Weekly conversations on personal transformation, leadership architecture, 
-              and building systems that last. New episodes every Tuesday.
+              Ripples of Influence is a monthly podcast about identity, leadership, and what it actually takes to change. 
+              Each episode goes deeper than tactics. We talk about the patterns, the person, and the work underneath the work.
             </p>
 
             <div className="flex flex-wrap items-center gap-4">
@@ -119,7 +143,7 @@ export async function PodcastSection() {
                 Apple Podcasts
               </a>
               <a
-                href="https://open.spotify.com/show/your-show-id"
+                href="https://open.spotify.com/show/1TbCBxMDNYrZj64hcWi3Zg?si=b74979eeece54048"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 bg-[#1DB954] text-white px-6 py-3 rounded-lg font-semibold hover:bg-[#1ed760] transition-colors"
@@ -136,8 +160,8 @@ export async function PodcastSection() {
             <div className="flex items-start gap-6">
               <div className="w-32 h-32 rounded-xl bg-gradient-to-br from-[#008E97] to-[#C8963E] flex items-center justify-center flex-shrink-0 overflow-hidden">
                 {displayEpisode.itunes?.image ? (
-                  <img 
-                    src={displayEpisode.itunes.image} 
+                  <img
+                    src={displayEpisode.itunes.image}
                     alt="Episode artwork"
                     className="w-full h-full object-cover"
                   />
@@ -167,8 +191,8 @@ export async function PodcastSection() {
 
             {displayEpisode.enclosure.url && (
               <div className="mt-6">
-                <audio 
-                  controls 
+                <audio
+                  controls
                   className="w-full"
                   src={displayEpisode.enclosure.url}
                 >
