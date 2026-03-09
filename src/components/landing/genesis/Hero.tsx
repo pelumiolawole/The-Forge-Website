@@ -70,7 +70,7 @@ export function Hero() {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0A0A0A] z-10 pt-20 md:pt-0">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0A0A0A] pt-20 md:pt-0">
       <div className="noise-overlay z-10" />
 
       <div className="absolute inset-0 bg-gradient-to-b from-[#0A0A0A] via-[#0A0A0A] to-[#0f1419]" />
@@ -79,7 +79,6 @@ export function Hero() {
       <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#C8963E]/5 rounded-full blur-[120px]" />
 
       <div ref={heroRef} className="relative z-20 max-w-6xl mx-auto px-6 lg:px-8 text-center">
-        {/* Section label moved from Nav to Hero */}
         <div className="section-label mb-6 animate-fade-up" style={{ animationDelay: "0.1s" }}>
           Leadership Coach & Author
         </div>
@@ -141,6 +140,7 @@ export function Hero() {
         </div>
       </div>
 
+      {/* Scroll indicator moved inside hero container */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 animate-bounce">
         <div className="w-6 h-10 rounded-full border-2 border-white/20 flex justify-center pt-2">
           <div className="w-1 h-2 bg-white/40 rounded-full" />

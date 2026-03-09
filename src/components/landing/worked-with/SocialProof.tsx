@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
+import { useState } from "react";
 
 // Placeholder logos - will be replaced with actual client logos
 const clients = [
@@ -18,7 +18,7 @@ export function SocialProof() {
   const [isPaused, setIsPaused] = useState(false);
 
   return (
-    <section className="relative py-16 bg-[#0A0A0A] border-y border-white/5 z-0">
+    <section className="relative z-0 py-16 bg-[#0A0A0A] border-y border-white/5">
       <div className="max-w-6xl mx-auto px-6 lg:px-8 mb-8">
         <p className="section-label text-center">Trusted by teams at</p>
       </div>
