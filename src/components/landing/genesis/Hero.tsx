@@ -70,7 +70,7 @@ export function Hero() {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0A0A0A] z-10">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0A0A0A] z-10 pt-20 md:pt-0">
       <div className="noise-overlay z-10" />
 
       <div className="absolute inset-0 bg-gradient-to-b from-[#0A0A0A] via-[#0A0A0A] to-[#0f1419]" />
@@ -79,6 +79,7 @@ export function Hero() {
       <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#C8963E]/5 rounded-full blur-[120px]" />
 
       <div ref={heroRef} className="relative z-20 max-w-6xl mx-auto px-6 lg:px-8 text-center">
+        {/* Section label moved from Nav to Hero */}
         <div className="section-label mb-6 animate-fade-up" style={{ animationDelay: "0.1s" }}>
           Leadership Coach & Author
         </div>
@@ -93,7 +94,7 @@ export function Hero() {
           }}
         >
           <span className="block text-white">You already know what to do.</span>
-          <span className="block text-[#008E97]">So why aren't you doing it?</span>
+          <span className="block text-[#008E97]">So why aren&apos;t you doing it?</span>
         </h1>
 
         <p className="body-text max-w-2xl mx-auto mb-10 text-white/70 animate-fade-up mt-8" style={{ animationDelay: "0.3s" }}>

@@ -23,63 +23,86 @@ export function Navigation() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isMobileMenuOpen]);
+
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled
-          ? "bg-[#0A0A0A]/70 backdrop-blur-md border-b border-white/5"
-          : "bg-transparent"
-      }`}
-    >
-      <nav className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
-          <Link href="/" className="flex items-center gap-2">
-            <span className="text-[#008E97] font-bold text-2xl tracking-tight">
-              Coach PO
-            </span>
-          </Link>
+    <>
+      <header
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+          isScrolled
+            ? "bg-[#0A0A0A]/70 backdrop-blur-md border-b border-white/5"
+            : "bg-transparent"
+        }`}
+      >
+        <nav className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="flex items-center justify-between h-20">
+            <Link href="/" className="flex items-center gap-2">
+              <span className="text-[#008E97] font-bold text-2xl tracking-tight">
+                Coach PO
+              </span>
+            </Link>
 
-          <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="text-white/80 hover:text-white text-sm font-medium transition-colors duration-300"
+            <div className="hidden md:flex items-center gap-8">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="text-white/80 hover:text-white text-sm font-medium transition-colors duration-300"
+                >
+                  {link.label}
+                </Link>
+              ))}
+              <a
+                href="https://calendly.com/olawolepelumisunday/30min "
+                target="_blank"
+                rel="noopener noreferrer"
+                className="teal-button text-sm"
               >
-                {link.label}
-              </Link>
-            ))}
-            <a
-              href="https://calendly.com/olawolepelumisunday/30min "
-              target="_blank"
-              rel="noopener noreferrer"
-              className="teal-button text-sm"
+                Book a Call
+              </a>
+            </div>
+
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="md:hidden text-white p-2 relative z-50"
+              aria-label="Toggle menu"
             >
-              Book a Call
-            </a>
+              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
           </div>
+        </nav>
+      </header>
 
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden text-white p-2"
-            aria-label="Toggle menu"
-          >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
-
-        <div
-          className={`md:hidden overflow-hidden transition-all duration-300 ${
-            isMobileMenuOpen ? "max-h-96 pb-6" : "max-h-0"
-          }`}
-        >
-          <div className="flex flex-col gap-4 pt-4 border-t border-white/10">
+      {/* Mobile Menu - Full screen overlay with solid background */}
+      <div
+        className={`fixed inset-0 z-40 md:hidden transition-all duration-300 ${
+          isMobileMenuOpen 
+            ? "opacity-100 pointer-events-auto" 
+            : "opacity-0 pointer-events-none"
+        }`}
+      >
+        {/* Solid background */}
+        <div className="absolute inset-0 bg-[#0A0A0A]" />
+        
+        {/* Menu content */}
+        <div className="relative z-10 flex flex-col items-center justify-center h-full px-6">
+          <nav className="flex flex-col items-center gap-8">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="text-white/80 hover:text-white text-base font-medium transition-colors"
+                className="text-white text-2xl font-medium hover:text-[#008E97] transition-colors"
               >
                 {link.label}
               </Link>
@@ -88,13 +111,14 @@ export function Navigation() {
               href="https://calendly.com/olawolepelumisunday/30min "
               target="_blank"
               rel="noopener noreferrer"
-              className="teal-button text-center mt-2"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="gold-button text-center mt-4 text-lg"
             >
               Book a Call
             </a>
-          </div>
+          </nav>
         </div>
-      </nav>
-    </header>
+      </div>
+    </>
   );
 }
