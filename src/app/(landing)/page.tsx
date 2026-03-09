@@ -5,6 +5,7 @@ import { PodcastSection } from "@/components/landing/podcast/PodcastSection";
 import { AboutPreview } from "@/components/landing/genesis/AboutPreview";
 import { BookPreview } from "@/components/landing/genesis/BookPreview";
 import { Footer } from "@/components/landing/navigation/Footer";
+import FindYourPath from "@/components/landing/FindYourPath";
 
 export default function LandingPage() {
   return (
@@ -14,6 +15,7 @@ export default function LandingPage() {
       <AboutPreview />
       <BookPreview />
       <TestimonialsMarquee />
+      <FindYourPath />
       <PodcastSection />
       <Footer />
     </>
