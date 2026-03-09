@@ -1,8 +1,58 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ArrowRight, Play } from "lucide-react";
 import Link from "next/link";
+
+function AnimatedNumber({ target, suffix = "" }: { target: number; suffix?: string }) {
+  const [count, setCount] = useState(0);
+  const [hasStarted, setHasStarted] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasStarted) {
+          setHasStarted(true);
+        }
+      },
+      { threshold: 0.5 }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => observer.disconnect();
+  }, [hasStarted]);
+
+  useEffect(() => {
+    if (!hasStarted) return;
+
+    const duration = 2000; // 2 seconds
+    const steps = 60;
+    const increment = target / steps;
+    let current = 0;
+
+    const timer = setInterval(() => {
+      current += increment;
+      if (current >= target) {
+        setCount(target);
+        clearInterval(timer);
+      } else {
+        setCount(Math.floor(current));
+      }
+    }, duration / steps);
+
+    return () => clearInterval(timer);
+  }, [hasStarted, target]);
+
+  return (
+    <div ref={ref} className="text-3xl md:text-4xl font-bold text-[#C8963E] font-['Fraunces']">
+      {count}{suffix}
+    </div>
+  );
+}
 
 export function Hero() {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -74,15 +124,15 @@ export function Hero() {
 
         <div className="mt-20 grid grid-cols-3 gap-8 max-w-2xl mx-auto animate-fade-up" style={{ animationDelay: "0.5s" }}>
           <div className="text-center">
-            <div className="text-3xl md:text-4xl font-bold text-[#C8963E] font-['Fraunces']">10+</div>
+            <AnimatedNumber target={10} suffix="+" />
             <div className="text-sm text-white/50 mt-1">Years Experience</div>
           </div>
           <div className="text-center border-x border-white/10">
-            <div className="text-3xl md:text-4xl font-bold text-[#C8963E] font-['Fraunces']">500+</div>
+            <AnimatedNumber target={500} suffix="+" />
             <div className="text-sm text-white/50 mt-1">Leaders Coached</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl md:text-4xl font-bold text-[#C8963E] font-['Fraunces']">3</div>
+            <AnimatedNumber target={2} />
             <div className="text-sm text-white/50 mt-1">Continents</div>
           </div>
         </div>
