@@ -2,39 +2,11 @@ import { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Coach PO — About | Pelumi Olawole",
-  description: "Coach, author, and founder of The Forge System™. From Lagos to the UK — the story behind the work.",
+  title: "Coach PO | About",
+  description: "Coach, author, and builder. Founder of The Forge System™. Helping driven professionals close the gap between who they are and who they're capable of becoming.",
 };
 
-const CALENDLY_URL = "https://calendly.com/olawolepelumisunday/30min";
-
-// Pull Quote Component
-function PullQuote({ 
-  children, 
-  color = "teal",
-  className = "" 
-}: { 
-  children: React.ReactNode; 
-  color?: "teal" | "gold";
-  className?: string;
-}) {
-  const colorClasses = {
-    teal: "text-[#008E97]",
-    gold: "text-[#C8963E]",
-  };
-
-  return (
-    <blockquote 
-      className={`
-        font-serif text-2xl md:text-3xl lg:text-4xl italic leading-relaxed text-center max-w-4xl mx-auto my-12 md:my-16
-        ${colorClasses[color]}
-        ${className}
-      `}
-    >
-      "{children}"
-    </blockquote>
-  );
-}
+const CALENDLY_URL = "https://calendly.com/olawolepelumi/30min";
 
 // Section Label Component
 function SectionLabel({ children }: { children: React.ReactNode }) {
@@ -42,27 +14,6 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
     <span className="text-[#008E97] text-sm font-semibold tracking-[0.2em] uppercase mb-6 block">
       {children}
     </span>
-  );
-}
-
-// Section Headline Component
-function SectionHeadline({ 
-  children, 
-  light = false,
-  className = "" 
-}: { 
-  children: React.ReactNode; 
-  light?: boolean;
-  className?: string;
-}) {
-  return (
-    <h2 className={`
-      text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-tight mb-8
-      ${light ? "text-[#0A0A0A]" : "text-white"}
-      ${className}
-    `}>
-      {children}
-    </h2>
   );
 }
 
@@ -75,7 +26,7 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             {/* Photo Placeholder */}
             <div className="order-2 lg:order-1">
-              <div className="aspect-square bg-[#1A1A1A] rounded-2xl flex items-center justify-center border border-[#222222]">
+              <div className="aspect-[3/4] bg-[#1A1A1A] rounded-2xl flex items-center justify-center border border-[#222222] max-w-md mx-auto lg:mx-0">
                 <span className="text-[#666666] text-sm uppercase tracking-wider">{`{headshot placeholder}`}</span>
               </div>
             </div>
@@ -84,284 +35,247 @@ export default function AboutPage() {
             <div className="order-1 lg:order-2 text-center lg:text-left">
               <SectionLabel>About Coach PO</SectionLabel>
               
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
-                <span className="text-white block mb-2">I wasn&apos;t born knowing this.</span>
-                <span className="text-[#C8963E] italic font-serif">I learned it the hard way.</span>
+              <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight mb-4">
+                Coach. Author. Builder.
               </h1>
 
-              <p className="text-[#A0A0A0] text-lg md:text-xl max-w-2xl mx-auto lg:mx-0">
-                Coach, author, and builder. Founder of IIC Networks. Creator of The Forge System™.
-                Based in the United Kingdom.
+              <p className="font-serif text-[#008E97] text-xl md:text-2xl italic mb-8">
+                Founder of The Forge System™.
+              </p>
+
+              <p className="text-[#A0A0A0] text-lg md:text-xl max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                I help driven professionals close the gap between who they are and who they&apos;re capable of becoming — not by giving them better systems, but by helping them become a different kind of person altogether. Based in the United Kingdom. Building globally.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* SECTION 2 — ORIGIN STORY (off-white) */}
+      {/* SECTION 2 — CREDENTIALS (off-white) */}
       <section className="bg-[#F7F4EF] py-24 md:py-32">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionLabel>Where It Started</SectionLabel>
-          
-          <SectionHeadline light>
-            Lagos gave me ambition.
-            <br />
-            <span className="italic font-serif text-[#0A0A0A]/80">Kwara taught me what actually matters.</span>
-          </SectionHeadline>
-
-          <div className="prose prose-lg max-w-none">
-            <p className="text-[#333333] leading-relaxed mb-6">
-              I grew up in Lagos — the loudest, most alive city in the country. We were comfortable. My father was educated, disciplined, and exacting. He collected books and newspapers the way other men collect receipts, stacked years deep in a large box that I used to dig through for hours as a boy. Nobody told me to read. I just couldn&apos;t leave the box alone.
-            </p>
-
-            <p className="text-[#333333] leading-relaxed mb-6">
-              Then, when I was around eight or nine, everything changed. My father&apos;s business collapsed. Not slowly — suddenly. Properties gone, money gone, the life we knew gone with it. We moved to Kwara State, and the contrast was total. Where there had been abundance, there was now scarcity. We farmed to eat. My mother went from distributing for Cadbury to running a small kiosk in front of our house.
-            </p>
-
-            <p className="text-[#333333] leading-relaxed mb-6">
-              I was the first son. That meant something. It meant you were supposed to model the standard, hold the structure, carry the expectation without being asked to.
-            </p>
-
-            <p className="text-[#333333] leading-relaxed mb-8">
-              What that period actually taught me had nothing to do with resilience as a concept. It taught me something more specific:
-            </p>
-          </div>
-
-          <PullQuote color="teal">
-            You can have everything and lose it in a day. And if what you had was only material — you had nothing to fall back on.
-          </PullQuote>
-
-          <p className="text-[#333333] leading-relaxed text-lg">
-            The real question is what you&apos;ve built inside yourself — spiritually, psychologically, practically. That&apos;s what stays. That understanding has shaped everything I&apos;ve built since.
-          </p>
-        </div>
-      </section>
-
-      {/* SECTION 3 — THE PATTERN (dark) */}
-      <section className="bg-[#0A0A0A] py-24 md:py-32">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionLabel>The Work</SectionLabel>
-          
-          <SectionHeadline>
-            Everywhere I&apos;ve worked,
-            <br />
-            <span className="italic font-serif text-white/80">the same thing happens.</span>
-          </SectionHeadline>
-
-          <div className="space-y-6 text-[#CCCCCC] text-lg leading-relaxed">
-            <p>
-              I studied Mathematics at the Federal University of Technology, Akure. I wasn&apos;t a serious student — not because I couldn&apos;t do the work, but because my brain was somewhere else entirely. Sitting with friends who had small businesses. Helping them set up processes, manage finances, think about structure. I did it for free, mostly. It didn&apos;t feel like work. It felt obvious.
-            </p>
-
-            <p>
-              By the time I finished university, I already knew: the work of my life would be making people better. Not in a vague inspirational sense — practically, structurally, across every dimension of who they are.
-            </p>
-
-            <p>
-              In 2016, I founded IIC Networks — Influence, Impact, Change. Through that practice I worked privately with firms across different industries, designed and led people development programmes, and trained over five thousand professionals and leaders across West Africa.
-            </p>
-
-            <p className="text-white">
-              The through line in all of it has always been the same:
-            </p>
-          </div>
-
-          <PullQuote color="gold">
-            I walk into a room, understand what&apos;s breaking, and make it better. The room notices.
-          </PullQuote>
-
-          <p className="text-[#CCCCCC] leading-relaxed text-lg">
-            In 2023, my family relocated to the United Kingdom. I started at the bottom again. Within a year, I had moved into an IT support team, restructured how it operated, and was leading it in every practical sense before I had the title.
-          </p>
-
-          <p className="text-white font-semibold text-xl mt-8">
-            The pattern holds. It always has.
-          </p>
-        </div>
-      </section>
-
-      {/* SECTION 4 — THE SHIFT (off-white) */}
-      <section className="bg-[#F7F4EF] py-24 md:py-32">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionLabel>The Real Problem</SectionLabel>
-          
-          <SectionHeadline light>
-            I had the knowledge.
-            <br />
-            <span className="italic font-serif text-[#0A0A0A]/80">I just wasn&apos;t living it.</span>
-          </SectionHeadline>
-
-          <div className="space-y-6 text-[#333333] text-lg leading-relaxed">
-            <p>
-              A few years into coaching, I had to face an uncomfortable truth about myself. I knew things. I understood psychology, productivity, human behaviour. I could diagnose anyone&apos;s problems in minutes.
-            </p>
-
-            <p className="text-[#0A0A0A] font-semibold text-xl">
-              My own results didn&apos;t match any of it.
-            </p>
-
-            <p>
-              I was guilty of the exact patterns I was coaching people out of. Over-planning until the plan became the procrastination. Saying yes until I had no time for my own priorities. Waiting for the right moment that never arrived.
-            </p>
-
-            <p>
-              The gap between what I knew and what I had to show for it wasn&apos;t just an achievement problem. It was an integrity problem. I wasn&apos;t living in alignment with what I claimed to value.
-            </p>
-
-            <p className="text-[#0A0A0A] font-semibold">
-              So I stopped focusing on what I needed to do. And started focusing on who I needed to become.
-            </p>
-          </div>
-
-          <PullQuote color="teal">
-            Strategy without identity is just exhausting cosplay.
-          </PullQuote>
-
-          <p className="text-[#333333] leading-relaxed text-lg">
-            That shift — from to-do to to-be — changed everything. Not overnight. Progressively. And it became the foundation of everything I now build and teach.
-          </p>
-        </div>
-      </section>
-
-      {/* SECTION 5 — WHAT I BELIEVE (dark) */}
-      <section className="bg-[#0A0A0A] py-24 md:py-32">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <SectionLabel>The Foundation</SectionLabel>
+          <SectionLabel>The Work In Numbers</SectionLabel>
+          
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 mb-16">
+            {/* Stat 1 */}
+            <div className="text-center">
+              <span className="text-[#0A0A0A] text-5xl md:text-6xl font-bold block mb-2">10+</span>
+              <span className="text-[#666666] text-sm uppercase tracking-wider">Years Coaching</span>
+            </div>
             
-            <SectionHeadline className="text-center">
-              Three principles.
-              <br />
-              <span className="italic font-serif text-white/80">Everything else follows.</span>
-            </SectionHeadline>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
-            {/* Belief 01 */}
-            <div className="text-center md:text-left">
-              <span className="text-[#008E97] text-5xl font-bold block mb-4">01</span>
-              <h3 className="text-white text-xl font-bold mb-4">Know God.</h3>
-              <p className="text-[#A0A0A0] leading-relaxed">
-                Purpose without a foundation is just ambition with no anchor. Faith is not a background detail in my life — it is the frame through which I make decisions, understand my calling, and return to myself when I&apos;ve drifted.
-              </p>
+            {/* Stat 2 */}
+            <div className="text-center">
+              <span className="text-[#0A0A0A] text-5xl md:text-6xl font-bold block mb-2">5,000+</span>
+              <span className="text-[#666666] text-sm uppercase tracking-wider">Professionals Trained</span>
             </div>
-
-            {/* Belief 02 */}
-            <div className="text-center md:text-left">
-              <span className="text-[#008E97] text-5xl font-bold block mb-4">02</span>
-              <h3 className="text-white text-xl font-bold mb-4">Know yourself.</h3>
-              <p className="text-[#A0A0A0] leading-relaxed">
-                You cannot lead others past where you have led yourself. Self-knowledge is not introspection for its own sake — it is the intelligence that makes every other decision sharper.
-              </p>
+            
+            {/* Stat 3 */}
+            <div className="text-center">
+              <span className="text-[#0A0A0A] text-5xl md:text-6xl font-bold block mb-2">2</span>
+              <span className="text-[#666666] text-sm uppercase tracking-wider">Continents</span>
             </div>
-
-            {/* Belief 03 */}
-            <div className="text-center md:text-left">
-              <span className="text-[#008E97] text-5xl font-bold block mb-4">03</span>
-              <h3 className="text-white text-xl font-bold mb-4">Know people.</h3>
-              <p className="text-[#A0A0A0] leading-relaxed">
-                Every result you want in life comes through someone. Understanding people — their fears, their patterns, their capacity — is not manipulation. It is the most practical skill you can develop.
-              </p>
+            
+            {/* Stat 4 */}
+            <div className="text-center">
+              <span className="text-[#0A0A0A] text-5xl md:text-6xl font-bold block mb-2">1</span>
+              <span className="text-[#666666] text-sm uppercase tracking-wider">Book Published</span>
             </div>
           </div>
 
-          <p className="text-[#C8963E] text-xl md:text-2xl italic font-serif text-center mt-16 max-w-3xl mx-auto">
-            Get those three right and the rest — decisions, relationships, work, direction — tends to fall into place.
+          <p className="font-serif text-[#0A0A0A] text-xl md:text-2xl italic text-center">
+            Founder, IIC Networks (2016). Creator, The Forge System™. Author, Petty Little Things.
           </p>
         </div>
       </section>
 
-      {/* SECTION 6 — THE FORGE SYSTEM (teal-tinted surface) */}
-      <section className="bg-[#F0FAFB] py-24 md:py-32">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionLabel>The Work Today</SectionLabel>
+      {/* SECTION 3 — PHILOSOPHY (dark) */}
+      <section className="bg-[#0A0A0A] py-24 md:py-32">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <SectionLabel>What I Believe</SectionLabel>
           
-          <SectionHeadline light>
-            This is what a decade
-            <br />
-            <span className="italic font-serif text-[#0A0A0A]/80">of coaching built.</span>
-          </SectionHeadline>
+          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-tight mb-8">
+            The doing follows the being. It always does.
+          </h2>
 
-          <div className="space-y-6 text-[#333333] text-lg leading-relaxed mb-12">
+          <div className="space-y-6 text-[#CCCCCC] text-lg leading-relaxed mb-16">
             <p>
-              The Forge System™ is the distillation of everything I&apos;ve learned — about identity, about change, about what it actually takes to close the gap between who you are and who you&apos;re capable of becoming.
+              I&apos;ve spent a decade sitting across from people who had every reason to succeed and weren&apos;t. Not because they lacked intelligence or ambition. Because they were still operating as the old version of themselves — running patterns that belonged to who they used to be, not who they were trying to become.
             </p>
-
+            
+            <p className="text-white font-semibold">
+              Most coaching fixes the doing. I work on the being.
+            </p>
+            
             <p>
-              It is not a productivity system. It is not a mindset framework. It is an identity architecture — a structured process for becoming the kind of person whose results are a natural consequence of who they are.
-            </p>
-
-            <p>
-              The clients I work with are not struggling because they lack intelligence or ambition. They are struggling because they are still operating from an older version of themselves — running patterns that belong to who they used to be, not who they&apos;re trying to become.
-            </p>
-
-            <p className="text-[#0A0A0A] font-semibold text-xl">
-              My job is to close that gap. Not by adding more to their plate. By changing who is holding the plate.
+              Three principles sit underneath everything I do:
             </p>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-4 items-center justify-center">
+          {/* Three Principles */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 mb-16">
+            {/* Principle 01 */}
+            <div>
+              <span className="text-[#008E97] text-5xl font-bold block mb-4">01</span>
+              <h3 className="text-white text-xl font-bold mb-3">Know God.</h3>
+              <p className="text-[#A0A0A0] leading-relaxed">
+                Purpose without a foundation is ambition with no anchor.
+              </p>
+            </div>
+
+            {/* Principle 02 */}
+            <div>
+              <span className="text-[#008E97] text-5xl font-bold block mb-4">02</span>
+              <h3 className="text-white text-xl font-bold mb-3">Know yourself.</h3>
+              <p className="text-[#A0A0A0] leading-relaxed">
+                You cannot lead others past where you have led yourself.
+              </p>
+            </div>
+
+            {/* Principle 03 */}
+            <div>
+              <span className="text-[#008E97] text-5xl font-bold block mb-4">03</span>
+              <h3 className="text-white text-xl font-bold mb-3">Know people.</h3>
+              <p className="text-[#A0A0A0] leading-relaxed">
+                Every result you want comes through someone.
+              </p>
+            </div>
+          </div>
+
+          <p className="font-serif text-[#C8963E] text-xl md:text-2xl italic text-center">
+            Get those three right and the rest tends to fall into place.
+          </p>
+        </div>
+      </section>
+
+      {/* SECTION 4 — THE METHOD (teal-tinted surface) */}
+      <section className="bg-[#F0FAFB] py-24 md:py-32">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <SectionLabel>The Forge System™</SectionLabel>
+          
+          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-[#0A0A0A] tracking-tight mb-8">
+            This is what ten years of coaching built.
+          </h2>
+
+          <div className="space-y-6 text-[#333333] text-lg leading-relaxed mb-12 max-w-3xl">
+            <p>
+              The Forge System™ is an identity-based coaching process. Not a productivity framework. Not a mindset hack. A structured path for becoming the kind of person whose results follow naturally from who they are.
+            </p>
+            
+            <p className="text-[#0A0A0A] font-semibold">
+              Three phases. Twelve weeks. One question answered by the end:
+            </p>
+            
+            <p className="font-serif text-[#008E97] text-xl italic">
+              Who are you now, consistently?
+            </p>
+          </div>
+
+          {/* Three Phase Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            {/* Phase 1 */}
+            <div className="bg-white rounded-2xl p-8 border border-[#E0E0E0]">
+              <span className="text-[#008E97] text-xs font-bold tracking-[0.15em] uppercase mb-4 block">Weeks 1–3</span>
+              <h3 className="text-[#0A0A0A] text-2xl font-bold mb-3">STRIP</h3>
+              <p className="text-[#666666] leading-relaxed">
+                Honest diagnosis. What patterns are actually running you?
+              </p>
+            </div>
+
+            {/* Phase 2 */}
+            <div className="bg-white rounded-2xl p-8 border border-[#E0E0E0]">
+              <span className="text-[#008E97] text-xs font-bold tracking-[0.15em] uppercase mb-4 block">Weeks 4–9</span>
+              <h3 className="text-[#0A0A0A] text-2xl font-bold mb-3">FORGE</h3>
+              <p className="text-[#666666] leading-relaxed">
+                Identity architecture. Who are you becoming?
+              </p>
+            </div>
+
+            {/* Phase 3 */}
+            <div className="bg-white rounded-2xl p-8 border border-[#E0E0E0]">
+              <span className="text-[#008E97] text-xs font-bold tracking-[0.15em] uppercase mb-4 block">Weeks 10–12</span>
+              <h3 className="text-[#0A0A0A] text-2xl font-bold mb-3">LEAD</h3>
+              <p className="text-[#666666] leading-relaxed">
+                Sustained self-leadership. Who are you now, every day?
+              </p>
+            </div>
+          </div>
+
+          <div className="text-center">
             <Link
               href="/forge-program"
               className="inline-flex items-center justify-center px-8 py-4 bg-[#C8963E] text-[#0A0A0A] font-semibold rounded-lg hover:bg-[#D4A84A] transition-colors duration-300"
             >
-              Work With Me →
-            </Link>
-            
-            <Link
-              href="/petty-audit"
-              className="inline-flex items-center justify-center px-8 py-4 text-[#008E97] font-semibold hover:underline transition-all duration-300"
-            >
-              Take the free Petty Audit →
+              Apply for The Forge Program →
             </Link>
           </div>
         </div>
       </section>
 
-      {/* SECTION 7 — CLOSING / PERSONAL (dark) */}
+      {/* SECTION 5 — ROLE CARDS (dark) */}
       <section className="bg-[#0A0A0A] py-24 md:py-32">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionLabel>The Honest Version</SectionLabel>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <SectionLabel>What I Build</SectionLabel>
           
-          <SectionHeadline>
-            I wasn&apos;t just told how this works.
-            <br />
-            <span className="italic font-serif text-white/80">I know.</span>
-          </SectionHeadline>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* Card 1 — COACH */}
+            <div className="bg-[#111111] border border-[#222222] rounded-2xl p-8 hover:border-[#008E97] transition-colors duration-300 group">
+              <span className="text-[#008E97] text-xs font-bold tracking-[0.15em] uppercase mb-4 block">COACH</span>
+              <p className="text-[#CCCCCC] mb-6 leading-relaxed">
+                Identity-based coaching for professionals and leaders.
+              </p>
+              <Link 
+                href="/forge-program" 
+                className="text-[#008E97] font-semibold text-sm group-hover:underline"
+              >
+                → The Forge Program
+              </Link>
+            </div>
 
-          <div className="space-y-6 text-[#CCCCCC] text-lg leading-relaxed mb-12">
-            <p>
-              I&apos;ve gone from privileged to lacking. From abundance to scarcity. I&apos;ve failed. I&apos;ve watched my wife carry our family financially while I built something that wasn&apos;t paying yet — and she didn&apos;t just tolerate it, she believed in it. I&apos;ve moved countries in my mid-thirties and started from the bottom again.
-            </p>
+            {/* Card 2 — AUTHOR */}
+            <div className="bg-[#111111] border border-[#222222] rounded-2xl p-8 hover:border-[#008E97] transition-colors duration-300 group">
+              <span className="text-[#008E97] text-xs font-bold tracking-[0.15em] uppercase mb-4 block">AUTHOR</span>
+              <p className="text-[#CCCCCC] mb-6 leading-relaxed">
+                Petty Little Things — 50 habits quietly ruining your life.
+              </p>
+              <Link 
+                href="/book" 
+                className="text-[#008E97] font-semibold text-sm group-hover:underline"
+              >
+                → The Book
+              </Link>
+            </div>
 
-            <p className="text-white">
-              None of that is the inspirational version. It&apos;s the actual version.
-            </p>
+            {/* Card 3 — SPEAKER */}
+            <div className="bg-[#111111] border border-[#222222] rounded-2xl p-8 hover:border-[#008E97] transition-colors duration-300 group">
+              <span className="text-[#008E97] text-xs font-bold tracking-[0.15em] uppercase mb-4 block">SPEAKER</span>
+              <p className="text-[#CCCCCC] mb-6 leading-relaxed">
+                Available for corporate workshops and leadership events.
+              </p>
+              <Link 
+                href={CALENDLY_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#008E97] font-semibold text-sm group-hover:underline"
+              >
+                → Book a Call
+              </Link>
+            </div>
 
-            <p>
-              The reason it matters is this: when I sit across from someone who is stuck, I&apos;m not theorizing. I&apos;ve been broke. I&apos;ve struggled through school fees. I&apos;ve farmed for food. I&apos;ve had to restructure who I am, not just what I do.
-            </p>
-
-            <p>
-              One of the primary reasons I build what I build is to give my wife the freedom to pursue her own vision without the constraint of obligation to income. She has earned that and more.
-            </p>
-
-            <p>
-              I&apos;m building toward a simple thing: millions of people who became who they were always capable of becoming — because somewhere along the way they encountered something I built that helped them close the gap.
-            </p>
-
-            <p className="text-white font-semibold">
-              That&apos;s what this is all for.
-            </p>
+            {/* Card 4 — BUILDER */}
+            <div className="bg-[#111111] border border-[#222222] rounded-2xl p-8 hover:border-[#008E97] transition-colors duration-300">
+              <span className="text-[#008E97] text-xs font-bold tracking-[0.15em] uppercase mb-4 block">BUILDER</span>
+              <p className="text-[#CCCCCC] leading-relaxed">
+                Founder of IIC Networks. Creator of OneGoal Pro.
+              </p>
+              <span className="text-[#666666] font-semibold text-sm block mt-6">
+                About IIC Networks
+              </span>
+            </div>
           </div>
-
-          <p className="text-[#C8963E] text-2xl md:text-3xl italic font-serif text-center max-w-3xl mx-auto leading-relaxed">
-            &ldquo;On any given Tuesday, even after all of it is built — I&apos;ll still be working on the next thing. That&apos;s not a compulsion. That&apos;s just who I am.&rdquo;
-          </p>
         </div>
       </section>
 
-      {/* SECTION 8 — FINAL CTA STRIP (teal) */}
+      {/* SECTION 6 — CTA STRIP (teal) */}
       <section className="bg-[#008E97] py-16 md:py-20">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
@@ -369,7 +283,7 @@ export default function AboutPage() {
           </h2>
           
           <p className="text-white/90 text-lg mb-8 max-w-xl mx-auto">
-            Book a free 30-minute Discovery Call. No pitch. No pressure. Just an honest conversation about where you are and what&apos;s possible.
+            Book a free 30-minute Discovery Call. No pitch. Just an honest conversation.
           </p>
 
           <Link
