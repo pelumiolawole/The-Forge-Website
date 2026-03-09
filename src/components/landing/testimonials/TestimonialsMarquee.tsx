@@ -99,7 +99,7 @@ function TestimonialCard({ testimonial }: { testimonial: typeof testimonials[0] 
         </div>
       </div>
       <p className="text-[#F7F4EF]/80 text-sm leading-relaxed italic">
-        "{testimonial.quote}"
+        &ldquo;{testimonial.quote}&rdquo;
       </p>
     </div>
   );
@@ -138,7 +138,7 @@ function MarqueeRow({ items, direction = "left" }: { items: typeof testimonials;
 export function TestimonialsMarquee() {
   return (
     <section className="py-24 bg-[#0A0A0A] overflow-hidden">
-      <div className="max-w-6xl mx-auto px-6 lg:px-8 mb-12">
+      <div className="max-w-6xl mx-auto px-6 lg:px-8 mb-12 text-center">
         <div className="section-label mb-4 text-[#008E97]">Testimonials</div>
         <h2 className="headline-lg text-white">
           What people say
