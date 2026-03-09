@@ -24,6 +24,10 @@ export default function EpisodeList({ initialEpisodes }: EpisodeListProps) {
   const visibleEpisodes = episodes.slice(0, visibleCount);
   const hasMore = visibleCount < episodes.length;
 
+  const handleLoadMore = () => {
+    setVisibleCount(prev => Math.min(prev + 6, episodes.length));
+  };
+
   const truncateDescription = (text: string, maxLength: number = 140) => {
     if (text.length <= maxLength) return text;
     return text.substring(0, maxLength).trim() + '...';
