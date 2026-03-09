@@ -42,7 +42,7 @@ export function BookPreview() {
                 <h3 className="text-3xl md:text-4xl font-bold text-white font-['Fraunces'] mb-2">LITTLE</h3>
                 <h3 className="text-3xl md:text-4xl font-bold text-white font-['Fraunces'] mb-4">THINGS</h3>
                 <div className="w-16 h-1 bg-[#008E97] my-4" />
-                <p className="text-white/60 text-sm">50 Habits Keeping Capable People Stuck</p>
+                <p className="text-white/60 text-sm">50 Habits Quietly Ruining Your Life</p>
 
                 <div className="absolute top-8 right-8 w-12 h-12 border border-[#008E97]/30 rounded-full" />
                 <div className="absolute bottom-12 left-8 w-8 h-8 bg-[#C8963E]/20 rounded-full" />

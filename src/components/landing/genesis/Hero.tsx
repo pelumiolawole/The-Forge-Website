@@ -70,7 +70,7 @@ export function Hero() {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0A0A0A]">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0A0A0A] z-10">
       <div className="noise-overlay z-10" />
 
       <div className="absolute inset-0 bg-gradient-to-b from-[#0A0A0A] via-[#0A0A0A] to-[#0f1419]" />
@@ -84,14 +84,9 @@ export function Hero() {
         </div>
 
         <h1 className="headline-xl text-white mb-6 animate-fade-up" style={{ animationDelay: "0.2s" }}>
-          What if the gap between{" "}
-          <span className="text-[#008E97]">who you are</span>
+          You already know what to do.
           <br className="hidden md:block" />
-          {" "}and{" "}
-          <span className="text-[#008E97]">who you could become</span>
-          <br className="hidden md:block" />
-          {" "}is not talent{" "}
-          <span className="italic">it is structure?</span>
+          {" "}So why aren't you doing it?
         </h1>
 
         <p className="body-text max-w-2xl mx-auto mb-10 text-white/70 animate-fade-up" style={{ animationDelay: "0.3s" }}>
@@ -102,7 +97,7 @@ export function Hero() {
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-up" style={{ animationDelay: "0.4s" }}>
           <a
-            href="https://calendly.com/olawolepelumisunday/30min"
+            href="https://calendly.com/olawolepelumisunday/30min "
             target="_blank"
             rel="noopener noreferrer"
             className="gold-button inline-flex items-center gap-2 text-base"
@@ -128,8 +123,8 @@ export function Hero() {
             <div className="text-sm text-white/50 mt-1">Years Experience</div>
           </div>
           <div className="text-center border-x border-white/10">
-            <AnimatedNumber target={500} suffix="+" />
-            <div className="text-sm text-white/50 mt-1">Leaders Coached</div>
+            <AnimatedNumber target={5000} suffix="+" />
+            <div className="text-sm text-white/50 mt-1">People Trained</div>
           </div>
           <div className="text-center">
             <AnimatedNumber target={2} />

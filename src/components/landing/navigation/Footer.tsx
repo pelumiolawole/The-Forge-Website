@@ -15,8 +15,8 @@ const footerLinks = {
     { label: "Terms and Conditions", href: "#" },
   ],
   connect: [
-    { label: "Book a Discovery Call", href: "https://calendly.com/olawolepelumisunday/30min", external: true },
-    { label: "LinkedIn", href: "https://www.linkedin.com/in/pelumiolawole/", external: true },
+    { label: "Book a Discovery Call", href: "https://calendly.com/olawolepelumisunday/30min ", external: true },
+    { label: "LinkedIn", href: "https://www.linkedin.com/in/pelumiolawole/ ", external: true },
   ]
 };
 
@@ -31,11 +31,11 @@ export function Footer() {
               <span className="text-white font-semibold text-lg">Pelumi Olawole</span>
             </Link>
             <p className="text-white/50 text-sm leading-relaxed mb-6">
-              Transforming leadership from the inside out through the FORGE methodology.
+              The Forge System™ — Identity coaching for growth-driven professionals.
             </p>
             <div className="flex items-center gap-4">
               <a 
-                href="https://www.linkedin.com/in/pelumiolawole/" 
+                href="https://www.linkedin.com/in/pelumiolawole/ " 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white/60 hover:bg-[#008E97] hover:text-white transition-all"

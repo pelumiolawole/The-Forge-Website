@@ -51,21 +51,12 @@ export function AboutPreview() {
 
             <div className="mt-8 flex flex-wrap gap-4">
               <a
-                href="https://www.linkedin.com/in/pelumiolawole/"
+                href="https://www.linkedin.com/in/pelumiolawole/ "
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 text-[#008E97] hover:text-[#C8963E] transition-colors font-medium"
               >
                 Connect on LinkedIn
-                <ArrowUpRight size={18} />
-              </a>
-              <a
-                href="https://twitter.com/pelumiolawole"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-[#008E97] hover:text-[#C8963E] transition-colors font-medium"
-              >
-                Follow on X
                 <ArrowUpRight size={18} />
               </a>
             </div>

@@ -35,10 +35,7 @@ export function Navigation() {
         <div className="flex items-center justify-between h-20">
           <Link href="/" className="flex items-center gap-2">
             <span className="text-[#008E97] font-bold text-2xl tracking-tight">
-              PO
-            </span>
-            <span className="text-white font-semibold text-lg hidden sm:block">
-              Pelumi Olawole
+              Coach PO
             </span>
           </Link>
 
@@ -53,7 +50,7 @@ export function Navigation() {
               </Link>
             ))}
             <a
-              href="https://calendly.com/olawolepelumisunday/30min"
+              href="https://calendly.com/olawolepelumisunday/30min "
               target="_blank"
               rel="noopener noreferrer"
               className="teal-button text-sm"
@@ -88,7 +85,7 @@ export function Navigation() {
               </Link>
             ))}
             <a
-              href="https://calendly.com/olawolepelumisunday/30min"
+              href="https://calendly.com/olawolepelumisunday/30min "
               target="_blank"
               rel="noopener noreferrer"
               className="teal-button text-center mt-2"

@@ -90,7 +90,7 @@ function TestimonialCard({ testimonial }: { testimonial: typeof testimonials[0] 
   return (
     <div className="flex-shrink-0 w-[400px] bg-[#0A0A0A] border border-[#F7F4EF]/10 rounded-2xl p-6 mx-3 hover:border-[#008E97]/50 transition-all duration-300 hover:scale-[1.03] group">
       <div className="flex items-start gap-4 mb-4">
-        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#008E97] to-[#C8963E] flex items-center justify-center text-white font-bold text-sm">
+        <div className="w-12 h-12 rounded-full bg-[#C8963E] flex items-center justify-center text-white font-bold text-sm">
           {testimonial.initials}
         </div>
         <div>
