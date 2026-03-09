@@ -29,7 +29,7 @@ function AnimatedNumber({ target, suffix = "" }: { target: number; suffix?: stri
   useEffect(() => {
     if (!hasStarted) return;
 
-    const duration = 2000; // 2 seconds
+    const duration = 2000;
     const steps = 60;
     const increment = target / steps;
     let current = 0;
@@ -83,13 +83,20 @@ export function Hero() {
           Leadership Coach & Author
         </div>
 
-        <h1 className="headline-xl text-white mb-6 animate-fade-up" style={{ animationDelay: "0.2s" }}>
-          You already know what to do.
-          <br className="hidden md:block" />
-          {" "}So why aren't you doing it?
+        <h1 
+          className="font-['Fraunces'] font-black text-white mb-8 animate-fade-up max-w-3xl mx-auto" 
+          style={{ 
+            animationDelay: "0.2s",
+            fontSize: "clamp(3rem, 6vw, 5.5rem)",
+            lineHeight: 1.1,
+            letterSpacing: "-0.02em"
+          }}
+        >
+          <span className="block text-white">You already know what to do.</span>
+          <span className="block text-[#008E97]">So why aren't you doing it?</span>
         </h1>
 
-        <p className="body-text max-w-2xl mx-auto mb-10 text-white/70 animate-fade-up" style={{ animationDelay: "0.3s" }}>
+        <p className="body-text max-w-2xl mx-auto mb-10 text-white/70 animate-fade-up mt-8" style={{ animationDelay: "0.3s" }}>
           I help growth-driven professionals and leaders build the internal architecture 
           for sustained excellence through the FORGE methodology, executive coaching, 
           and practical tools that actually work.
