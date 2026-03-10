@@ -1,57 +1,40 @@
 import { NextResponse } from 'next/server';
 
-export const dynamic = 'force-dynamic';
-export const revalidate = 3600;
-
-interface Episode {
-  id: string;
-  title: string;
-  description: string;
-  pubDate: string;
-  duration: string;
-  link: string;
-  episodeNumber?: number;
-  image?: string;
-}
-
 export async function GET() {
   try {
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 10000);
-    
-    const response = await fetch('https://anchor.fm/s/25456800/podcast/rss', {
-      signal: controller.signal,
-      headers: {
-        'Accept': 'application/rss+xml, application/xml, text/xml, */*',
-      },
+    const res = await fetch('https://anchor.fm/s/25456800/podcast/rss', {
+      next: { revalidate: 3600 }
     });
     
-    clearTimeout(timeoutId);
-
-    if (!response.ok) {
-      throw new Error(`Failed to fetch RSS: ${response.status}`);
+    if (!res.ok) {
+      throw new Error(`Failed to fetch: ${res.status}`);
     }
-
-    const xml = await response.text();
     
-    // Parse episodes using regex (no external dependencies)
-    const episodes: Episode[] = [];
+    const xml = await res.text();
     
-    // Split by item tags
-    const itemMatches = xml.match(/<item>([\s\S]*?)<\/item>/gi);
+    // Parse the XML manually
+    const episodes: Array<{
+      id: string;
+      title: string;
+      description: string;
+      pubDate: string;
+      duration: string;
+      link: string;
+      episodeNumber?: number;
+      image?: string;
+    }> = [];
     
-    if (!itemMatches) {
-      return NextResponse.json({ episodes: [] });
-    }
+    // Extract items
+    const itemMatches = xml.match(/<item>([\s\S]*?)<\/item>/gi) || [];
     
     for (const itemXml of itemMatches) {
-      const title = extractContent(itemXml, 'title');
-      const description = extractContent(itemXml, 'description');
-      const pubDate = extractContent(itemXml, 'pubDate');
-      const link = extractContent(itemXml, 'link');
-      const duration = extractContent(itemXml, 'itunes:duration') || extractContent(itemXml, 'duration');
-      const episodeNum = extractContent(itemXml, 'itunes:episode');
-      const image = extractAttribute(itemXml, 'itunes:image', 'href') || extractContent(itemXml, 'itunes:image');
+      const title = extractTag(itemXml, 'title');
+      const description = extractTag(itemXml, 'description');
+      const pubDate = extractTag(itemXml, 'pubDate');
+      const link = extractTag(itemXml, 'link');
+      const duration = extractTag(itemXml, 'itunes:duration') || extractTag(itemXml, 'duration');
+      const episodeNum = extractTag(itemXml, 'itunes:episode');
+      const image = extractAttribute(itemXml, 'itunes:image', 'href');
       
       if (title) {
         episodes.push({
@@ -69,15 +52,12 @@ export async function GET() {
     
     return NextResponse.json({ episodes });
   } catch (error) {
-    console.error('Podcast RSS fetch error:', error);
-    return NextResponse.json(
-      { error: 'Failed to fetch podcast episodes', episodes: [] },
-      { status: 200 }
-    );
+    console.error('Podcast API error:', error);
+    return NextResponse.json({ episodes: [] }, { status: 200 });
   }
 }
 
-function extractContent(xml: string, tag: string): string {
+function extractTag(xml: string, tag: string): string {
   const regex = new RegExp(`<${tag}[^>]*>([\\s\\S]*?)<\\/${tag}>`, 'i');
   const match = xml.match(regex);
   return match ? match[1].trim() : '';

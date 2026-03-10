@@ -3,27 +3,28 @@ import Link from 'next/link';
 import EpisodeList from './EpisodeList';
 
 export const metadata: Metadata = {
-  title: 'Ripples of Influence | Coach PO',
-  description: 'Practical insights on self-leadership, personal mastery, and influence. A podcast by Coach PO — Pelumi Olawole.',
+  title: 'Influence Podcast | Coach PO',
+  description: 'The Influence Podcast is a regular examination of what it takes to become a person of influence. Practical personal and business development thinking with Coach PO.',
 };
 
 async function getEpisodes() {
   try {
-    // Use absolute URL for server-side fetch
-    const protocol = process.env.VERCEL_URL ? 'https' : 'http';
-    const host = process.env.VERCEL_URL || 'localhost:3000';
-    const url = `${protocol}://${host}/api/podcast`;
+    // Fetch from local API route (server-side, no CORS issues)
+    const res = await fetch('http://localhost:3000/api/podcast', { 
+      next: { revalidate: 3600 }
+    }).catch(() => null);
     
-    const res = await fetch(url, { 
-      next: { revalidate: 3600 },
-      cache: 'no-store'
-    });
-    
-    if (!res.ok) {
-      console.error('API response not OK:', res.status);
-      return [];
+    // If localhost fails (production), try relative URL
+    if (!res) {
+      const prodRes = await fetch('/api/podcast', { 
+        next: { revalidate: 3600 }
+      });
+      if (!prodRes.ok) return [];
+      const data = await prodRes.json();
+      return data.episodes || [];
     }
     
+    if (!res.ok) return [];
     const data = await res.json();
     return data.episodes || [];
   } catch (error) {
@@ -56,8 +57,8 @@ export default async function PodcastPage() {
 
   return (
     <main className="min-h-screen bg-[#0A0A0A]">
-      {/* SECTION 1 — HERO with visual weight */}
-      <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden bg-[#0A0A0A]">
+      {/* SECTION 1 — HERO with pt-36 to fix nav overlap */}
+      <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden bg-[#0A0A0A] pt-36 pb-20">
         {/* Radial gradient background */}
         <div className="absolute inset-0">
           <div 
@@ -69,8 +70,8 @@ export default async function PodcastPage() {
         </div>
         
         <div className="relative z-10 px-6 md:px-12 text-center max-w-5xl mx-auto">
-          <h1 className="font-serif text-6xl md:text-8xl lg:text-9xl text-white leading-none mb-8 tracking-tight">
-            Ripples of Influence
+          <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl text-white leading-none mb-8 tracking-tight">
+            Influence Podcast
           </h1>
           
           <p className="font-serif text-xl md:text-2xl lg:text-3xl text-[#008E97] italic mb-12">
@@ -106,11 +107,11 @@ export default async function PodcastPage() {
         </div>
       </section>
 
-      {/* SECTION 2 — SHOW DESCRIPTION (minimal, no duplicate title) */}
+      {/* SECTION 2 — SHOW DESCRIPTION (no heading, new copy) */}
       <section className="px-6 md:px-12 lg:px-20 py-16 bg-[#0A0A0A] border-y border-[#1A1A1A]">
         <div className="max-w-3xl mx-auto text-center">
-          <p className="text-[#A3A3A3] text-lg md:text-xl mb-8">
-            A regular examination of what it takes — and costs — to become a person of influence.
+          <p className="text-[#A3A3A3] text-lg md:text-xl leading-relaxed mb-8">
+            The Influence Podcast is a regular examination of what it takes to become a person of influence. Each episode delivers practical personal and business development thinking that takes the mystery out of success and puts the responsibility back where it belongs: with you. You will learn to lead yourself better, think more clearly, and build the kind of identity that produces results without needing to be forced.
           </p>
           
           <div className="flex items-center justify-center gap-6">
