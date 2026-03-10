@@ -11,13 +11,66 @@ interface Episode {
   duration: string;
   link: string;
   episodeNumber?: number;
+  image?: string;
 }
 
 interface EpisodeListProps {
   initialEpisodes: Episode[];
+  startHereEpisodes?: Episode[];
 }
 
-export default function EpisodeList({ initialEpisodes }: EpisodeListProps) {
+function EpisodeCard({ episode }: { episode: Episode }) {
+  const truncateDescription = (text: string, maxLength: number = 100) => {
+    if (text.length <= maxLength) return text;
+    return text.substring(0, maxLength).trim() + '...';
+  };
+
+  const hasImage = episode.image && episode.image.length > 0;
+
+  return (
+    <article className="group bg-[#0A0A0A] rounded-2xl overflow-hidden border border-[#1A1A1A] hover:border-[#008E97] transition-all duration-300">
+      {/* Image or Placeholder */}
+      <div className="aspect-square relative overflow-hidden bg-[#0A0A0A]">
+        {hasImage ? (
+          <img
+            src={episode.image}
+            alt={episode.title}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center bg-[#0A0A0A] border-b border-[#1A1A1A]">
+            <span className="font-serif text-4xl text-[#008E97]">ROI</span>
+          </div>
+        )}
+      </div>
+      
+      {/* Content */}
+      <div className="p-6">
+        <h3 className="font-serif text-lg text-white leading-tight mb-2 line-clamp-2">
+          {episode.title}
+        </h3>
+        
+        <p className="text-[#6B6B6B] text-sm leading-relaxed mb-4 line-clamp-2">
+          {truncateDescription(episode.description)}
+        </p>
+        
+        <div className="flex items-center justify-between">
+          <span className="text-[#6B6B6B] text-xs">{episode.duration}</span>
+          <Link
+            href={episode.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1 text-[#008E97] text-sm font-medium hover:gap-2 transition-all"
+          >
+            Listen →
+          </Link>
+        </div>
+      </div>
+    </article>
+  );
+}
+
+export default function EpisodeList({ initialEpisodes, startHereEpisodes = [] }: EpisodeListProps) {
   const [visibleCount, setVisibleCount] = useState(6);
   const episodes = initialEpisodes;
   
@@ -28,84 +81,68 @@ export default function EpisodeList({ initialEpisodes }: EpisodeListProps) {
     setVisibleCount(prev => Math.min(prev + 6, episodes.length));
   };
 
-  const truncateDescription = (text: string, maxLength: number = 140) => {
-    if (text.length <= maxLength) return text;
-    return text.substring(0, maxLength).trim() + '...';
-  };
-
   return (
-    <section className="px-6 md:px-12 lg:px-20 py-20 md:py-28 bg-[#F7F4EF]">
-      <div className="max-w-3xl mx-auto">
-        <div className="mb-12">
-          <span className="text-[#008E97] text-sm font-medium tracking-widest uppercase block mb-4">
-            Latest Episodes
-          </span>
-          <h2 className="font-serif text-3xl md:text-4xl text-[#0A0A0A]">
-            Recent conversations
-          </h2>
-        </div>
-
-        {episodes.length === 0 ? (
-          <div className="text-center py-12">
-            <p className="text-[#6B6B6B]">Unable to load episodes. Please check back later.</p>
-          </div>
-        ) : (
-          <>
-            <div className="space-y-4">
-              {visibleEpisodes.map((episode, index) => (
-                <article
-                  key={episode.id}
-                  className="group bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 border-l-4 border-transparent hover:border-[#008E97]"
-                  style={{ animationDelay: `${index * 50}ms` }}
-                >
-                  <div className="flex flex-col gap-3">
-                    <div className="flex items-center justify-between">
-                      <span className="text-[#008E97] text-sm font-medium">
-                        {episode.episodeNumber ? `Episode ${episode.episodeNumber}` : 'Episode'}
-                      </span>
-                      <span className="text-[#6B6B6B] text-sm">{episode.duration}</span>
-                    </div>
-                    
-                    <h3 className="font-serif text-xl md:text-2xl text-[#0A0A0A] leading-tight">
-                      {episode.title}
-                    </h3>
-                    
-                    <p className="text-[#6B6B6B] text-sm">
-                      {episode.pubDate}
-                    </p>
-                    
-                    <p className="text-[#6B6B6B] leading-relaxed line-clamp-2">
-                      {truncateDescription(episode.description)}
-                    </p>
-                    
-                    <div className="pt-2 flex justify-end">
-                      <Link
-                        href={episode.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-[#008E97] font-medium text-sm hover:gap-3 transition-all"
-                      >
-                        Listen →
-                      </Link>
-                    </div>
-                  </div>
-                </article>
+    <div className="space-y-20">
+      {/* Start Here Section */}
+      {startHereEpisodes.length > 0 && (
+        <section className="px-6 md:px-12 lg:px-20">
+          <div className="max-w-6xl mx-auto">
+            <div className="mb-8">
+              <span className="text-[#008E97] text-sm font-medium tracking-widest uppercase block mb-2">
+                Start Here
+              </span>
+              <h2 className="font-serif text-2xl md:text-3xl text-white">
+                Episodes worth your time
+              </h2>
+            </div>
+            
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {startHereEpisodes.map((episode) => (
+                <EpisodeCard key={episode.id} episode={episode} />
               ))}
             </div>
+          </div>
+        </section>
+      )}
 
-            {hasMore && (
-              <div className="mt-10 text-center">
-                <button
-                  onClick={handleLoadMore}
-                  className="inline-flex items-center gap-2 border-2 border-[#008E97] text-[#008E97] px-8 py-3 rounded-lg font-medium hover:bg-[#008E97] hover:text-white transition-colors"
-                >
-                  Load more
-                </button>
+      {/* Latest Episodes Section */}
+      <section className="px-6 md:px-12 lg:px-20 pb-20">
+        <div className="max-w-6xl mx-auto">
+          <div className="mb-8">
+            <span className="text-[#008E97] text-sm font-medium tracking-widest uppercase block mb-2">
+              Latest Episodes
+            </span>
+            <h2 className="font-serif text-2xl md:text-3xl text-white">
+              Recent conversations
+            </h2>
+          </div>
+
+          {episodes.length === 0 ? (
+            <div className="text-center py-12">
+              <p className="text-[#6B6B6B]">Unable to load episodes. Please check back later.</p>
+            </div>
+          ) : (
+            <>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {visibleEpisodes.map((episode) => (
+                  <EpisodeCard key={episode.id} episode={episode} />
+                ))}
               </div>
-            )}
-          </>
-        )}
-      </div>
-    </section>
+
+              {hasMore && (
+                <div className="mt-12 text-center">
+                  <button
+                    onClick={handleLoadMore}
+                    className="inline-flex items-center gap-2 border-2 border-[#008E97] text-[#008E97] px-8 py-3 rounded-full font-medium hover:bg-[#008E97] hover:text-white transition-colors"
+                  >
+                    Load more
+                  </button>
+                </div>
+              )}
+            </>
+          )}
+        </div>
+      </section>
+    </div>
   );
 }

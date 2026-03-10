@@ -10,6 +10,7 @@ interface Episode {
   duration: string;
   link: string;
   episodeNumber?: number;
+  image?: string;
 }
 
 export async function GET() {
@@ -37,6 +38,7 @@ export async function GET() {
       const link = extractTag(itemContent, 'link') || '';
       const duration = extractTag(itemContent, 'itunes:duration') || '';
       const episodeNum = extractTag(itemContent, 'itunes:episode');
+      const image = extractTag(itemContent, 'itunes:image') || extractAttribute(itemContent, 'itunes:image', 'href');
       
       const cleanDescription = description
         .replace(/<[^>]*>/g, '')
@@ -54,6 +56,7 @@ export async function GET() {
         duration: formatDuration(duration),
         link: link || 'https://open.spotify.com/show/1TbCBxMDNYrZj64hcWi3Zg',
         episodeNumber: episodeNum ? parseInt(episodeNum, 10) : undefined,
+        image: image || undefined,
       });
     }
     
@@ -69,6 +72,12 @@ export async function GET() {
 
 function extractTag(xml: string, tag: string): string | null {
   const regex = new RegExp(`<${tag}[^>]*>([\\s\\S]*?)<\\/${tag}>`, 'i');
+  const match = xml.match(regex);
+  return match ? match[1].trim() : null;
+}
+
+function extractAttribute(xml: string, tag: string, attr: string): string | null {
+  const regex = new RegExp(`<${tag}[^>]*${attr}="([^"]*)"`, 'i');
   const match = xml.match(regex);
   return match ? match[1].trim() : null;
 }
