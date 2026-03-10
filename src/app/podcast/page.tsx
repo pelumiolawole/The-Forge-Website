@@ -9,12 +9,25 @@ export const metadata: Metadata = {
 
 async function getEpisodes() {
   try {
-    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
-    const res = await fetch(`${baseUrl}/api/podcast`, { next: { revalidate: 3600 } });
-    if (!res.ok) throw new Error('Failed to fetch');
+    // Use absolute URL for server-side fetch
+    const protocol = process.env.VERCEL_URL ? 'https' : 'http';
+    const host = process.env.VERCEL_URL || 'localhost:3000';
+    const url = `${protocol}://${host}/api/podcast`;
+    
+    const res = await fetch(url, { 
+      next: { revalidate: 3600 },
+      cache: 'no-store'
+    });
+    
+    if (!res.ok) {
+      console.error('API response not OK:', res.status);
+      return [];
+    }
+    
     const data = await res.json();
     return data.episodes || [];
-  } catch {
+  } catch (error) {
+    console.error('Failed to fetch episodes:', error);
     return [];
   }
 }
@@ -29,9 +42,11 @@ const START_HERE_TITLES = [
 export default async function PodcastPage() {
   const episodes = await getEpisodes();
   
-  // Find "Start Here" episodes from the full list (fallback to first 3 if not found)
+  // Find "Start Here" episodes from the full list
   const startHereEpisodes = START_HERE_TITLES.map(title => 
-    episodes.find((ep: { title: string }) => ep.title.toLowerCase().includes(title.toLowerCase()))
+    episodes.find((ep: { title: string }) => 
+      ep.title.toLowerCase().includes(title.toLowerCase())
+    )
   ).filter(Boolean).slice(0, 3);
   
   // If we don't have enough matches, fill with first available episodes
@@ -41,23 +56,28 @@ export default async function PodcastPage() {
 
   return (
     <main className="min-h-screen bg-[#0A0A0A]">
-      {/* SECTION 1 — HERO (Vusi-style) */}
-      <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
-        {/* Radial glow background */}
-        <div className="absolute inset-0 bg-[#0A0A0A]">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(0,142,151,0.15)_0%,_transparent_70%)]" />
+      {/* SECTION 1 — HERO with visual weight */}
+      <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden bg-[#0A0A0A]">
+        {/* Radial gradient background */}
+        <div className="absolute inset-0">
+          <div 
+            className="absolute inset-0"
+            style={{
+              background: 'radial-gradient(circle at center, rgba(0, 142, 151, 0.2) 0%, transparent 60%)'
+            }}
+          />
         </div>
         
-        <div className="relative z-10 px-6 md:px-12 text-center max-w-4xl mx-auto">
-          <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl text-white leading-none mb-6">
+        <div className="relative z-10 px-6 md:px-12 text-center max-w-5xl mx-auto">
+          <h1 className="font-serif text-6xl md:text-8xl lg:text-9xl text-white leading-none mb-8 tracking-tight">
             Ripples of Influence
           </h1>
           
-          <p className="font-serif text-xl md:text-2xl text-[#008E97] italic mb-10">
+          <p className="font-serif text-xl md:text-2xl lg:text-3xl text-[#008E97] italic mb-12">
             Self-leadership. Identity. Influence.
           </p>
           
-          {/* Platform buttons - pill shaped */}
+          {/* Platform buttons - pill shaped, dark */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="https://open.spotify.com/show/1TbCBxMDNYrZj64hcWi3Zg"
@@ -86,14 +106,10 @@ export default async function PodcastPage() {
         </div>
       </section>
 
-      {/* SECTION 2 — SHOW DESCRIPTION (logo + one-liner pattern) */}
+      {/* SECTION 2 — SHOW DESCRIPTION (minimal, no duplicate title) */}
       <section className="px-6 md:px-12 lg:px-20 py-16 bg-[#0A0A0A] border-y border-[#1A1A1A]">
         <div className="max-w-3xl mx-auto text-center">
-          <h2 className="font-serif text-3xl md:text-4xl text-white mb-4">
-            Ripples of Influence
-          </h2>
-          
-          <p className="text-[#A3A3A3] text-lg mb-8">
+          <p className="text-[#A3A3A3] text-lg md:text-xl mb-8">
             A regular examination of what it takes — and costs — to become a person of influence.
           </p>
           
@@ -104,6 +120,7 @@ export default async function PodcastPage() {
               target="_blank"
               rel="noopener noreferrer"
               className="text-[#A3A3A3] hover:text-[#1DB954] transition-colors"
+              aria-label="Spotify"
             >
               <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
@@ -114,6 +131,7 @@ export default async function PodcastPage() {
               target="_blank"
               rel="noopener noreferrer"
               className="text-[#A3A3A3] hover:text-white transition-colors"
+              aria-label="Apple Podcasts"
             >
               <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
@@ -129,7 +147,7 @@ export default async function PodcastPage() {
         startHereEpisodes={finalStartHere}
       />
 
-      {/* SECTION 4 — CTA STRIP */}
+      {/* SECTION 4 — CTA STRIP (dark with gold button) */}
       <section className="px-6 md:px-12 lg:px-20 py-16 md:py-24 bg-[#0A0A0A] border-t border-[#1A1A1A]">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="font-serif text-3xl md:text-4xl text-white mb-4">

@@ -32,6 +32,7 @@ function EpisodeCard({ episode }: { episode: Episode }) {
       {/* Image or Placeholder */}
       <div className="aspect-square relative overflow-hidden bg-[#0A0A0A]">
         {hasImage ? (
+          // eslint-disable-next-line @next/next/no-img-element
           <img
             src={episode.image}
             alt={episode.title}
@@ -82,7 +83,7 @@ export default function EpisodeList({ initialEpisodes, startHereEpisodes = [] }:
   };
 
   return (
-    <div className="space-y-20">
+    <div className="space-y-20 py-20">
       {/* Start Here Section */}
       {startHereEpisodes.length > 0 && (
         <section className="px-6 md:px-12 lg:px-20">
@@ -98,7 +99,7 @@ export default function EpisodeList({ initialEpisodes, startHereEpisodes = [] }:
             
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {startHereEpisodes.map((episode) => (
-                <EpisodeCard key={episode.id} episode={episode} />
+                <EpisodeCard key={`start-${episode.id}`} episode={episode} />
               ))}
             </div>
           </div>
@@ -106,7 +107,7 @@ export default function EpisodeList({ initialEpisodes, startHereEpisodes = [] }:
       )}
 
       {/* Latest Episodes Section */}
-      <section className="px-6 md:px-12 lg:px-20 pb-20">
+      <section className="px-6 md:px-12 lg:px-20">
         <div className="max-w-6xl mx-auto">
           <div className="mb-8">
             <span className="text-[#008E97] text-sm font-medium tracking-widest uppercase block mb-2">
@@ -118,8 +119,9 @@ export default function EpisodeList({ initialEpisodes, startHereEpisodes = [] }:
           </div>
 
           {episodes.length === 0 ? (
-            <div className="text-center py-12">
-              <p className="text-[#6B6B6B]">Unable to load episodes. Please check back later.</p>
+            <div className="text-center py-12 border border-[#1A1A1A] rounded-2xl">
+              <p className="text-[#6B6B6B] mb-2">Unable to load episodes.</p>
+              <p className="text-[#4A4A4A] text-sm">Please check your connection or try again later.</p>
             </div>
           ) : (
             <>
