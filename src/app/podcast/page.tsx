@@ -180,7 +180,7 @@ export default async function PodcastPage() {
                   alt="Spotify"
                   width={32}
                   height={32}
-                  className="w-12 h-12 object-contain"
+                  className="w-16 h-12 object-contain"
                 />
               </Link>
 
