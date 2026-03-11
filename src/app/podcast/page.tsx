@@ -59,8 +59,6 @@ async function getEpisodes() {
   }
 }
 
-// --- Helper functions (add these below getEpisodes, above the component) ---
-
 function extractTag(xml: string, tag: string): string {
   const escaped = tag.replace(':', '\\:');
   const regex = new RegExp(`<${escaped}[^>]*>([\\s\\S]*?)<\\/${escaped}>`, 'i');
@@ -129,19 +127,17 @@ const START_HERE_TITLES = [
 export default async function PodcastPage() {
   const episodes = await getEpisodes();
 
-  // ↓ THIS IS THE FIXED BLOCK — replaces the old finalStartHere logic
   const startHereEpisodes = START_HERE_TITLES
     .map(title =>
       episodes.find((ep: { title: string }) =>
         ep.title.toLowerCase().includes(title.toLowerCase())
       )
     )
-    .filter(Boolean);
+    .filter((ep): ep is NonNullable<typeof ep> => ep !== undefined && ep !== null);
 
   const finalStartHere = startHereEpisodes.length > 0
     ? startHereEpisodes.slice(0, 3)
     : [];
-  // ↑ END OF FIXED BLOCK
 
   return (
     <main className="min-h-screen bg-[#0A0A0A]">
