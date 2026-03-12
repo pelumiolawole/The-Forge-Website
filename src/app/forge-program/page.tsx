@@ -69,7 +69,10 @@ export default function ForgeProgramPage() {
       </section>
 
       {/* ── SECTION 1B: FORGE-DESK FULL BLEED */}
-      <section className="relative h-[70vh] md:h-[85vh] overflow-hidden">
+      <section
+        className="relative overflow-hidden"
+        style={{ height: "80vh", minHeight: "500px" }}
+      >
         <div className="absolute inset-0">
           <Image
             src="/images/forge-desk.PNG"
@@ -80,18 +83,33 @@ export default function ForgeProgramPage() {
             priority
           />
           {/* Top fade from hero */}
-          <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-[#0A0A0A] to-transparent" />
+          <div
+            className="absolute top-0 left-0 right-0"
+            style={{
+              height: "120px",
+              background: "linear-gradient(to bottom, #0A0A0A, transparent)",
+            }}
+          />
           {/* Bottom fade into next section */}
-          <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#0A0A0A] to-transparent" />
-          {/* Subtle dark overlay to keep it moody */}
-          <div className="absolute inset-0 bg-[#0A0A0A]/30" />
+          <div
+            className="absolute bottom-0 left-0 right-0"
+            style={{
+              height: "160px",
+              background: "linear-gradient(to top, #0A0A0A, transparent)",
+            }}
+          />
+          {/* Subtle dark overlay */}
+          <div className="absolute inset-0" style={{ background: "rgba(10,10,10,0.25)" }} />
         </div>
       </section>
 
       {/* ── SECTION 2: THE PROBLEM */}
       <section className="py-24 md:py-32 bg-[#0A0A0A]">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-16 items-start">
+          <div
+            className="grid gap-16 items-start"
+            style={{ gridTemplateColumns: "1fr auto" }}
+          >
 
             {/* Copy left */}
             <div>
@@ -113,24 +131,28 @@ export default function ForgeProgramPage() {
 
               {/* Blockquote */}
               <div className="mt-10 pl-6 border-l-4 border-[#008E97]">
-                <p className="text-white text-xl italic font-light leading-relaxed" style={{ fontFamily: "Fraunces, serif" }}>
+                <p
+                  className="text-white text-xl italic font-light leading-relaxed"
+                  style={{ fontFamily: "Fraunces, serif" }}
+                >
                   "Most coaching fixes the doing. I work on the being."
                 </p>
               </div>
             </div>
 
-            {/* book-man portrait — natural dimensions */}
-            <div className="flex justify-center md:justify-end">
-              <div className="rounded-2xl overflow-hidden" style={{ maxWidth: "420px" }}>
-                <Image
-                  src="/images/book-man.png"
-                  alt="A man reading in focused solitude"
-                  width={864}
-                  height={1220}
-                  className="w-full h-auto"
-                  sizes="(max-width: 768px) 100vw, 420px"
-                />
-              </div>
+            {/* book-man portrait — natural aspect ratio, fixed width column */}
+            <div
+              className="hidden md:block rounded-2xl overflow-hidden flex-shrink-0"
+              style={{ width: "340px" }}
+            >
+              <Image
+                src="/images/book-man.png"
+                alt="A man reading in focused solitude"
+                width={864}
+                height={1220}
+                className="w-full h-auto block"
+                sizes="340px"
+              />
             </div>
 
           </div>
