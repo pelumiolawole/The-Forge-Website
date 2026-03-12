@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { ArrowRight, Download, X, Loader2, Check } from "lucide-react";
 import NextImage from "next/image";
-import Navigation from "@/components/Navigation";
 
 export default function BookPage() {
   // Chapter download modal state
@@ -80,7 +79,6 @@ export default function BookPage() {
 
   return (
     <main className="bg-[#0A0A0A] text-[#F7F4EF]">
-      <Navigation />
 
       {/* ─── HERO ─────────────────────────────────────────────── */}
       <section className="relative min-h-screen flex items-center overflow-hidden">
