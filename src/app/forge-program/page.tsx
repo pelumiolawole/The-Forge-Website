@@ -68,10 +68,30 @@ export default function ForgeProgramPage() {
         </div>
       </section>
 
+      {/* ── SECTION 1B: FORGE-DESK FULL BLEED */}
+      <section className="relative h-[70vh] md:h-[85vh] overflow-hidden">
+        <div className="absolute inset-0">
+          <Image
+            src="/images/forge-desk.PNG"
+            alt="A man at a desk in quiet, focused reflection"
+            fill
+            className="object-cover object-center"
+            sizes="100vw"
+            priority
+          />
+          {/* Top fade from hero */}
+          <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-[#0A0A0A] to-transparent" />
+          {/* Bottom fade into next section */}
+          <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#0A0A0A] to-transparent" />
+          {/* Subtle dark overlay to keep it moody */}
+          <div className="absolute inset-0 bg-[#0A0A0A]/30" />
+        </div>
+      </section>
+
       {/* ── SECTION 2: THE PROBLEM */}
       <section className="py-24 md:py-32 bg-[#0A0A0A]">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-16 items-center">
+          <div className="grid md:grid-cols-2 gap-16 items-start">
 
             {/* Copy left */}
             <div>
@@ -99,17 +119,20 @@ export default function ForgeProgramPage() {
               </div>
             </div>
 
-            {/* Image right */}
-            <div className="rounded-2xl overflow-hidden w-full">
-              <Image
-                src="/images/forge-desk.png"
-                alt="A man at a desk in quiet, focused reflection"
-                width={1920}
-                height={1080}
-                className="w-full h-auto object-cover rounded-2xl"
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
+            {/* book-man portrait — natural dimensions */}
+            <div className="flex justify-center md:justify-end">
+              <div className="rounded-2xl overflow-hidden" style={{ maxWidth: "420px" }}>
+                <Image
+                  src="/images/book-man.png"
+                  alt="A man reading in focused solitude"
+                  width={864}
+                  height={1220}
+                  className="w-full h-auto"
+                  sizes="(max-width: 768px) 100vw, 420px"
+                />
+              </div>
             </div>
+
           </div>
         </div>
       </section>
