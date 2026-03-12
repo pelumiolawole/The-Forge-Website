@@ -75,7 +75,7 @@ export default function ForgeProgramPage() {
       >
         <div className="absolute inset-0">
           <Image
-            src="/images/forge-desk.PNG"
+            src="/images/forge-desk.png"
             alt="A man at a desk in quiet, focused reflection"
             fill
             className="object-cover object-center"
