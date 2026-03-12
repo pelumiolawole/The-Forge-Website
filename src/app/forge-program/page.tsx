@@ -81,6 +81,7 @@ export default function ForgeProgramPage() {
             className="object-cover object-center"
             sizes="100vw"
             priority
+            placeholder="empty"
           />
           {/* Top fade from hero */}
           <div
