@@ -75,40 +75,34 @@ export default function BookPage() {
 
       {/* ─── HERO ─────────────────────────────────────────────── */}
       <section className="relative min-h-screen flex items-center overflow-hidden">
-
-        {/* Background image — object-right on mobile focuses the front cover */}
+        {/* Full-bleed background image */}
         <div className="absolute inset-0">
           <NextImage
             src="/images/book-hero-3d.png"
             alt="Petty Little Things by Pelumi Olawole"
             fill
-            className="object-cover object-right md:object-center"
+            className="object-cover object-center"
             priority
             sizes="100vw"
           />
         </div>
-
-        {/* Desktop: left-to-right gradient — copy readable, book visible on right */}
-        <div className="absolute inset-0 hidden md:block bg-gradient-to-r from-[#0A0A0A] via-[#0A0A0A]/80 to-transparent" />
-
-        {/* Mobile: strong top overlay so copy sits cleanly over the image */}
-        <div className="absolute inset-0 md:hidden" style={{ background: "linear-gradient(to bottom, rgba(10,10,10,0.92) 0%, rgba(10,10,10,0.75) 55%, rgba(10,10,10,0.5) 100%)" }} />
-
-        {/* Bottom fade into page on all screens */}
-        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#0A0A0A] to-transparent" />
+        {/* Left-side gradient so copy is readable without obscuring the book on the right */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0A0A0A] via-[#0A0A0A]/80 to-transparent" />
+        {/* Bottom fade into page */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#0A0A0A] to-transparent" />
 
         <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-8 pt-28 pb-20">
           <div className="max-w-xl">
-            <p className="section-label text-[#008E97] mb-4 md:mb-6">
+            <p className="section-label text-[#008E97] mb-6">
               Pelumi Olawole — Debut Book
             </p>
-            <h1 className="headline-xl text-white mb-4 md:mb-6">
+            <h1 className="headline-xl text-white mb-6">
               Petty Little Things
             </h1>
-            <p className="text-[#F7F4EF]/60 text-base md:text-xl leading-relaxed mb-8 md:mb-10">
+            <p className="text-[#F7F4EF]/60 text-lg md:text-xl leading-relaxed mb-10">
               50 habits quietly ruining your life and how to fix them.
             </p>
-            <div className="flex flex-col sm:flex-row gap-3 md:gap-4">
+            <div className="flex flex-col sm:flex-row gap-4">
               <a
                 href="#waitlist"
                 className="gold-button inline-flex items-center justify-center gap-2"
@@ -219,6 +213,7 @@ export default function BookPage() {
       <section className="bg-[#F7F4EF] py-24 md:py-32">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
+            {/* Image */}
             <div className="relative">
               <div className="relative w-full h-[36rem] md:h-[44rem] overflow-hidden shadow-xl">
                 <NextImage
@@ -230,6 +225,8 @@ export default function BookPage() {
                 />
               </div>
             </div>
+
+            {/* Copy */}
             <div>
               <p className="section-label text-[#008E97] mb-4">
                 For the person who already knows
