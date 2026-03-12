@@ -8,7 +8,6 @@ const navLinks = [
   { href: "/about", label: "About" },
   { href: "/book", label: "The Book" },
   { href: "/forge-program", label: "The Forge" },
-  { href: "#testimonials", label: "Testimonials" },
   { href: "/podcast", label: "Podcast" },
 ];
 
