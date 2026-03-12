@@ -61,7 +61,7 @@ export default function ForgeProgramPage() {
             href="https://calendly.com/olawolepelumisunday/30min"
             target="_blank"
             rel="noopener noreferrer"
-            className="gold-button text-base md:text-lg px-10 py-4"
+            className="gold-button inline-flex items-center text-base md:text-lg px-10 py-4"
           >
             Apply for The Forge Program
           </a>
@@ -386,7 +386,7 @@ export default function ForgeProgramPage() {
               href="https://calendly.com/olawolepelumisunday/30min"
               target="_blank"
               rel="noopener noreferrer"
-              className="gold-button text-base px-10 py-4"
+              className="gold-button inline-flex items-center text-base px-10 py-4"
             >
               Apply Now
             </a>
@@ -467,7 +467,7 @@ export default function ForgeProgramPage() {
             href="https://calendly.com/olawolepelumisunday/30min"
             target="_blank"
             rel="noopener noreferrer"
-            className="gold-button text-base px-12 py-4"
+            className="gold-button inline-flex items-center text-base px-12 py-4"
           >
             Apply for The Forge Program
           </a>
