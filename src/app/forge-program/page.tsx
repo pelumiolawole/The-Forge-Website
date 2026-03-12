@@ -100,16 +100,15 @@ export default function ForgeProgramPage() {
             </div>
 
             {/* Image right */}
-            <div className="relative h-[500px] md:h-[600px] rounded-2xl overflow-hidden">
+            <div className="rounded-2xl overflow-hidden w-full">
               <Image
                 src="/images/forge-desk.png"
                 alt="A man at a desk in quiet, focused reflection"
-                fill
-                className="object-cover object-center"
+                width={1920}
+                height={1080}
+                className="w-full h-auto object-cover rounded-2xl"
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
-              {/* Subtle dark vignette on left edge to blend into dark section */}
-              <div className="absolute inset-0 bg-gradient-to-r from-[#0A0A0A]/40 to-transparent pointer-events-none" />
             </div>
           </div>
         </div>
