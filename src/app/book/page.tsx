@@ -74,57 +74,50 @@ export default function BookPage() {
     <main className="bg-[#0A0A0A] text-[#F7F4EF]">
 
       {/* ─── HERO ─────────────────────────────────────────────── */}
-      <section className="relative min-h-screen bg-[#0A0A0A] flex items-center overflow-hidden">
-        {/* Subtle radial glow behind book */}
-        <div
-          className="absolute right-0 top-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full pointer-events-none"
-          style={{ background: "radial-gradient(circle, rgba(0,142,151,0.12) 0%, transparent 70%)" }}
-        />
+      <section className="relative min-h-screen flex items-center overflow-hidden">
+        {/* Full-bleed background image */}
+        <div className="absolute inset-0">
+          <NextImage
+            src="/images/book-hero-3d.png"
+            alt="Petty Little Things by Pelumi Olawole"
+            fill
+            className="object-cover object-center"
+            priority
+            sizes="100vw"
+          />
+        </div>
+        {/* Left-side gradient so copy is readable without obscuring the book on the right */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0A0A0A] via-[#0A0A0A]/80 to-transparent" />
+        {/* Bottom fade into page */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#0A0A0A] to-transparent" />
 
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-8 pt-28 pb-16">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-
-            {/* Left: copy + CTAs */}
-            <div>
-              <p className="section-label text-[#008E97] mb-6">
-                Pelumi Olawole — Debut Book
-              </p>
-              <h1 className="headline-xl text-white mb-6">
-                Petty Little Things
-              </h1>
-              <p className="text-[#F7F4EF]/60 text-lg md:text-xl leading-relaxed mb-10 max-w-md">
-                50 habits quietly ruining your life and how to fix them.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <a
-                  href="#waitlist"
-                  className="gold-button inline-flex items-center justify-center gap-2"
-                >
-                  Join the Waitlist
-                  <ArrowRight size={18} />
-                </a>
-                <button
-                  onClick={() => setIsModalOpen(true)}
-                  className="inline-flex items-center justify-center gap-2 px-6 py-4 border-2 border-[#F7F4EF]/20 text-[#F7F4EF] font-semibold hover:border-[#008E97] hover:text-[#008E97] transition-all"
-                >
-                  <Download size={18} />
-                  Read a Free Chapter
-                </button>
-              </div>
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-8 pt-28 pb-20">
+          <div className="max-w-xl">
+            <p className="section-label text-[#008E97] mb-6">
+              Pelumi Olawole — Debut Book
+            </p>
+            <h1 className="headline-xl text-white mb-6">
+              Petty Little Things
+            </h1>
+            <p className="text-[#F7F4EF]/60 text-lg md:text-xl leading-relaxed mb-10">
+              50 habits quietly ruining your life and how to fix them.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <a
+                href="#waitlist"
+                className="gold-button inline-flex items-center justify-center gap-2"
+              >
+                Join the Waitlist
+                <ArrowRight size={18} />
+              </a>
+              <button
+                onClick={() => setIsModalOpen(true)}
+                className="inline-flex items-center justify-center gap-2 px-6 py-4 border-2 border-[#F7F4EF]/20 text-[#F7F4EF] font-semibold hover:border-[#008E97] hover:text-[#008E97] transition-all"
+              >
+                <Download size={18} />
+                Read a Free Chapter
+              </button>
             </div>
-
-            {/* Right: book mock — large, fills column */}
-            <div className="relative flex items-center justify-center lg:justify-end">
-              <NextImage
-                src="/images/book-mock.png"
-                alt="Petty Little Things by Pelumi Olawole"
-                width={700}
-                height={560}
-                className="w-full max-w-lg lg:max-w-none h-auto object-contain"
-                priority
-              />
-            </div>
-
           </div>
         </div>
       </section>
