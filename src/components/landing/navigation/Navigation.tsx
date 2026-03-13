@@ -17,22 +17,14 @@ export function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useEffect(() => {
-    if (isMobileMenuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
-    return () => {
-      document.body.style.overflow = "unset";
-    };
+    document.body.style.overflow = isMobileMenuOpen ? "hidden" : "unset";
+    return () => { document.body.style.overflow = "unset"; };
   }, [isMobileMenuOpen]);
 
   return (
@@ -47,15 +39,15 @@ export function Navigation() {
         <nav className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
 
-            {/* Logo */}
+            {/* Logo — signature image, generous container */}
             <Link href="/" className="flex items-center">
-              <div className="relative h-10 w-36">
+              <div className="relative h-14 w-52">
                 <Image
                   src="/images/logo-main.png"
                   alt="Pelumi Olawole"
                   fill
                   className="object-contain object-left"
-                  sizes="144px"
+                  sizes="208px"
                   priority
                 />
               </div>
@@ -94,28 +86,24 @@ export function Navigation() {
         </nav>
       </header>
 
-      {/* Mobile menu — full screen overlay */}
+      {/* Mobile menu */}
       <div
         className={`fixed inset-0 z-40 md:hidden transition-all duration-300 ${
-          isMobileMenuOpen
-            ? "opacity-100 pointer-events-auto"
-            : "opacity-0 pointer-events-none"
+          isMobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
       >
         <div className="absolute inset-0 bg-[#0A0A0A]" />
-
         <div className="relative z-10 flex flex-col items-center justify-center h-full px-6">
           {/* Logo in mobile menu */}
-          <div className="relative h-12 w-44 mb-12">
+          <div className="relative h-14 w-52 mb-12">
             <Image
               src="/images/logo-main.png"
               alt="Pelumi Olawole"
               fill
               className="object-contain"
-              sizes="176px"
+              sizes="208px"
             />
           </div>
-
           <nav className="flex flex-col items-center gap-8">
             {navLinks.map((link) => (
               <Link

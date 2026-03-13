@@ -18,8 +18,8 @@ const duplicated = [...brands, ...brands, ...brands];
 
 export function SocialProof() {
   return (
-    <section className="py-10 md:py-14 bg-[#0A0A0A] border-t border-b border-white/5 overflow-hidden">
-      <div className="max-w-6xl mx-auto px-6 lg:px-8 mb-6 md:mb-8">
+    <section className="py-12 md:py-16 bg-[#0A0A0A] border-t border-b border-white/5 overflow-hidden">
+      <div className="max-w-6xl mx-auto px-6 lg:px-8 mb-8 md:mb-10">
         <p className="text-center text-xs font-semibold tracking-[0.2em] uppercase text-[#9CA3AF]">
           Trusted by teams at
         </p>
@@ -35,17 +35,23 @@ export function SocialProof() {
           {duplicated.map((brand, idx) => (
             <div
               key={`${brand.name}-${idx}`}
-              className="flex-shrink-0 flex items-center justify-center mx-6 md:mx-10"
-              style={{ minWidth: "140px" }}
+              className="flex-shrink-0 flex items-center justify-center mx-8 md:mx-12"
+              style={{ minWidth: "160px" }}
             >
-              <div className="relative h-10 md:h-12 w-28 md:w-36 opacity-70 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0">
-                <Image
-                  src={brand.logo}
-                  alt={brand.name}
-                  fill
-                  className="object-contain"
-                  sizes="144px"
-                />
+              {/* White backing so dark logos are visible on dark bg */}
+              <div
+                className="relative flex items-center justify-center rounded-lg px-4 py-2 transition-all duration-300 hover:scale-105"
+                style={{ backgroundColor: "rgba(255,255,255,0.08)", minWidth: "140px", height: "56px" }}
+              >
+                <div className="relative w-28 h-10">
+                  <Image
+                    src={brand.logo}
+                    alt={brand.name}
+                    fill
+                    className="object-contain brightness-150 opacity-80 hover:opacity-100 hover:brightness-200 transition-all duration-300"
+                    sizes="112px"
+                  />
+                </div>
               </div>
             </div>
           ))}

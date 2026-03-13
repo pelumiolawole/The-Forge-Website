@@ -31,13 +31,13 @@ export function Footer() {
           {/* Brand */}
           <div className="lg:col-span-1">
             <Link href="/" className="flex items-center mb-6">
-              <div className="relative h-9 w-32">
+              <div className="relative h-12 w-44">
                 <Image
                   src="/images/logo-main.png"
                   alt="Pelumi Olawole"
                   fill
                   className="object-contain object-left"
-                  sizes="128px"
+                  sizes="176px"
                 />
               </div>
             </Link>
@@ -54,7 +54,7 @@ export function Footer() {
                 <Linkedin size={16} />
               </a>
               <a
-                href="mailto:hello@pelumiolawole.com"
+                href="mailto:coach@pelumiolawole.com"
                 className="w-9 h-9 rounded-full bg-white/5 flex items-center justify-center text-white/60 hover:bg-[#008E97] hover:text-white transition-all"
               >
                 <Mail size={16} />

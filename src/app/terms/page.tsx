@@ -26,7 +26,7 @@ export default function TermsPage() {
               These terms govern your use of this website (pelumiolawole.com) and any services provided by Pelumi Olawole, trading as Coach PO / The Forge System, based in the United Kingdom. By using this website or purchasing any service, you agree to these terms.
             </p>
             <p className="mt-3">
-              Contact: <a href="mailto:hello@pelumiolawole.com" className="text-[#008E97] hover:underline">hello@pelumiolawole.com</a>
+              Contact: <a href="mailto:coach@pelumiolawole.com." className="text-[#008E97] hover:underline">coach@pelumiolawole.com.</a>
             </p>
           </section>
 
@@ -99,8 +99,8 @@ export default function TermsPage() {
             <h2 className="font-serif text-xl md:text-2xl text-[#0A0A0A] font-bold mb-4">Contact</h2>
             <p>
               For any questions about these terms, contact us at{" "}
-              <a href="mailto:hello@pelumiolawole.com" className="text-[#008E97] hover:underline">
-                hello@pelumiolawole.com
+              <a href="mailto:coach@pelumiolawole.com." className="text-[#008E97] hover:underline">
+                coach@pelumiolawole.com.
               </a>.
             </p>
           </section>
