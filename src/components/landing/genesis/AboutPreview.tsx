@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 
@@ -11,6 +12,7 @@ export function AboutPreview() {
 
       <div className="max-w-6xl mx-auto px-6 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
+
           {/* Image side */}
           <div className="relative">
             <div className="aspect-[4/5] rounded-2xl overflow-hidden">
@@ -53,7 +55,7 @@ export function AboutPreview() {
             </div>
 
             <div className="mt-8 flex flex-wrap gap-4">
-              
+              <a
                 href="https://www.linkedin.com/in/pelumiolawole/"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -64,6 +66,7 @@ export function AboutPreview() {
               </a>
             </div>
           </div>
+
         </div>
       </div>
     </section>
