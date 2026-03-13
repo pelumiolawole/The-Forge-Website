@@ -41,7 +41,7 @@ export function Navigation() {
 
             {/* Logo — signature image, generous container */}
             <Link href="/" className="flex items-center">
-              <div className="relative h-20 w-72">
+              <div className="relative h-25 w-80">
                 <Image
                   src="/images/logo-main.png"
                   alt="Pelumi Olawole"

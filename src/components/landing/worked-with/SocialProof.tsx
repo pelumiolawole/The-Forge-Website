@@ -29,12 +29,12 @@ export function SocialProof() {
         <p className="section-label text-center">Trusted by teams at</p>
       </div>
 
-      <div 
+      <div
         className="marquee-container"
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
       >
-        <div 
+        <div
           className={`flex gap-12 ${isPaused ? '' : 'animate-marquee-left'}`}
           style={{ width: "max-content" }}
         >
@@ -42,14 +42,14 @@ export function SocialProof() {
           {[...clients, ...clients].map((client, index) => (
             <div
               key={index}
-              className="flex items-center justify-center w-40 h-16 grayscale opacity-40 hover:opacity-100 hover:grayscale-0 transition-all duration-500"
+              className="flex items-center justify-center h-16 grayscale opacity-40 hover:opacity-100 hover:grayscale-0 transition-all duration-500"
             >
               {/* Placeholder logo - replace with actual SVG logos */}
               <div className="flex items-center gap-3 text-white/60">
-                <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center font-bold text-sm">
+                <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center font-bold text-sm flex-shrink-0">
                   {client.abbr}
                 </div>
-                <span className="font-semibold text-lg">{client.name}</span>
+                <span className="font-semibold text-lg whitespace-nowrap">{client.name}</span>
               </div>
             </div>
           ))}
