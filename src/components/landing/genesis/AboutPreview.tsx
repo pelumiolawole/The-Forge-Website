@@ -13,11 +13,14 @@ export function AboutPreview() {
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Image side */}
           <div className="relative">
-            <div className="aspect-[4/5] rounded-2xl overflow-hidden bg-gradient-to-br from-[#008E97]/20 to-[#C8963E]/20">
-              {/* Placeholder for Pelumi's image */}
-              <div className="w-full h-full flex items-center justify-center text-white/30">
-                <span className="text-lg">Photo placeholder</span>
-              </div>
+            <div className="aspect-[4/5] rounded-2xl overflow-hidden">
+              <Image
+                src="/images/pelumi-headshot-1.png"
+                alt="Pelumi Olawole — Coach PO"
+                fill
+                className="object-cover object-top"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
             </div>
             {/* Decorative element */}
             <div className="absolute -bottom-6 -right-6 w-48 h-48 border border-[#C8963E]/30 rounded-2xl -z-10" />
@@ -36,13 +39,13 @@ export function AboutPreview() {
 
             <div className="space-y-4 body-text">
               <p>
-                Not for lack of information. They failed because they were still the old version of themselves, 
+                Not for lack of information. They failed because they were still the old version of themselves,
                 running patterns that belonged to who they used to be.
               </p>
               <p>
-                I'm Pelumi Olawole. I founded IIC Networks in 2016 and have trained thousands of professionals 
-                and leaders across West Africa and the UK. The work has never really been about skills or strategies. 
-                It's always been about identity.
+                I&apos;m Pelumi Olawole. I founded IIC Networks in 2016 and have trained thousands of professionals
+                and leaders across West Africa and the UK. The work has never really been about skills or strategies.
+                It&apos;s always been about identity.
               </p>
               <p className="text-[#C8963E] font-semibold">
                 That work is now The Forge System.
@@ -50,8 +53,8 @@ export function AboutPreview() {
             </div>
 
             <div className="mt-8 flex flex-wrap gap-4">
-              <a
-                href="https://www.linkedin.com/in/pelumiolawole/ "
+              
+                href="https://www.linkedin.com/in/pelumiolawole/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 text-[#008E97] hover:text-[#C8963E] transition-colors font-medium"
