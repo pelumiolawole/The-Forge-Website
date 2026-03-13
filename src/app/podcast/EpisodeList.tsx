@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 
 interface Episode {
@@ -28,9 +28,8 @@ function EpisodeCard({ episode }: { episode: Episode }) {
   const hasImage = episode.image && episode.image.length > 0;
 
   return (
-    <article className="group bg-[#0A0A0A] rounded-2xl overflow-hidden border border-[#1A1A1A] hover:border-[#008E97] transition-all duration-300">
-      {/* Image or Placeholder */}
-      <div className="aspect-square relative overflow-hidden bg-[#0A0A0A]">
+    <article className="group bg-[#111111] rounded-2xl overflow-hidden border border-[#1A1A1A] hover:border-[#008E97] transition-all duration-300">
+      <div className="aspect-square relative overflow-hidden bg-[#111111]">
         {hasImage ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img
@@ -39,22 +38,21 @@ function EpisodeCard({ episode }: { episode: Episode }) {
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
           />
         ) : (
-          <div className="w-full h-full flex items-center justify-center bg-[#0A0A0A] border-b border-[#1A1A1A]">
-            <span className="font-serif text-4xl text-[#008E97]">ROI</span>
+          <div className="w-full h-full flex items-center justify-center bg-[#111111] border-b border-[#1A1A1A]">
+            <span className="font-serif text-3xl text-[#008E97]">IP</span>
           </div>
         )}
       </div>
-      
-      {/* Content */}
-      <div className="p-6">
-        <h3 className="font-serif text-lg text-white leading-tight mb-2 line-clamp-2">
+
+      <div className="p-5 md:p-6">
+        <h3 className="font-serif text-base md:text-lg text-white leading-tight mb-2 line-clamp-2">
           {episode.title}
         </h3>
-        
+
         <p className="text-[#6B6B6B] text-sm leading-relaxed mb-4 line-clamp-2">
           {truncateDescription(episode.description)}
         </p>
-        
+
         <div className="flex items-center justify-between">
           <span className="text-[#6B6B6B] text-xs">{episode.duration}</span>
           <Link
@@ -63,7 +61,7 @@ function EpisodeCard({ episode }: { episode: Episode }) {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1 text-[#008E97] text-sm font-medium hover:gap-2 transition-all"
           >
-            Listen →
+            Listen
           </Link>
         </div>
       </div>
@@ -74,7 +72,6 @@ function EpisodeCard({ episode }: { episode: Episode }) {
 export default function EpisodeList({ initialEpisodes, startHereEpisodes = [] }: EpisodeListProps) {
   const [visibleCount, setVisibleCount] = useState(6);
   const episodes = initialEpisodes;
-  
   const visibleEpisodes = episodes.slice(0, visibleCount);
   const hasMore = visibleCount < episodes.length;
 
@@ -83,8 +80,9 @@ export default function EpisodeList({ initialEpisodes, startHereEpisodes = [] }:
   };
 
   return (
-    <div className="space-y-20 py-20">
-      {/* Start Here Section */}
+    <div className="space-y-16 md:space-y-20 py-12 md:py-20">
+
+      {/* Start Here */}
       {startHereEpisodes.length > 0 && (
         <section className="px-6 md:px-12 lg:px-20">
           <div className="max-w-6xl mx-auto">
@@ -96,8 +94,7 @@ export default function EpisodeList({ initialEpisodes, startHereEpisodes = [] }:
                 Episodes worth your time
               </h2>
             </div>
-            
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
               {startHereEpisodes.map((episode) => (
                 <EpisodeCard key={`start-${episode.id}`} episode={episode} />
               ))}
@@ -106,7 +103,7 @@ export default function EpisodeList({ initialEpisodes, startHereEpisodes = [] }:
         </section>
       )}
 
-      {/* Latest Episodes Section */}
+      {/* Latest Episodes */}
       <section className="px-6 md:px-12 lg:px-20">
         <div className="max-w-6xl mx-auto">
           <div className="mb-8">
@@ -125,19 +122,19 @@ export default function EpisodeList({ initialEpisodes, startHereEpisodes = [] }:
             </div>
           ) : (
             <>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
                 {visibleEpisodes.map((episode) => (
                   <EpisodeCard key={episode.id} episode={episode} />
                 ))}
               </div>
 
               {hasMore && (
-                <div className="mt-12 text-center">
+                <div className="mt-10 md:mt-12 text-center">
                   <button
                     onClick={handleLoadMore}
                     className="inline-flex items-center gap-2 border-2 border-[#008E97] text-[#008E97] px-8 py-3 rounded-full font-medium hover:bg-[#008E97] hover:text-white transition-colors"
                   >
-                    Load more
+                    Load more episodes
                   </button>
                 </div>
               )}
@@ -145,6 +142,7 @@ export default function EpisodeList({ initialEpisodes, startHereEpisodes = [] }:
           )}
         </div>
       </section>
+
     </div>
   );
 }

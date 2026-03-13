@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import Link from "next/link";
 
 const CALENDLY_URL = "https://calendly.com/olawolepelumisunday/30min";
@@ -24,7 +25,7 @@ const paths: PathCard[] = [
   },
   {
     label: "12 WEEKS",
-    title: "The Forge Program™",
+    title: "The Forge Program",
     body: "The flagship coaching experience. Identity-based. Structured. Built for professionals who are done explaining why they haven't changed yet.",
     buttonText: "Apply Now",
     href: "/forge-program",
@@ -42,40 +43,41 @@ const paths: PathCard[] = [
 
 export default function FindYourPath() {
   return (
-    <section className="bg-[#0A0A0A] py-24 md:py-32">
+    <section className="bg-[#0A0A0A] py-16 md:py-24 lg:py-32">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
         {/* Header */}
-        <div className="text-center mb-16 md:mb-20">
+        <div className="text-center mb-12 md:mb-20">
           <span className="text-[#008E97] text-sm font-semibold tracking-[0.2em] uppercase mb-4 block">
             What&apos;s Your Next Step
           </span>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight">
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight font-['Fraunces']">
             Find Your Path
           </h2>
         </div>
 
         {/* Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-stretch">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 lg:gap-8 items-stretch">
           {paths.map((path) => (
             <Link
               key={path.title}
               href={path.href}
               className={`
-                group relative flex flex-col rounded-2xl p-8 lg:p-10
+                group relative flex flex-col rounded-2xl p-6 md:p-8 lg:p-10
                 transition-all duration-300 ease-out cursor-pointer
-                hover:-translate-y-[6px]
-                ${path.variant === "featured" 
-                  ? "bg-[#0A0A0A] border-2 border-[#C8963E] md:scale-105 hover:shadow-[0_0_24px_rgba(200,150,62,0.25)]" 
+                hover:-translate-y-1
+                ${path.variant === "featured"
+                  ? "bg-[#0A0A0A] border-2 border-[#C8963E] md:scale-105 hover:shadow-[0_0_24px_rgba(200,150,62,0.25)]"
                   : "bg-[#111111] border border-[#222222] hover:border-[#008E97]"
                 }
               `}
             >
               {/* Label */}
-              <span 
+              <span
                 className={`
-                  inline-block self-start text-xs font-semibold tracking-[0.15em] uppercase mb-6 px-3 py-1 rounded-full
-                  ${path.variant === "featured" 
-                    ? "bg-[#C8963E]/10 text-[#C8963E]" 
+                  inline-block self-start text-xs font-semibold tracking-[0.15em] uppercase mb-5 px-3 py-1 rounded-full
+                  ${path.variant === "featured"
+                    ? "bg-[#C8963E]/10 text-[#C8963E]"
                     : "bg-[#008E97]/10 text-[#008E97]"
                   }
                 `}
@@ -84,12 +86,12 @@ export default function FindYourPath() {
               </span>
 
               {/* Title */}
-              <h3 className="text-2xl lg:text-3xl font-bold text-white mb-4 tracking-tight">
+              <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-white mb-3 tracking-tight font-['Fraunces']">
                 {path.title}
               </h3>
 
               {/* Body */}
-              <p className="text-[#A0A0A0] text-base leading-relaxed mb-8 flex-grow">
+              <p className="text-[#A0A0A0] text-sm md:text-base leading-relaxed mb-6 flex-grow">
                 {path.body}
               </p>
 
@@ -97,7 +99,7 @@ export default function FindYourPath() {
               <div className="mt-auto">
                 <span
                   className={`
-                    inline-flex items-center justify-center w-full px-6 py-4 rounded-lg font-semibold text-sm tracking-wide
+                    inline-flex items-center justify-center w-full px-6 py-3 md:py-4 rounded-lg font-semibold text-sm tracking-wide
                     transition-all duration-300 ease-out
                     ${path.variant === "featured"
                       ? "bg-[#C8963E] text-[#0A0A0A] group-hover:bg-[#D4A84A]"
@@ -113,6 +115,7 @@ export default function FindYourPath() {
             </Link>
           ))}
         </div>
+
       </div>
     </section>
   );

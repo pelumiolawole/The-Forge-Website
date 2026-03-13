@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
@@ -23,15 +24,14 @@ export function Navigation() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Lock body scroll when mobile menu is open
   useEffect(() => {
     if (isMobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     }
     return () => {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     };
   }, [isMobileMenuOpen]);
 
@@ -46,12 +46,22 @@ export function Navigation() {
       >
         <nav className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
-            <Link href="/" className="flex items-center gap-2">
-              <span className="text-[#008E97] font-bold text-2xl tracking-tight">
-                Coach PO
-              </span>
+
+            {/* Logo */}
+            <Link href="/" className="flex items-center">
+              <div className="relative h-10 w-36">
+                <Image
+                  src="/images/logo-main.png"
+                  alt="Pelumi Olawole"
+                  fill
+                  className="object-contain object-left"
+                  sizes="144px"
+                  priority
+                />
+              </div>
             </Link>
 
+            {/* Desktop nav */}
             <div className="hidden md:flex items-center gap-8">
               {navLinks.map((link) => (
                 <Link
@@ -63,7 +73,7 @@ export function Navigation() {
                 </Link>
               ))}
               <a
-                href="https://calendly.com/olawolepelumisunday/30min "
+                href="https://calendly.com/olawolepelumisunday/30min"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="teal-button text-sm"
@@ -72,6 +82,7 @@ export function Navigation() {
               </a>
             </div>
 
+            {/* Mobile hamburger */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="md:hidden text-white p-2 relative z-50"
@@ -83,19 +94,28 @@ export function Navigation() {
         </nav>
       </header>
 
-      {/* Mobile Menu - Full screen overlay with solid background */}
+      {/* Mobile menu — full screen overlay */}
       <div
         className={`fixed inset-0 z-40 md:hidden transition-all duration-300 ${
-          isMobileMenuOpen 
-            ? "opacity-100 pointer-events-auto" 
+          isMobileMenuOpen
+            ? "opacity-100 pointer-events-auto"
             : "opacity-0 pointer-events-none"
         }`}
       >
-        {/* Solid background */}
         <div className="absolute inset-0 bg-[#0A0A0A]" />
-        
-        {/* Menu content */}
+
         <div className="relative z-10 flex flex-col items-center justify-center h-full px-6">
+          {/* Logo in mobile menu */}
+          <div className="relative h-12 w-44 mb-12">
+            <Image
+              src="/images/logo-main.png"
+              alt="Pelumi Olawole"
+              fill
+              className="object-contain"
+              sizes="176px"
+            />
+          </div>
+
           <nav className="flex flex-col items-center gap-8">
             {navLinks.map((link) => (
               <Link
@@ -108,7 +128,7 @@ export function Navigation() {
               </Link>
             ))}
             <a
-              href="https://calendly.com/olawolepelumisunday/30min "
+              href="https://calendly.com/olawolepelumisunday/30min"
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setIsMobileMenuOpen(false)}

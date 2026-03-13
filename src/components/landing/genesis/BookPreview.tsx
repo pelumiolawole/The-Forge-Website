@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import { ArrowRight, Download, X, Loader2, Check } from "lucide-react";
 import NextImage from "next/image";
+import Link from "next/link";
 
 export function BookPreview() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -41,20 +42,23 @@ export function BookPreview() {
 
   return (
     <>
-      <section id="book" className="py-24 bg-[#F7F4EF] relative overflow-hidden">
+      <section id="book" className="py-16 md:py-24 bg-[#F7F4EF] relative overflow-hidden">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div>
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+
+            {/* Content — top on mobile */}
+            <div className="order-1">
               <div className="section-label mb-4 text-[#008E97]">The Book</div>
               <h2 className="headline-lg text-[#0A0A0A] mb-6">
                 Petty Little Things
               </h2>
 
-              <div className="space-y-4 text-[#6B7280] text-lg leading-relaxed">
+              <div className="space-y-4 text-[#6B7280] text-base md:text-lg leading-relaxed">
                 <p>
-                  Most people don&apos;t fail because of big mistakes. They fail because of small ones
-                  they never noticed — repeated daily, compounding quietly, until the gap between
-                  who they are and who they could be feels impossible to close.
+                  Most people don&apos;t fail because of big mistakes. They fail because
+                  of small ones they never noticed — repeated daily, compounding quietly,
+                  until the gap between who they are and who they could be feels impossible
+                  to close.
                 </p>
                 <p>
                   This book names 50 of those habits. Calls them out. And shows you exactly
@@ -65,30 +69,34 @@ export function BookPreview() {
                 </p>
               </div>
 
-              <div className="mt-10 flex flex-col sm:flex-row gap-4">
-                <button className="gold-button inline-flex items-center justify-center gap-2">
-                  Pre-order Now
+              <div className="mt-8 md:mt-10 flex flex-col sm:flex-row gap-4">
+                <Link
+                  href="/book"
+                  className="gold-button inline-flex items-center justify-center gap-2 w-full sm:w-auto"
+                >
+                  Get the Book
                   <ArrowRight size={18} />
-                </button>
+                </Link>
                 <button
                   onClick={handleDownloadClick}
-                  className="inline-flex items-center justify-center gap-2 px-6 py-4 border-2 border-[#0A0A0A]/20 rounded-lg text-[#0A0A0A] font-semibold hover:border-[#008E97] hover:text-[#008E97] transition-all"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-4 border-2 border-[#0A0A0A]/20 rounded-lg text-[#0A0A0A] font-semibold hover:border-[#008E97] hover:text-[#008E97] transition-all w-full sm:w-auto"
                 >
                   <Download size={18} />
-                  Download Sample Chapter
+                  Free Sample Chapter
                 </button>
               </div>
             </div>
 
-            <div className="relative flex justify-center">
+            {/* Book cover — below content on mobile */}
+            <div className="relative flex justify-center order-2">
               <div className="relative animate-float">
-                <div className="relative w-72 h-[28rem] md:w-80 md:h-[32rem] rounded-lg shadow-2xl overflow-hidden">
+                <div className="relative w-56 h-80 md:w-72 md:h-[28rem] lg:w-80 lg:h-[32rem] rounded-lg shadow-2xl overflow-hidden">
                   <NextImage
                     src="/images/book-cover.png"
-                    alt="Petty Little Things by Pelumi Olawole - 50 Habits Quietly Ruining Your Life"
+                    alt="Petty Little Things by Pelumi Olawole"
                     fill
                     className="object-cover"
-                    sizes="(max-width: 768px) 288px, 320px"
+                    sizes="(max-width: 768px) 224px, (max-width: 1024px) 288px, 320px"
                     priority
                   />
                 </div>
@@ -98,6 +106,7 @@ export function BookPreview() {
               <div className="absolute top-1/4 -left-8 w-32 h-32 bg-[#008E97]/10 rounded-full blur-3xl" />
               <div className="absolute bottom-1/4 -right-8 w-40 h-40 bg-[#C8963E]/10 rounded-full blur-3xl" />
             </div>
+
           </div>
         </div>
       </section>
@@ -105,7 +114,7 @@ export function BookPreview() {
       {/* Email Capture Modal */}
       {isModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-          <div className="relative w-full max-w-md bg-[#0A0A0A] border border-white/10 rounded-2xl p-8 shadow-2xl">
+          <div className="relative w-full max-w-md bg-[#0A0A0A] border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl">
             <button
               onClick={closeModal}
               className="absolute top-4 right-4 text-white/50 hover:text-white transition-colors"
@@ -119,7 +128,7 @@ export function BookPreview() {
                   <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-[#008E97]/10 flex items-center justify-center">
                     <Download className="text-[#008E97]" size={28} />
                   </div>
-                  <h3 className="text-2xl font-['Fraunces'] font-bold text-white mb-2">
+                  <h3 className="text-xl md:text-2xl font-['Fraunces'] font-bold text-white mb-2">
                     Read the First Chapter Free
                   </h3>
                   <p className="text-white/60 text-sm">
@@ -129,16 +138,14 @@ export function BookPreview() {
                 </div>
 
                 <form onSubmit={handleSubmit} className="space-y-4">
-                  <div>
-                    <input
-                      type="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      placeholder="your@email.com"
-                      required
-                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder:text-white/30 focus:outline-none focus:border-[#008E97] transition-colors"
-                    />
-                  </div>
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="your@email.com"
+                    required
+                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder:text-white/30 focus:outline-none focus:border-[#008E97] transition-colors"
+                  />
                   <button
                     type="submit"
                     disabled={isSubmitting}
@@ -174,10 +181,7 @@ export function BookPreview() {
                   Your sample is downloading now. Check your inbox for a copy
                   and what comes next.
                 </p>
-                <button
-                  onClick={closeModal}
-                  className="teal-button"
-                >
+                <button onClick={closeModal} className="teal-button">
                   Close
                 </button>
               </div>

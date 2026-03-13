@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { ArrowRight, Play } from "lucide-react";
+import React, { useEffect, useRef, useState } from "react";
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 function AnimatedNumber({ target, suffix = "" }: { target: number; suffix?: string }) {
@@ -70,7 +70,7 @@ export function Hero() {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0A0A0A] pt-20 md:pt-0">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0A0A0A] pt-24 pb-16 md:pt-0 md:pb-0">
       <div className="noise-overlay z-10" />
 
       <div className="absolute inset-0 bg-gradient-to-b from-[#0A0A0A] via-[#0A0A0A] to-[#0f1419]" />
@@ -83,11 +83,11 @@ export function Hero() {
           Leadership Coach & Author
         </div>
 
-        <h1 
-          className="font-['Fraunces'] font-black text-white mb-8 animate-fade-up max-w-3xl mx-auto" 
-          style={{ 
+        <h1
+          className="font-['Fraunces'] font-black text-white mb-8 animate-fade-up max-w-3xl mx-auto"
+          style={{
             animationDelay: "0.2s",
-            fontSize: "clamp(3rem, 6vw, 5.5rem)",
+            fontSize: "clamp(2.5rem, 6vw, 5.5rem)",
             lineHeight: 1.1,
             letterSpacing: "-0.02em"
           }}
@@ -96,51 +96,46 @@ export function Hero() {
           <span className="block text-[#008E97]">So why aren&apos;t you doing it?</span>
         </h1>
 
-        <p className="body-text max-w-2xl mx-auto mb-10 text-white/70 animate-fade-up mt-8" style={{ animationDelay: "0.3s" }}>
-          I help growth-driven professionals and leaders build the internal architecture 
-          for sustained excellence through the FORGE methodology, executive coaching, 
-          and practical tools that actually work.
+        <p className="body-text max-w-xl mx-auto mb-10 text-white/70 animate-fade-up mt-6 text-base md:text-lg" style={{ animationDelay: "0.3s" }}>
+          Most people don&apos;t lack knowledge. They lack the identity to act on it.
+          I help driven professionals close that gap through The Forge System.
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-up" style={{ animationDelay: "0.4s" }}>
           <a
-            href="https://calendly.com/olawolepelumisunday/30min "
+            href="https://calendly.com/olawolepelumisunday/30min"
             target="_blank"
             rel="noopener noreferrer"
-            className="gold-button inline-flex items-center gap-2 text-base"
+            className="gold-button inline-flex items-center gap-2 text-base w-full sm:w-auto justify-center"
           >
             Book a Discovery Call
             <ArrowRight size={18} />
           </a>
 
           <Link
-            href="#about"
-            className="inline-flex items-center gap-2 text-white/80 hover:text-white transition-colors group"
+            href="/forge-program"
+            className="inline-flex items-center justify-center gap-2 text-white/70 hover:text-white transition-colors font-medium text-sm w-full sm:w-auto"
           >
-            <span className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center group-hover:border-[#008E97] group-hover:bg-[#008E97]/10 transition-all">
-              <Play size={18} className="ml-1" />
-            </span>
-            <span className="font-medium">Watch the story</span>
+            Learn about The Forge Program
           </Link>
         </div>
 
-        <div className="mt-20 grid grid-cols-3 gap-8 max-w-2xl mx-auto animate-fade-up" style={{ animationDelay: "0.5s" }}>
+        <div className="mt-16 grid grid-cols-3 gap-4 md:gap-8 max-w-2xl mx-auto animate-fade-up" style={{ animationDelay: "0.5s" }}>
           <div className="text-center">
             <AnimatedNumber target={10} suffix="+" />
-            <div className="text-sm text-white/50 mt-1">Years Experience</div>
+            <div className="text-xs md:text-sm text-white/50 mt-1">Years Experience</div>
           </div>
           <div className="text-center border-x border-white/10">
             <AnimatedNumber target={5000} suffix="+" />
-            <div className="text-sm text-white/50 mt-1">People Trained</div>
+            <div className="text-xs md:text-sm text-white/50 mt-1">People Trained</div>
           </div>
           <div className="text-center">
             <AnimatedNumber target={2} />
-            <div className="text-sm text-white/50 mt-1">Continents</div>
+            <div className="text-xs md:text-sm text-white/50 mt-1">Continents</div>
           </div>
         </div>
       </div>
 
-      {/* Scroll indicator moved inside hero container */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 animate-bounce">
         <div className="w-6 h-10 rounded-full border-2 border-white/20 flex justify-center pt-2">
           <div className="w-1 h-2 bg-white/40 rounded-full" />

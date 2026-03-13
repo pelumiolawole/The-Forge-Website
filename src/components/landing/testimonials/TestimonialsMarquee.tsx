@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import { motion } from "framer-motion";
 
 const testimonials = [
@@ -82,20 +83,19 @@ const testimonials = [
   }
 ];
 
-// Split into two rows
 const row1 = testimonials.slice(0, 6);
 const row2 = testimonials.slice(6);
 
 function TestimonialCard({ testimonial }: { testimonial: typeof testimonials[0] }) {
   return (
-    <div className="flex-shrink-0 w-[400px] bg-[#0A0A0A] border border-[#F7F4EF]/10 rounded-2xl p-6 mx-3 hover:border-[#008E97]/50 transition-all duration-300 hover:scale-[1.03] group">
-      <div className="flex items-start gap-4 mb-4">
-        <div className="w-12 h-12 rounded-full bg-[#C8963E] flex items-center justify-center text-white font-bold text-sm">
+    <div className="flex-shrink-0 w-[320px] md:w-[400px] bg-[#111111] border border-[#F7F4EF]/10 rounded-2xl p-5 md:p-6 mx-2 md:mx-3 hover:border-[#008E97]/50 transition-all duration-300 group">
+      <div className="flex items-start gap-3 mb-4">
+        <div className="w-10 h-10 md:w-12 md:h-12 flex-shrink-0 rounded-full bg-[#C8963E] flex items-center justify-center text-white font-bold text-xs md:text-sm">
           {testimonial.initials}
         </div>
         <div>
-          <div className="font-semibold text-[#F7F4EF]">{testimonial.author}</div>
-          <div className="text-sm text-[#6B7280]">{testimonial.role}</div>
+          <div className="font-semibold text-[#F7F4EF] text-sm md:text-base">{testimonial.author}</div>
+          <div className="text-xs md:text-sm text-[#6B7280]">{testimonial.role}</div>
         </div>
       </div>
       <p className="text-[#F7F4EF]/80 text-sm leading-relaxed italic">
@@ -107,9 +107,9 @@ function TestimonialCard({ testimonial }: { testimonial: typeof testimonials[0] 
 
 function MarqueeRow({ items, direction = "left" }: { items: typeof testimonials; direction?: "left" | "right" }) {
   const duplicated = [...items, ...items, ...items];
-  
+
   return (
-    <div className="relative overflow-hidden py-2 group/marquee">
+    <div className="relative overflow-hidden py-2">
       <motion.div
         className="flex"
         animate={{
@@ -123,9 +123,7 @@ function MarqueeRow({ items, direction = "left" }: { items: typeof testimonials;
             ease: "linear"
           }
         }}
-        style={{
-          width: "fit-content"
-        }}
+        style={{ width: "fit-content" }}
       >
         {duplicated.map((testimonial, idx) => (
           <TestimonialCard key={`${testimonial.id}-${idx}`} testimonial={testimonial} />
@@ -137,8 +135,8 @@ function MarqueeRow({ items, direction = "left" }: { items: typeof testimonials;
 
 export function TestimonialsMarquee() {
   return (
-    <section className="py-24 bg-[#0A0A0A] overflow-hidden">
-      <div className="max-w-6xl mx-auto px-6 lg:px-8 mb-12 text-center">
+    <section className="py-16 md:py-24 bg-[#0A0A0A] overflow-hidden">
+      <div className="max-w-6xl mx-auto px-6 lg:px-8 mb-10 md:mb-12 text-center">
         <div className="section-label mb-4 text-[#008E97]">Testimonials</div>
         <h2 className="headline-lg text-white">
           What people say
@@ -147,7 +145,7 @@ export function TestimonialsMarquee() {
         </h2>
       </div>
 
-      <div className="space-y-6">
+      <div className="space-y-4 md:space-y-6">
         <MarqueeRow items={row1} direction="left" />
         <MarqueeRow items={row2} direction="right" />
       </div>
