@@ -47,7 +47,7 @@ export function SocialProof() {
               {/* Placeholder logo - replace with actual SVG logos */}
               <div className="flex items-center gap-3 text-white/60">
                 <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center font-bold text-sm">
-                  {client.initials}
+                  {client.abbr}
                 </div>
                 <span className="font-semibold text-lg">{client.name}</span>
               </div>
