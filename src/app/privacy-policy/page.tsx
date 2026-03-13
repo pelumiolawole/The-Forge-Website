@@ -26,7 +26,7 @@ export default function PrivacyPolicyPage() {
               This website is operated by Pelumi Olawole, trading as Coach PO / The Forge System, based in the United Kingdom. References to "we", "us", or "our" in this policy refer to Pelumi Olawole.
             </p>
             <p className="mt-3">
-              Contact: <a href="mailto:coach@pelumiolawole.com." className="text-[#008E97] hover:underline">coach@pelumiolawole.com.</a>
+              Contact: <a href="mailto:coach@pelumiolawole.com" className="text-[#008E97] hover:underline">coach@pelumiolawole.com</a>
             </p>
           </section>
 
@@ -133,8 +133,8 @@ export default function PrivacyPolicyPage() {
             </ul>
             <p className="mt-4">
               To exercise any of these rights, contact us at{" "}
-              <a href="mailto:coach@pelumiolawole.com." className="text-[#008E97] hover:underline">
-                coach@pelumiolawole.com.
+              <a href="mailto:coach@pelumiolawole.com" className="text-[#008E97] hover:underline">
+                coach@pelumiolawole.com
               </a>.
             </p>
           </section>
@@ -151,3 +151,4 @@ export default function PrivacyPolicyPage() {
     </main>
   );
 }
+
