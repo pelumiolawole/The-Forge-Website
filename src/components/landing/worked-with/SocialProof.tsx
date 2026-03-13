@@ -38,18 +38,16 @@ export function SocialProof() {
           className={`flex gap-12 ${isPaused ? '' : 'animate-marquee-left'}`}
           style={{ width: "max-content" }}
         >
-          {/* Double the items for seamless loop */}
           {[...clients, ...clients].map((client, index) => (
             <div
               key={index}
               className="flex items-center justify-center h-16 grayscale opacity-40 hover:opacity-100 hover:grayscale-0 transition-all duration-500"
             >
-              {/* Placeholder logo - replace with actual SVG logos */}
               <div className="flex items-center gap-3 text-white/60">
                 <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center font-bold text-sm flex-shrink-0">
                   {client.abbr}
                 </div>
-                <span className="font-semibold text-lg whitespace-nowrap">{client.name}</span>
+                <span className="font-semibold text-sm whitespace-nowrap">{client.name}</span>
               </div>
             </div>
           ))}
