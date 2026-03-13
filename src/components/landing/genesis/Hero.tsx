@@ -3,6 +3,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 function AnimatedNumber({ target, suffix = "" }: { target: number; suffix?: string }) {
   const [count, setCount] = useState(0);
@@ -11,39 +12,24 @@ function AnimatedNumber({ target, suffix = "" }: { target: number; suffix?: stri
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !hasStarted) {
-          setHasStarted(true);
-        }
-      },
+      ([entry]) => { if (entry.isIntersecting && !hasStarted) setHasStarted(true); },
       { threshold: 0.5 }
     );
-
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-
+    if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
   }, [hasStarted]);
 
   useEffect(() => {
     if (!hasStarted) return;
-
     const duration = 2000;
     const steps = 60;
     const increment = target / steps;
     let current = 0;
-
     const timer = setInterval(() => {
       current += increment;
-      if (current >= target) {
-        setCount(target);
-        clearInterval(timer);
-      } else {
-        setCount(Math.floor(current));
-      }
+      if (current >= target) { setCount(target); clearInterval(timer); }
+      else setCount(Math.floor(current));
     }, duration / steps);
-
     return () => clearInterval(timer);
   }, [hasStarted, target]);
 
@@ -60,9 +46,7 @@ export function Hero() {
   useEffect(() => {
     const handleScroll = () => {
       if (heroRef.current) {
-        const scrolled = window.scrollY;
-        const rate = scrolled * 0.3;
-        heroRef.current.style.transform = `translateY(${rate}px)`;
+        heroRef.current.style.transform = `translateY(${window.scrollY * 0.3}px)`;
       }
     };
     window.addEventListener("scroll", handleScroll);
@@ -72,9 +56,7 @@ export function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0A0A0A] pt-24 pb-16 md:pt-0 md:pb-0">
       <div className="noise-overlay z-10" />
-
       <div className="absolute inset-0 bg-gradient-to-b from-[#0A0A0A] via-[#0A0A0A] to-[#0f1419]" />
-
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#008E97]/10 rounded-full blur-[120px]" />
       <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#C8963E]/5 rounded-full blur-[120px]" />
 
@@ -85,12 +67,7 @@ export function Hero() {
 
         <h1
           className="font-['Fraunces'] font-black text-white mb-8 animate-fade-up max-w-3xl mx-auto"
-          style={{
-            animationDelay: "0.2s",
-            fontSize: "clamp(2.5rem, 6vw, 5.5rem)",
-            lineHeight: 1.1,
-            letterSpacing: "-0.02em"
-          }}
+          style={{ animationDelay: "0.2s", fontSize: "clamp(2.5rem, 6vw, 5.5rem)", lineHeight: 1.1, letterSpacing: "-0.02em" }}
         >
           <span className="block text-white">You already know what to do.</span>
           <span className="block text-[#008E97]">So why aren&apos;t you doing it?</span>
@@ -111,7 +88,6 @@ export function Hero() {
             Book a Discovery Call
             <ArrowRight size={18} />
           </a>
-
           <Link
             href="/forge-program"
             className="inline-flex items-center justify-center gap-2 text-white/70 hover:text-white transition-colors font-medium text-sm w-full sm:w-auto"

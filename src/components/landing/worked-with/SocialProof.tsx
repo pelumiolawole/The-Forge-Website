@@ -14,14 +14,13 @@ const brands = [
   { name: "Suprano Clothing", logo: "/images/logo-8.png" },
 ];
 
-// Triplicate for seamless infinite scroll
 const duplicated = [...brands, ...brands, ...brands];
 
 export function SocialProof() {
   return (
     <section className="py-10 md:py-14 bg-[#0A0A0A] border-t border-b border-white/5 overflow-hidden">
       <div className="max-w-6xl mx-auto px-6 lg:px-8 mb-6 md:mb-8">
-        <p className="text-center text-xs font-semibold tracking-[0.2em] uppercase text-[#6B7280]">
+        <p className="text-center text-xs font-semibold tracking-[0.2em] uppercase text-[#9CA3AF]">
           Trusted by teams at
         </p>
       </div>
@@ -37,15 +36,15 @@ export function SocialProof() {
             <div
               key={`${brand.name}-${idx}`}
               className="flex-shrink-0 flex items-center justify-center mx-6 md:mx-10"
-              style={{ minWidth: "120px" }}
+              style={{ minWidth: "140px" }}
             >
-              <div className="relative h-8 md:h-10 w-24 md:w-32 opacity-50 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0">
+              <div className="relative h-10 md:h-12 w-28 md:w-36 opacity-70 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0">
                 <Image
                   src={brand.logo}
                   alt={brand.name}
                   fill
                   className="object-contain"
-                  sizes="128px"
+                  sizes="144px"
                 />
               </div>
             </div>
