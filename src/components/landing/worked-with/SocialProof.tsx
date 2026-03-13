@@ -19,34 +19,37 @@ const brands = [
   { abbr: "EC", name: "Edgecore" },
 ];
 
-const duplicated = [...brands, ...brands, ...brands];
-
 export function SocialProof() {
+  const [isPaused, setIsPaused] = useState(false);
+
   return (
-    <section className="py-10 md:py-14 bg-[#0A0A0A] border-t border-b border-white/5 overflow-hidden">
-      <div className="max-w-6xl mx-auto px-6 lg:px-8 mb-6 md:mb-8">
-        <p className="text-center text-xs font-semibold tracking-[0.2em] uppercase text-[#9CA3AF]">
-          Trusted by teams at
-        </p>
+    <section className="relative z-0 py-16 bg-[#0A0A0A] border-y border-white/5">
+      <div className="max-w-6xl mx-auto px-6 lg:px-8 mb-8">
+        <p className="section-label text-center">Trusted by teams at</p>
       </div>
 
-      <div className="relative">
-        <div className="absolute left-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-r from-[#0A0A0A] to-transparent z-10 pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-l from-[#0A0A0A] to-transparent z-10 pointer-events-none" />
-
-        <div className="flex animate-marquee">
-          {duplicated.map((brand, idx) => (
+      <div 
+        className="marquee-container"
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+      >
+        <div 
+          className={`flex gap-12 ${isPaused ? '' : 'animate-marquee-left'}`}
+          style={{ width: "max-content" }}
+        >
+          {/* Double the items for seamless loop */}
+          {[...clients, ...clients].map((client, index) => (
             <div
-              key={`${brand.abbr}-${idx}`}
-              className="flex-shrink-0 flex items-center gap-3 mx-8 md:mx-12 text-white/40 hover:text-white/70 transition-colors duration-300"
-              style={{ minWidth: "max-content" }}
+              key={index}
+              className="flex items-center justify-center w-40 h-16 grayscale opacity-40 hover:opacity-100 hover:grayscale-0 transition-all duration-500"
             >
-              <span className="w-8 h-8 rounded bg-white/8 flex items-center justify-center text-xs font-bold text-white/50 flex-shrink-0">
-                {brand.abbr}
-              </span>
-              <span className="text-sm font-medium tracking-wide whitespace-nowrap">
-                {brand.name}
-              </span>
+              {/* Placeholder logo - replace with actual SVG logos */}
+              <div className="flex items-center gap-3 text-white/60">
+                <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center font-bold text-sm">
+                  {client.initials}
+                </div>
+                <span className="font-semibold text-lg">{client.name}</span>
+              </div>
             </div>
           ))}
         </div>
