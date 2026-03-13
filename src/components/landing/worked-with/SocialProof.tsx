@@ -1,13 +1,12 @@
 "use client";
-
-import React from "react";
+import React, { useState } from "react";
 
 const brands = [
-  { abbr: "S3", name: "Seven30 Real Estate" },
+  { abbr: "S30", name: "Seven30 Real Estate" },
   { abbr: "EA", name: "Eyitayo Agri Hub" },
   { abbr: "ED", name: "Eden Designs" },
   { abbr: "AP", name: "Aphrodite" },
-  { abbr: "II", name: "IIC Networks" },
+  { abbr: "IIC", name: "IIC Networks" },
   { abbr: "ZC", name: "Zoe Choosers Foundation" },
   { abbr: "AF", name: "Dear Auntie Funmi" },
   { abbr: "SC", name: "Suprano Clothing" },
@@ -27,28 +26,25 @@ export function SocialProof() {
       <div className="max-w-6xl mx-auto px-6 lg:px-8 mb-8">
         <p className="section-label text-center">Trusted by teams at</p>
       </div>
-
-      <div 
+      <div
         className="marquee-container"
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
       >
-        <div 
-          className={`flex gap-12 ${isPaused ? '' : 'animate-marquee-left'}`}
+        <div
+          className={`flex gap-12 ${isPaused ? "" : "animate-marquee-left"}`}
           style={{ width: "max-content" }}
         >
-          {/* Double the items for seamless loop */}
-          {[...clients, ...clients].map((client, index) => (
+          {[...brands, ...brands].map((brand, index) => (
             <div
               key={index}
               className="flex items-center justify-center w-40 h-16 grayscale opacity-40 hover:opacity-100 hover:grayscale-0 transition-all duration-500"
             >
-              {/* Placeholder logo - replace with actual SVG logos */}
               <div className="flex items-center gap-3 text-white/60">
                 <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center font-bold text-sm">
-                  {client.initials}
+                  {brand.abbr}
                 </div>
-                <span className="font-semibold text-lg">{client.name}</span>
+                <span className="font-semibold text-lg">{brand.name}</span>
               </div>
             </div>
           ))}
