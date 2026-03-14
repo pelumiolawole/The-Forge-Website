@@ -1,83 +1,26 @@
 import React from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { createClient } from "@sanity/client";
-import { PortableText } from "@portabletext/react";
 import { format } from "date-fns";
 import { ArrowLeft } from "lucide-react";
+import { getPostBySlug, markdownToHtml, getAllPosts } from "@/lib/posts";
 
-const client = createClient({
-  projectId: "9f18pqec",
-  dataset: "production",
-  apiVersion: "2024-01-01",
-  useCdn: false,
-});
-
-interface Post {
-  _id: string;
-  title: string;
-  slug: { current: string };
-  category: string;
-  excerpt: string;
-  readTime: string;
-  publishedAt: string;
-  body: any[];
-}
-
-async function getPost(slug: string): Promise<Post | null> {
-  return client.fetch(
-    `*[_type == "post" && slug.current == $slug][0] {
-      _id,
-      title,
-      slug,
-      category,
-      excerpt,
-      readTime,
-      publishedAt,
-      body
-    }`,
-    { slug }
-  );
-}
-
-// Skip static generation - render on server
-export const dynamic = "force-dynamic";
-
-const ptComponents = {
-  block: {
-    normal: ({ children }: any) => (
-      <p className="text-white/75 text-base md:text-lg leading-relaxed mb-6">{children}</p>
-    ),
-    h2: ({ children }: any) => (
-      <h2 className="font-serif text-white text-2xl md:text-3xl font-bold mt-12 mb-6 leading-snug">{children}</h2>
-    ),
-    h3: ({ children }: any) => (
-      <h3 className="font-serif text-white text-xl md:text-2xl font-bold mt-10 mb-4 leading-snug">{children}</h3>
-    ),
-    blockquote: ({ children }: any) => (
-      <blockquote className="border-l-4 border-[#008E97] pl-6 my-8">
-        <p className="font-serif text-white text-xl md:text-2xl italic font-light leading-relaxed">{children}</p>
-      </blockquote>
-    ),
-  },
-  marks: {
-    strong: ({ children }: any) => (
-      <strong className="text-white font-semibold">{children}</strong>
-    ),
-    em: ({ children }: any) => (
-      <em className="italic text-white/85">{children}</em>
-    ),
-  },
-};
-
-export default async function BlogPostPage({
-  params,
-}: {
+interface Props {
   params: { slug: string };
-}) {
-  const post = await getPost(params.slug);
+}
+
+// Generate static paths for all posts at build time
+export async function generateStaticParams() {
+  const posts = getAllPosts();
+  return posts.map((post) => ({ slug: post.slug }));
+}
+
+export default async function BlogPostPage({ params }: Props) {
+  const post = getPostBySlug(params.slug);
 
   if (!post) notFound();
+
+  const contentHtml = await markdownToHtml(post.content);
 
   return (
     <main className="min-h-screen bg-[#0A0A0A]">
@@ -123,13 +66,18 @@ export default async function BlogPostPage({
       </section>
 
       <section className="px-6 md:px-12 lg:px-20 pb-20 md:pb-28 bg-[#0A0A0A]">
-        <div className="max-w-3xl mx-auto">
-          {post.body && post.body.length > 0 ? (
-            <PortableText value={post.body} components={ptComponents} />
-          ) : (
-            <p className="text-white/40 italic">Content coming soon.</p>
-          )}
-        </div>
+        <div 
+          className="max-w-3xl mx-auto prose prose-invert prose-lg max-w-none
+            prose-headings:font-serif prose-headings:text-white prose-headings:font-bold
+            prose-h2:text-2xl prose-h2:md:text-3xl prose-h2:mt-12 prose-h2:mb-6
+            prose-h3:text-xl prose-h3:md:text-2xl prose-h3:mt-10 prose-h3:mb-4
+            prose-p:text-white/75 prose-p:leading-relaxed prose-p:mb-6
+            prose-blockquote:border-l-4 prose-blockquote:border-[#008E97] prose-blockquote:pl-6 prose-blockquote:my-8
+            prose-blockquote:text-white prose-blockquote:font-serif prose-blockquote:text-xl prose-blockquote:italic
+            prose-strong:text-white prose-strong:font-semibold
+            prose-em:text-white/85 prose-em:italic"
+          dangerouslySetInnerHTML={{ __html: contentHtml }}
+        />
       </section>
 
       <section className="px-6 md:px-12 lg:px-20 py-16 md:py-24 bg-[#F0FAFB] border-t border-white/5">

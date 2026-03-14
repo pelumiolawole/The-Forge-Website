@@ -1,46 +1,13 @@
 import React from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { createClient } from "@sanity/client";
 import { format } from "date-fns";
-
-const client = createClient({
-  projectId: "9f18pqec",
-  dataset: "production",
-  apiVersion: "2024-01-01",
-  useCdn: true,
-});
-
-export const dynamic = "force-dynamic";
-
-interface Post {
-  _id: string;
-  title: string;
-  slug: { current: string };
-  category: string;
-  excerpt: string;
-  readTime: string;
-  publishedAt: string;
-}
+import { getAllPosts } from "@/lib/posts";
 
 const categories = ["All", "Identity", "Petty Patterns", "Leadership", "Foundation", "The Forge System"];
 
-async function getPosts(): Promise<Post[]> {
-  return client.fetch(
-    `*[_type == "post"] | order(publishedAt desc) {
-      _id,
-      title,
-      slug,
-      category,
-      excerpt,
-      readTime,
-      publishedAt
-    }`
-  );
-}
-
-export default async function BlogPage() {
-  const posts = await getPosts();
+export default function BlogPage() {
+  const posts = getAllPosts();
 
   return (
     <main className="min-h-screen bg-[#0A0A0A]">
@@ -63,7 +30,7 @@ export default async function BlogPage() {
         </div>
       </section>
 
-      {/* CATEGORY FILTER — static display */}
+      {/* CATEGORY FILTER */}
       <section className="px-6 md:px-12 lg:px-20 pb-10 bg-[#0A0A0A]">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-wrap gap-2 md:gap-3">
@@ -94,8 +61,8 @@ export default async function BlogPage() {
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
               {posts.map((post) => (
                 <Link
-                  key={post._id}
-                  href={`/blog/${post.slug.current}`}
+                  key={post.slug}
+                  href={`/blog/${post.slug}`}
                   className="group block border border-[#1A1A1A] rounded-2xl p-6 md:p-8 hover:border-[#008E97]/50 transition-all duration-300 hover:-translate-y-1"
                 >
                   <div className="flex items-center justify-between mb-6">
