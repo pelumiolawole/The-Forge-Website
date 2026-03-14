@@ -10,7 +10,7 @@ const client = createClient({
   projectId: "9f18pqec",
   dataset: "production",
   apiVersion: "2024-01-01",
-  useCdn: false, // false for individual posts so edits appear immediately
+  useCdn: false,
 });
 
 interface Post {
@@ -40,15 +40,9 @@ async function getPost(slug: string): Promise<Post | null> {
   );
 }
 
-// Generate static paths for all posts at build time
-export async function generateStaticParams() {
-  const posts = await client.fetch(
-    `*[_type == "post"]{ "slug": slug.current }`
-  );
-  return posts.map((post: { slug: string }) => ({ slug: post.slug }));
-}
+// Skip static generation - render on server
+export const dynamic = "force-dynamic";
 
-// Portable Text rendering components — maps Sanity block types to styled elements
 const ptComponents = {
   block: {
     normal: ({ children }: any) => (
@@ -87,8 +81,6 @@ export default async function BlogPostPage({
 
   return (
     <main className="min-h-screen bg-[#0A0A0A]">
-
-      {/* HEADER */}
       <section className="px-6 md:px-12 lg:px-20 pt-32 pb-12 md:pt-40 md:pb-16 bg-[#0A0A0A]">
         <div className="max-w-3xl mx-auto">
           <Link
@@ -130,7 +122,6 @@ export default async function BlogPostPage({
         </div>
       </section>
 
-      {/* BODY */}
       <section className="px-6 md:px-12 lg:px-20 pb-20 md:pb-28 bg-[#0A0A0A]">
         <div className="max-w-3xl mx-auto">
           {post.body && post.body.length > 0 ? (
@@ -141,7 +132,6 @@ export default async function BlogPostPage({
         </div>
       </section>
 
-      {/* CTA */}
       <section className="px-6 md:px-12 lg:px-20 py-16 md:py-24 bg-[#F0FAFB] border-t border-white/5">
         <div className="max-w-3xl mx-auto text-center">
           <p className="section-label text-[#008E97] mb-4">Go Deeper</p>
@@ -167,7 +157,6 @@ export default async function BlogPostPage({
           </div>
         </div>
       </section>
-
     </main>
   );
 }

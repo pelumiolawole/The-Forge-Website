@@ -11,6 +11,8 @@ const client = createClient({
   useCdn: true,
 });
 
+export const dynamic = "force-dynamic";
+
 interface Post {
   _id: string;
   title: string;
