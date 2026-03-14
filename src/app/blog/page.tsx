@@ -1,62 +1,45 @@
 import React from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { createClient } from "@sanity/client";
+import { format } from "date-fns";
 
-// Placeholder posts — replace with Sanity query when CMS is connected
-const posts = [
-  {
-    slug: "identity-before-strategy",
-    title: "Identity Before Strategy",
-    excerpt: "Why every plan you make will keep failing until you deal with the version of you that is executing it.",
-    category: "Identity",
-    date: "March 2026",
-    readTime: "5 min read",
-  },
-  {
-    slug: "the-overthinker-trap",
-    title: "The Overthinker Trap",
-    excerpt: "You are not stuck because you lack information. You are stuck because analysis has become a substitute for action.",
-    category: "Petty Patterns",
-    date: "February 2026",
-    readTime: "4 min read",
-  },
-  {
-    slug: "what-self-leadership-actually-means",
-    title: "What Self-Leadership Actually Means",
-    excerpt: "Leadership books talk about leading others. Almost none of them talk about what happens when you cannot lead yourself.",
-    category: "Leadership",
-    date: "January 2026",
-    readTime: "6 min read",
-  },
-  {
-    slug: "the-cost-of-petty-habits",
-    title: "The Hidden Cost of Petty Habits",
-    excerpt: "Small habits are not small. They are the architecture of your identity, repeated daily, compounding silently.",
-    category: "Petty Patterns",
-    date: "December 2025",
-    readTime: "5 min read",
-  },
-  {
-    slug: "know-god-know-yourself",
-    title: "Know God, Know Yourself",
-    excerpt: "The two most important things a person can understand. And why most people have settled for knowing neither.",
-    category: "Foundation",
-    date: "November 2025",
-    readTime: "7 min read",
-  },
-  {
-    slug: "why-the-forge-system-works",
-    title: "Why The Forge System Works",
-    excerpt: "It is not a 12-week programme. It is a 12-week argument for becoming a different kind of person.",
-    category: "The Forge System",
-    date: "October 2025",
-    readTime: "6 min read",
-  },
-];
+const client = createClient({
+  projectId: "9f18pqec",
+  dataset: "production",
+  apiVersion: "2024-01-01",
+  useCdn: true,
+});
+
+interface Post {
+  _id: string;
+  title: string;
+  slug: { current: string };
+  category: string;
+  excerpt: string;
+  readTime: string;
+  publishedAt: string;
+}
 
 const categories = ["All", "Identity", "Petty Patterns", "Leadership", "Foundation", "The Forge System"];
 
-export default function BlogPage() {
+async function getPosts(): Promise<Post[]> {
+  return client.fetch(
+    `*[_type == "post"] | order(publishedAt desc) {
+      _id,
+      title,
+      slug,
+      category,
+      excerpt,
+      readTime,
+      publishedAt
+    }`
+  );
+}
+
+export default async function BlogPage() {
+  const posts = await getPosts();
+
   return (
     <main className="min-h-screen bg-[#0A0A0A]">
 
@@ -78,7 +61,7 @@ export default function BlogPage() {
         </div>
       </section>
 
-      {/* CATEGORY FILTER — static for now */}
+      {/* CATEGORY FILTER — static display */}
       <section className="px-6 md:px-12 lg:px-20 pb-10 bg-[#0A0A0A]">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-wrap gap-2 md:gap-3">
@@ -101,39 +84,50 @@ export default function BlogPage() {
       {/* POSTS GRID */}
       <section className="px-6 md:px-12 lg:px-20 pb-20 md:pb-28 bg-[#0A0A0A]">
         <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-            {posts.map((post) => (
-              <Link
-                key={post.slug}
-                href={`/blog/${post.slug}`}
-                className="group block border border-[#1A1A1A] rounded-2xl p-6 md:p-8 hover:border-[#008E97]/50 transition-all duration-300 hover:-translate-y-1"
-              >
-                <div className="flex items-center justify-between mb-6">
-                  <span className="text-[#008E97] text-xs font-semibold tracking-widest uppercase">
-                    {post.category}
-                  </span>
-                  <span className="text-white/30 text-xs">{post.readTime}</span>
-                </div>
+          {posts.length === 0 ? (
+            <div className="text-center py-20">
+              <p className="text-white/30 text-lg">No posts yet. Check back soon.</p>
+            </div>
+          ) : (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+              {posts.map((post) => (
+                <Link
+                  key={post._id}
+                  href={`/blog/${post.slug.current}`}
+                  className="group block border border-[#1A1A1A] rounded-2xl p-6 md:p-8 hover:border-[#008E97]/50 transition-all duration-300 hover:-translate-y-1"
+                >
+                  <div className="flex items-center justify-between mb-6">
+                    <span className="text-[#008E97] text-xs font-semibold tracking-widest uppercase">
+                      {post.category}
+                    </span>
+                    {post.readTime && (
+                      <span className="text-white/30 text-xs">{post.readTime}</span>
+                    )}
+                  </div>
 
-                <h2 className="font-serif text-white text-xl md:text-2xl font-bold mb-4 leading-snug group-hover:text-[#008E97] transition-colors">
-                  {post.title}
-                </h2>
+                  <h2 className="font-serif text-white text-xl md:text-2xl font-bold mb-4 leading-snug group-hover:text-[#008E97] transition-colors">
+                    {post.title}
+                  </h2>
 
-                <p className="text-white/60 text-sm md:text-base leading-relaxed mb-6">
-                  {post.excerpt}
-                </p>
+                  <p className="text-white/60 text-sm md:text-base leading-relaxed mb-6">
+                    {post.excerpt}
+                  </p>
 
-                <div className="flex items-center justify-between">
-                  <span className="text-white/30 text-xs">{post.date}</span>
-                  <span className="text-[#008E97] text-sm font-medium inline-flex items-center gap-1 group-hover:gap-2 transition-all">
-                    Read <ArrowRight size={14} />
-                  </span>
-                </div>
-              </Link>
-            ))}
-          </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-white/30 text-xs">
+                      {post.publishedAt
+                        ? format(new Date(post.publishedAt), "MMMM yyyy")
+                        : ""}
+                    </span>
+                    <span className="text-[#008E97] text-sm font-medium inline-flex items-center gap-1 group-hover:gap-2 transition-all">
+                      Read <ArrowRight size={14} />
+                    </span>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          )}
 
-          {/* Coming soon notice */}
           <div className="mt-16 text-center">
             <p className="text-white/30 text-sm">
               More essays coming. Follow on{" "}

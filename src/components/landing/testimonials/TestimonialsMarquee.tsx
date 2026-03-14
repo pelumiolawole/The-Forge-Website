@@ -56,9 +56,9 @@ const testimonials = [
   {
     id: 8,
     quote: "I came with a brand I was half-committed to. I left fully in. That shift from hesitation to dedication is what his coaching does.",
-    author: "Aunty Funmi",
+    author: "Ma Funmi",
     role: "Young Adult Esteem Coach",
-    initials: "AF"
+    initials: "FO"
   },
   {
     id: 9,
