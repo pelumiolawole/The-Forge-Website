@@ -274,7 +274,7 @@ export async function POST(req: NextRequest) {
     // 2. Build and send transactional report email
     const emailHtml = buildEmailHtml(payload);
 
-    const emailRes = await fetch("https://api.sender.net/v2/emails", {
+    const emailRes = await fetch("https://api.sender.net/v2/message/send", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -282,9 +282,14 @@ export async function POST(req: NextRequest) {
         Accept: "application/json",
       },
       body: JSON.stringify({
-        from: "coach@pelumiolawole.com",
-        from_name: "Pelumi Olawole",
-        to: email,
+        from: {
+          email: "coach@pelumiolawole.com",
+          name: "Pelumi Olawole",
+        },
+        to: {
+          email: email,
+          name: firstName || "",
+        },
         subject: `Your Petty Audit Results — ${identityType}`,
         html: emailHtml,
       }),
