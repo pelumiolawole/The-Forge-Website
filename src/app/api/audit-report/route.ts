@@ -78,26 +78,30 @@ const blockers: Record<string, { title: string; body: string }[]> = {
 
 // ─── TYPE DESCRIPTIONS ────────────────────────────────────────────────────────
 
-const typeDescriptions: Record<string, { headline: string; body: string; accentColor: string }> = {
+const typeDescriptions: Record<string, { headline: string; body: string; accentColor: string; imageFile: string }> = {
   overthinker: {
     headline: "The Overthinker",
-    body: "You are intelligent, capable, and you know it. The problem is that your mind has become a prison built entirely out of possibility. You can see every angle, anticipate every obstacle, and construct every contingency — which is exactly why nothing moves. The analysis is not the work. It is the avoidance of the work.",
+    body: "You are intelligent, capable, and you know it. The problem is that your mind has become a prison built entirely out of possibility. You can see every angle, anticipate every obstacle, and construct every contingency. Which is exactly why nothing moves. The analysis is not the work. It is the avoidance of the work.",
     accentColor: "#008E97",
+    imageFile: "type-overthinker.png",
   },
   performer: {
     headline: "The Performer",
-    body: "You are extraordinary at showing up for others. In every room, every relationship, every role — you deliver. The gap no one sees is between that version of you and the one that exists when the audience is gone. You have become so good at being what others need that you have lost reliable access to what you actually are.",
+    body: "You are extraordinary at showing up for others. In every room, every relationship, every role, you deliver. The gap no one sees is between that version of you and the one that exists when the audience is gone. You have become so good at being what others need that you have lost reliable access to what you actually are.",
     accentColor: "#C8963E",
+    imageFile: "type-performer.png",
   },
   avoider: {
     headline: "The Avoider",
     body: "Your calendar is full. Your to-do list is long. You are always in motion. And somehow the things that would actually change your life keep getting pushed to next week. This is not a time management problem. Busyness is your most sophisticated defence mechanism. You are not lazy. You are hiding in plain sight.",
     accentColor: "#008E97",
+    imageFile: "type-avoider.png",
   },
   drifter: {
     headline: "The Drifter",
     body: "You are capable. People around you know it. You probably know it too. And yet something keeps you from fully committing to a direction and holding it. The issue is not effort or intelligence. It is that you have not yet built an identity strong enough to keep you anchored when the motivation fades. Potential without direction is just noise.",
     accentColor: "#C8963E",
+    imageFile: "type-drifter.png",
   },
 };
 
@@ -179,6 +183,15 @@ function buildEmailHtml(payload: AuditPayload): string {
     <h2 style="margin:8px 0 0;font-family:Georgia,serif;color:#ffffff;font-size:32px;font-weight:700;">${typeInfo.headline}</h2>
   </td></tr>
 
+  <tr><td style="background-color:#0A0A0A;padding:0;line-height:0;">
+    <img
+      src="https://pelumiolawole.com/images/${typeInfo.imageFile}"
+      alt="${typeInfo.headline}"
+      width="600"
+      style="width:100%;max-width:600px;height:auto;display:block;"
+    />
+  </td></tr>
+
   <tr><td style="background-color:#ffffff;padding:40px;">
     <p style="margin:0 0 20px;font-family:Georgia,serif;font-size:18px;line-height:1.7;color:#0A0A0A;">${name}, your audit results are clear.</p>
     <p style="margin:0 0 20px;font-family:Arial,sans-serif;font-size:15px;line-height:1.8;color:#4B4B4B;">${typeInfo.body}</p>
@@ -240,7 +253,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Invalid payload" }, { status: 400 });
     }
 
-    if (!SENDER_API_KEY) {
+    if (!SENDER_API_TOKEN) {
       return NextResponse.json({ error: "Missing API token" }, { status: 500 });
     }
 

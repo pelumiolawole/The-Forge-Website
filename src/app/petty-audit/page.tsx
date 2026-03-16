@@ -5,38 +5,27 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ArrowLeft, Check, Loader2 } from "lucide-react";
 
-// ─── QUESTIONS ────────────────────────────────────────────────────────────────
-
 const questions = [
-  // SELF-CONCEPT (domain 0)
   { id: 1, domain: 0, text: "You have a clear sense of who you are regardless of what others think of you.", reversed: false },
   { id: 2, domain: 0, text: "You often feel like the version of you others see is different from who you actually are.", reversed: true },
   { id: 3, domain: 0, text: "You know what you stand for when it costs you something.", reversed: false },
   { id: 4, domain: 0, text: "You change how you present yourself significantly depending on who is in the room.", reversed: true },
   { id: 5, domain: 0, text: "You feel settled in your own identity rather than performing it.", reversed: false },
-
-  // HABITS (domain 1)
   { id: 6, domain: 1, text: "You regularly start things you do not finish.", reversed: true },
   { id: 7, domain: 1, text: "You find yourself avoiding specific tasks even when you know they matter.", reversed: true },
   { id: 8, domain: 1, text: "Your behaviour under pressure reflects the person you are trying to become.", reversed: false },
   { id: 9, domain: 1, text: "You have patterns you have tried to change multiple times without lasting success.", reversed: true },
   { id: 10, domain: 1, text: "Your daily choices generally reflect your actual values.", reversed: false },
-
-  // RELATIONSHIPS (domain 2)
   { id: 11, domain: 2, text: "You are able to ask for what you need in your closest relationships.", reversed: false },
   { id: 12, domain: 2, text: "You find yourself becoming a different version of yourself around certain people.", reversed: true },
   { id: 13, domain: 2, text: "Your relationships tend to bring out the best version of you.", reversed: false },
   { id: 14, domain: 2, text: "You regularly sacrifice your own needs to maintain harmony with others.", reversed: true },
   { id: 15, domain: 2, text: "You attract people who reflect the identity you are building.", reversed: false },
-
-  // ENVIRONMENT (domain 3)
   { id: 16, domain: 3, text: "Your physical and digital environment supports the person you are trying to become.", reversed: false },
   { id: 17, domain: 3, text: "Your surroundings make it harder, not easier, to do your best work.", reversed: true },
   { id: 18, domain: 3, text: "You have deliberately designed your environment to reinforce your identity.", reversed: false },
   { id: 19, domain: 3, text: "You spend significant time in spaces that drain rather than build you.", reversed: true },
   { id: 20, domain: 3, text: "The people and places you regularly expose yourself to push you forward.", reversed: false },
-
-  // NARRATIVE (domain 4)
   { id: 21, domain: 4, text: "The story you tell about yourself is one you have consciously chosen.", reversed: false },
   { id: 22, domain: 4, text: "You often explain your situation in ways that position you as the victim of circumstances.", reversed: true },
   { id: 23, domain: 4, text: "You believe the next chapter of your life is genuinely available to you.", reversed: false },
@@ -54,8 +43,6 @@ const answerLabels = [
   { value: 5, label: "Strongly Agree" },
 ];
 
-// ─── IDENTITY TYPES ───────────────────────────────────────────────────────────
-
 interface TypeResult {
   type: string;
   emailKey: string;
@@ -68,14 +55,14 @@ const types: Record<string, TypeResult> = {
   overthinker: {
     type: "The Overthinker",
     emailKey: "overthinker",
-    description: "You are intelligent, capable, and you know it. The problem is that your mind has become a prison built entirely out of possibility. You can see every angle, anticipate every obstacle, and construct every contingency — which is exactly why nothing moves. The analysis is not the work. It is the avoidance of the work.",
+    description: "You are intelligent, capable, and you know it. The problem is that your mind has become a prison built entirely out of possibility. You can see every angle, anticipate every obstacle, and construct every contingency. Which is exactly why nothing moves. The analysis is not the work. It is the avoidance of the work.",
     color: "#008E97",
     image: "/images/type-overthinker.png",
   },
   performer: {
     type: "The Performer",
     emailKey: "performer",
-    description: "You are extraordinary at showing up for others. In every room, every relationship, every role — you deliver. The gap no one sees is between that version of you and the one that exists when the audience is gone. You have become so good at being what others need that you have lost reliable access to what you actually are.",
+    description: "You are extraordinary at showing up for others. In every room, every relationship, every role, you deliver. The gap no one sees is between that version of you and the one that exists when the audience is gone. You have become so good at being what others need that you have lost reliable access to what you actually are.",
     color: "#C8963E",
     image: "/images/type-performer.png",
   },
@@ -94,8 +81,6 @@ const types: Record<string, TypeResult> = {
     image: "/images/type-drifter.png",
   },
 };
-
-// ─── SCORING ──────────────────────────────────────────────────────────────────
 
 function getIdentityType(domainScores: number[]): TypeResult {
   const indexed = domainScores.map((score, i) => ({ score, i }));
@@ -133,8 +118,6 @@ function calculateResults(answers: Record<number, number>) {
 
   return { domainScores: scaled, total, typeResult };
 }
-
-// ─── COMPONENT ────────────────────────────────────────────────────────────────
 
 type Stage = "intro" | "quiz" | "analysing" | "results" | "capture" | "done";
 
@@ -211,7 +194,7 @@ export default function PettyAuditPage() {
   return (
     <main className="bg-[#0A0A0A] text-white min-h-screen">
 
-      {/* ── INTRO ── */}
+      {/* INTRO */}
       {stage === "intro" && (
         <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
           <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse 70% 60% at 50% 60%, rgba(0,142,151,0.10) 0%, transparent 70%)" }} />
@@ -249,7 +232,7 @@ export default function PettyAuditPage() {
         </section>
       )}
 
-      {/* ── QUIZ ── */}
+      {/* QUIZ */}
       {stage === "quiz" && (
         <section className="min-h-screen flex flex-col items-center justify-center px-6 py-20 pt-32">
           <div className="w-full max-w-2xl mx-auto">
@@ -303,7 +286,7 @@ export default function PettyAuditPage() {
         </section>
       )}
 
-      {/* ── ANALYSING ── */}
+      {/* ANALYSING */}
       {stage === "analysing" && (
         <section className="min-h-screen flex flex-col items-center justify-center px-6 text-center">
           <div className="w-20 h-20 rounded-full border-2 border-[#008E97]/20 flex items-center justify-center mb-8">
@@ -315,7 +298,7 @@ export default function PettyAuditPage() {
         </section>
       )}
 
-      {/* ── RESULTS ── */}
+      {/* RESULTS */}
       {stage === "results" && results && (
         <section className="min-h-screen flex flex-col items-center justify-center px-6 py-20 pt-32">
           <div className="w-full max-w-2xl mx-auto">
@@ -337,7 +320,6 @@ export default function PettyAuditPage() {
               </div>
             </div>
 
-            {/* Blurred domain teaser */}
             <div className="bg-[#111111] border border-white/8 rounded-2xl p-6 mb-6">
               <div className="flex items-center justify-between mb-4">
                 <p className="text-white/60 text-sm font-medium">Your 5 Domain Scores</p>
@@ -365,12 +347,12 @@ export default function PettyAuditPage() {
               Get Your Full Breakdown
               <ArrowRight size={18} />
             </button>
-            <p className="text-white/30 text-xs text-center mt-3">Your detailed report, top 3 blockers, and next steps — sent to your inbox.</p>
+            <p className="text-white/30 text-xs text-center mt-3">Your detailed report, top 3 blockers, and next steps sent to your inbox.</p>
           </div>
         </section>
       )}
 
-      {/* ── EMAIL CAPTURE ── */}
+      {/* EMAIL CAPTURE */}
       {stage === "capture" && results && (
         <section className="min-h-screen flex flex-col items-center justify-center px-6 py-20 pt-32">
           <div className="w-full max-w-md mx-auto">
@@ -418,7 +400,7 @@ export default function PettyAuditPage() {
         </section>
       )}
 
-      {/* ── DONE ── */}
+      {/* DONE */}
       {stage === "done" && results && (
         <section className="min-h-screen flex flex-col items-center justify-center px-6 py-20 text-center">
           <div className="w-20 h-20 rounded-full bg-[#008E97]/15 flex items-center justify-center mx-auto mb-6">
@@ -430,29 +412,25 @@ export default function PettyAuditPage() {
             Your full Petty Audit breakdown is on its way. If it does not arrive within a few minutes, check your spam folder.
           </p>
 
-          <div className="bg-[#111111] border border-white/8 rounded-2xl overflow-hidden max-w-sm mx-auto mb-10">
-  {/* Type image */}
-  <div className="relative w-full h-40">
-    <Image
-      src={results.typeResult.image}
-      alt={results.typeResult.type}
-      fill
-      className="object-cover"
-      sizes="384px"
-    />
-    <div className="absolute inset-0 bg-gradient-to-t from-[#111111] via-[#111111]/30 to-transparent" />
-    <div className="absolute bottom-0 left-0 p-4">
-      <div className="flex items-center gap-3">
-        <div className="w-3 h-3 rounded-full flex-shrink-0" style={{ backgroundColor: results.typeResult.color }} />
-        <p className="text-white font-serif text-lg font-bold">{results.typeResult.type}</p>
-      </div>
-    </div>
-  </div>
-  <div className="px-5 py-3">
-    <p className="text-white/40 text-xs uppercase tracking-widest">Your result</p>
-  </div>
-</div>
-
+          <div className="bg-[#111111] border border-white/8 rounded-2xl overflow-hidden w-full max-w-xs mx-auto mb-10">
+            <div className="relative w-full h-48">
+              <Image
+                src={results.typeResult.image}
+                alt={results.typeResult.type}
+                fill
+                className="object-cover"
+                sizes="320px"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#111111] via-[#111111]/20 to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-4">
+                <p className="text-white/40 text-xs uppercase tracking-widest mb-1">Your result</p>
+                <div className="flex items-center gap-2">
+                  <div className="w-2.5 h-2.5 rounded-full flex-shrink-0" style={{ backgroundColor: results.typeResult.color }} />
+                  <p className="text-white font-serif text-lg font-bold">{results.typeResult.type}</p>
+                </div>
+              </div>
+            </div>
+          </div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/book" className="gold-button inline-flex items-center justify-center gap-2 w-full sm:w-auto">
