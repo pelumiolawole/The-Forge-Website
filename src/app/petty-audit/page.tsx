@@ -2,28 +2,33 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { ArrowRight, Check, ChevronDown, ChevronUp } from "lucide-react";
+import Image from "next/image";
+import { ArrowRight } from "lucide-react";
 
 const identityTypes = [
   {
     type: "The Overthinker",
     description: "You analyse everything and execute nothing. Your intelligence is real. So is the prison it has built.",
     color: "#008E97",
+    image: "/images/type-overthinker.png",
   },
   {
     type: "The Performer",
     description: "You show up brilliantly for others and disappear when it comes to yourself. The gap between your image and your reality is widening.",
     color: "#C8963E",
+    image: "/images/type-performer.png",
   },
   {
     type: "The Avoider",
     description: "You are busy. Always busy. And somehow the most important things never get touched. That is not a schedule problem.",
     color: "#008E97",
+    image: "/images/type-avoider.png",
   },
   {
     type: "The Drifter",
     description: "You are capable, you are likeable, and you have been coasting on potential for long enough that you have started to wonder if that is all there is.",
     color: "#C8963E",
+    image: "/images/type-drifter.png",
   },
 ];
 
@@ -158,12 +163,25 @@ export default function PettyAuditPage() {
 
           <div className="grid md:grid-cols-2 gap-5 md:gap-6">
             {identityTypes.map((t, i) => (
-              <div key={i} className="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-transparent hover:border-[#008E97]/20 transition-colors">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-3 h-3 rounded-full flex-shrink-0" style={{ backgroundColor: t.color }} />
-                  <h3 className="text-[#0A0A0A] font-bold text-lg md:text-xl font-serif">{t.type}</h3>
+              <div key={i} className="bg-white rounded-2xl overflow-hidden shadow-sm border border-transparent hover:border-[#008E97]/20 transition-colors">
+                {/* Image */}
+                <div className="relative w-full h-52 md:h-60">
+                  <Image
+                    src={t.image}
+                    alt={t.type}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
                 </div>
-                <p className="text-[#6B7280] leading-relaxed text-sm md:text-base">{t.description}</p>
+                {/* Content */}
+                <div className="p-6 md:p-8">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-3 h-3 rounded-full flex-shrink-0" style={{ backgroundColor: t.color }} />
+                    <h3 className="text-[#0A0A0A] font-bold text-lg md:text-xl font-serif">{t.type}</h3>
+                  </div>
+                  <p className="text-[#6B7280] leading-relaxed text-sm md:text-base">{t.description}</p>
+                </div>
               </div>
             ))}
           </div>
