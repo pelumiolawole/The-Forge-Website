@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
-const SENDER_API_TOKEN = process.env.SENDER_API_TOKEN;
+const SENDER_API_TOKEN = process.env.SENDER_API_KEY;
 const PETTY_AUDIT_GROUP_ID = "e5wB0A";
 
 // ─── TYPES ────────────────────────────────────────────────────────────────────
@@ -10,7 +10,7 @@ interface AuditPayload {
   firstName?: string;
   identityType: string;
   emailKey: string;
-  domainScores: number[]; // [selfConcept, habits, relationships, environment, narrative]
+  domainScores: number[];
   total: number;
 }
 
@@ -135,7 +135,7 @@ function blockerItem(num: string, title: string, body: string, color: string): s
 // ─── BUILD EMAIL HTML ─────────────────────────────────────────────────────────
 
 function buildEmailHtml(payload: AuditPayload): string {
-  const { firstName, identityType, emailKey, domainScores, total } = payload;
+  const { firstName, emailKey, domainScores, total } = payload;
   const typeInfo = typeDescriptions[emailKey] ?? typeDescriptions.drifter;
   const typeBlockers = blockers[emailKey] ?? blockers.drifter;
   const domainNames = ["Self-Concept", "Habits", "Relationships", "Environment", "Narrative"];
@@ -168,19 +168,16 @@ function buildEmailHtml(payload: AuditPayload): string {
 <tr><td align="center" style="padding:40px 20px;">
 <table width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;">
 
-  <!-- HEADER -->
   <tr><td style="background-color:#0A0A0A;padding:32px 40px;border-radius:12px 12px 0 0;">
     <p style="margin:0;font-family:Arial,sans-serif;color:#008E97;font-size:12px;letter-spacing:3px;text-transform:uppercase;">The Petty Audit</p>
     <h1 style="margin:12px 0 0;font-family:Georgia,serif;color:#ffffff;font-size:28px;font-weight:700;line-height:1.2;">Your Results Are In.</h1>
   </td></tr>
 
-  <!-- TYPE BANNER -->
   <tr><td style="background-color:${typeInfo.accentColor};padding:24px 40px;">
     <p style="margin:0;color:rgba(255,255,255,0.8);font-size:12px;letter-spacing:2px;text-transform:uppercase;font-family:Arial,sans-serif;">Your Identity Type</p>
     <h2 style="margin:8px 0 0;font-family:Georgia,serif;color:#ffffff;font-size:32px;font-weight:700;">${typeInfo.headline}</h2>
   </td></tr>
 
-  <!-- DESCRIPTION -->
   <tr><td style="background-color:#ffffff;padding:40px;">
     <p style="margin:0 0 20px;font-family:Georgia,serif;font-size:18px;line-height:1.7;color:#0A0A0A;">${name}, your audit results are clear.</p>
     <p style="margin:0 0 20px;font-family:Arial,sans-serif;font-size:15px;line-height:1.8;color:#4B4B4B;">${typeInfo.body}</p>
@@ -191,25 +188,22 @@ function buildEmailHtml(payload: AuditPayload): string {
     </table>
   </td></tr>
 
-  <!-- DOMAIN SCORES -->
   <tr><td style="background-color:#F0FAFB;padding:40px;">
     <p style="margin:0 0 24px;font-family:Georgia,serif;font-size:20px;font-weight:700;color:#0A0A0A;">Your 5 Domain Scores</p>
     ${domainBars}
   </td></tr>
 
-  <!-- TOP 3 BLOCKERS -->
   <tr><td style="background-color:#ffffff;padding:40px;">
     <p style="margin:0 0 8px;font-family:Georgia,serif;font-size:20px;font-weight:700;color:#0A0A0A;">Your Top 3 Identity-Level Blockers</p>
     <p style="margin:0 0 28px;font-family:Arial,sans-serif;font-size:14px;line-height:1.7;color:#9CA3AF;">These are the patterns costing you the most right now, connected to the identity layer underneath each one.</p>
     ${blockerItems}
   </td></tr>
 
-  <!-- NEXT STEP -->
   <tr><td style="background-color:#0A0A0A;padding:40px;border-radius:0 0 12px 12px;">
     <p style="margin:0 0 8px;font-family:Arial,sans-serif;color:#008E97;font-size:12px;letter-spacing:2px;text-transform:uppercase;">Your Next Step</p>
     <h3 style="margin:0 0 16px;font-family:Georgia,serif;color:#ffffff;font-size:22px;font-weight:700;">The patterns are named. Now they need to be dismantled.</h3>
     <p style="margin:0 0 24px;font-family:Arial,sans-serif;font-size:15px;line-height:1.7;color:rgba(255,255,255,0.6);">
-      Petty Little Things goes deep on your specific pattern type — where it comes from, what it is protecting, and the identity shift required to move past it. It is the companion to everything your audit just surfaced.
+      Petty Little Things goes deep on your specific pattern type — where it comes from, what it is protecting, and the identity shift required to move past it.
     </p>
     <table cellpadding="0" cellspacing="0" style="margin-bottom:12px;">
       <tr><td style="background-color:#C8963E;border-radius:8px;">
@@ -275,24 +269,22 @@ export async function POST(req: NextRequest) {
     if (!subscriberRes.ok) {
       const err = await subscriberRes.text();
       console.error("Sender subscriber error:", err);
-      // Don't fail silently — but don't block the user either
     }
 
-    // 2. Send transactional email with computed HTML
+    // 2. Build and send transactional report email
     const emailHtml = buildEmailHtml(payload);
 
-    const emailRes = await fetch("https://api.sender.net/v2/transactional/email", {
+    const emailRes = await fetch("https://api.sender.net/v2/emails", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${SENDER_API_TOKEN}`,
+        Accept: "application/json",
       },
       body: JSON.stringify({
-        from: {
-          name: "Pelumi Olawole",
-          email: "coach@pelumiolawole.com",
-        },
-        to: [{ email, name: firstName || undefined }],
+        from: "coach@pelumiolawole.com",
+        from_name: "Pelumi Olawole",
+        to: email,
         subject: `Your Petty Audit Results — ${identityType}`,
         html: emailHtml,
       }),
@@ -305,6 +297,7 @@ export async function POST(req: NextRequest) {
     }
 
     return NextResponse.json({ success: true });
+
   } catch (err) {
     console.error("Audit report route error:", err);
     return NextResponse.json({ error: "Server error" }, { status: 500 });
