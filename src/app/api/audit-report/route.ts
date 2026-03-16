@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
-const SENDER_API_TOKEN = process.env.SENDER_API_KEY;
+const SENDER_API_KEY = process.env.SENDER_API_KEY;
+const RESEND_API_KEY = process.env.RESEND_API_KEY;
 const PETTY_AUDIT_GROUP_ID = "e5wB0A";
 
 // ─── TYPES ────────────────────────────────────────────────────────────────────
@@ -248,7 +249,7 @@ export async function POST(req: NextRequest) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${SENDER_API_TOKEN}`,
+        Authorization: `Bearer ${SENDER_API_KEY}`,
       },
       body: JSON.stringify({
         email,
@@ -271,33 +272,27 @@ export async function POST(req: NextRequest) {
       console.error("Sender subscriber error:", err);
     }
 
-    // 2. Build and send transactional report email
+    // 2. Build and send transactional report email via Resend
     const emailHtml = buildEmailHtml(payload);
 
-    const emailRes = await fetch("https://api.sender.net/v2/message/send", {
+    const emailRes = await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${SENDER_API_TOKEN}`,
-        Accept: "application/json",
+        Authorization: `Bearer ${RESEND_API_KEY}`,
       },
       body: JSON.stringify({
-        from: {
-          email: "coach@pelumiolawole.com",
-          name: "Pelumi Olawole",
-        },
-        to: {
-          email: email,
-          name: firstName || "",
-        },
+        from: "Pelumi Olawole <coach@pelumiolawole.com>",
+        to: [email],
         subject: `Your Petty Audit Results — ${identityType}`,
         html: emailHtml,
+        text: `Your Petty Audit Results\n\nIdentity Type: ${identityType}\n\nYour full breakdown is in the HTML version of this email.\n\nVisit https://pelumiolawole.com to learn more.`,
       }),
     });
 
     if (!emailRes.ok) {
       const err = await emailRes.text();
-      console.error("Sender email error:", err);
+      console.error("Resend email error:", err);
       return NextResponse.json({ error: "Email send failed" }, { status: 500 });
     }
 
