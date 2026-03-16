@@ -1,245 +1,453 @@
 "use client";
 
 import React, { useState } from "react";
-import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight, ArrowLeft, Check, Loader2 } from "lucide-react";
 
-const identityTypes = [
-  {
+// ─── QUESTIONS ────────────────────────────────────────────────────────────────
+
+const questions = [
+  // SELF-CONCEPT (domain 0)
+  { id: 1, domain: 0, text: "You have a clear sense of who you are regardless of what others think of you.", reversed: false },
+  { id: 2, domain: 0, text: "You often feel like the version of you others see is different from who you actually are.", reversed: true },
+  { id: 3, domain: 0, text: "You know what you stand for when it costs you something.", reversed: false },
+  { id: 4, domain: 0, text: "You change how you present yourself significantly depending on who is in the room.", reversed: true },
+  { id: 5, domain: 0, text: "You feel settled in your own identity rather than performing it.", reversed: false },
+
+  // HABITS (domain 1)
+  { id: 6, domain: 1, text: "You regularly start things you do not finish.", reversed: true },
+  { id: 7, domain: 1, text: "You find yourself avoiding specific tasks even when you know they matter.", reversed: true },
+  { id: 8, domain: 1, text: "Your behaviour under pressure reflects the person you are trying to become.", reversed: false },
+  { id: 9, domain: 1, text: "You have patterns you have tried to change multiple times without lasting success.", reversed: true },
+  { id: 10, domain: 1, text: "Your daily choices generally reflect your actual values.", reversed: false },
+
+  // RELATIONSHIPS (domain 2)
+  { id: 11, domain: 2, text: "You are able to ask for what you need in your closest relationships.", reversed: false },
+  { id: 12, domain: 2, text: "You find yourself becoming a different version of yourself around certain people.", reversed: true },
+  { id: 13, domain: 2, text: "Your relationships tend to bring out the best version of you.", reversed: false },
+  { id: 14, domain: 2, text: "You regularly sacrifice your own needs to maintain harmony with others.", reversed: true },
+  { id: 15, domain: 2, text: "You attract people who reflect the identity you are building.", reversed: false },
+
+  // ENVIRONMENT (domain 3)
+  { id: 16, domain: 3, text: "Your physical and digital environment supports the person you are trying to become.", reversed: false },
+  { id: 17, domain: 3, text: "Your surroundings make it harder, not easier, to do your best work.", reversed: true },
+  { id: 18, domain: 3, text: "You have deliberately designed your environment to reinforce your identity.", reversed: false },
+  { id: 19, domain: 3, text: "You spend significant time in spaces that drain rather than build you.", reversed: true },
+  { id: 20, domain: 3, text: "The people and places you regularly expose yourself to push you forward.", reversed: false },
+
+  // NARRATIVE (domain 4)
+  { id: 21, domain: 4, text: "The story you tell about yourself is one you have consciously chosen.", reversed: false },
+  { id: 22, domain: 4, text: "You often explain your situation in ways that position you as the victim of circumstances.", reversed: true },
+  { id: 23, domain: 4, text: "You believe the next chapter of your life is genuinely available to you.", reversed: false },
+  { id: 24, domain: 4, text: "Old failures or setbacks still define how you see your potential.", reversed: true },
+  { id: 25, domain: 4, text: "The way you talk about yourself to others reflects the person you are becoming.", reversed: false },
+];
+
+const domainNames = ["Self-Concept", "Habits", "Relationships", "Environment", "Narrative"];
+
+const answerLabels = [
+  { value: 1, label: "Strongly Disagree" },
+  { value: 2, label: "Disagree" },
+  { value: 3, label: "Neutral" },
+  { value: 4, label: "Agree" },
+  { value: 5, label: "Strongly Agree" },
+];
+
+// ─── IDENTITY TYPES ───────────────────────────────────────────────────────────
+
+interface TypeResult {
+  type: string;
+  emailKey: string;
+  description: string;
+  color: string;
+  image: string;
+}
+
+const types: Record<string, TypeResult> = {
+  overthinker: {
     type: "The Overthinker",
-    description: "You analyse everything and execute nothing. Your intelligence is real. So is the prison it has built.",
+    emailKey: "overthinker",
+    description: "You are intelligent, capable, and you know it. The problem is that your mind has become a prison built entirely out of possibility. You can see every angle, anticipate every obstacle, and construct every contingency — which is exactly why nothing moves. The analysis is not the work. It is the avoidance of the work.",
     color: "#008E97",
     image: "/images/type-overthinker.png",
   },
-  {
+  performer: {
     type: "The Performer",
-    description: "You show up brilliantly for others and disappear when it comes to yourself. The gap between your image and your reality is widening.",
+    emailKey: "performer",
+    description: "You are extraordinary at showing up for others. In every room, every relationship, every role — you deliver. The gap no one sees is between that version of you and the one that exists when the audience is gone. You have become so good at being what others need that you have lost reliable access to what you actually are.",
     color: "#C8963E",
     image: "/images/type-performer.png",
   },
-  {
+  avoider: {
     type: "The Avoider",
-    description: "You are busy. Always busy. And somehow the most important things never get touched. That is not a schedule problem.",
+    emailKey: "avoider",
+    description: "Your calendar is full. Your to-do list is long. You are always in motion. And somehow the things that would actually change your life keep getting pushed to next week. This is not a time management problem. Busyness is your most sophisticated defence mechanism. You are not lazy. You are hiding in plain sight.",
     color: "#008E97",
     image: "/images/type-avoider.png",
   },
-  {
+  drifter: {
     type: "The Drifter",
-    description: "You are capable, you are likeable, and you have been coasting on potential for long enough that you have started to wonder if that is all there is.",
+    emailKey: "drifter",
+    description: "You are capable. People around you know it. You probably know it too. And yet something keeps you from fully committing to a direction and holding it. The issue is not effort or intelligence. It is that you have not yet built an identity strong enough to keep you anchored when the motivation fades. Potential without direction is just noise.",
     color: "#C8963E",
     image: "/images/type-drifter.png",
   },
-];
+};
 
-const domains = [
-  { name: "Self-Concept", desc: "How you see yourself when no one is watching" },
-  { name: "Habits", desc: "The patterns running you without your permission" },
-  { name: "Relationships", desc: "What your closest connections reveal about your identity" },
-  { name: "Environment", desc: "What your surroundings are quietly reinforcing" },
-  { name: "Narrative", desc: "The story you keep telling yourself about why" },
-];
+// ─── SCORING ──────────────────────────────────────────────────────────────────
+
+function getIdentityType(domainScores: number[]): TypeResult {
+  const indexed = domainScores.map((score, i) => ({ score, i }));
+  const sorted = [...indexed].sort((a, b) => a.score - b.score);
+  const lowest = sorted[0].i;
+  const secondLowest = sorted[1].i;
+  const weakPair = new Set([lowest, secondLowest]);
+
+  if (weakPair.has(1) && domainScores[0] >= 15) return types.overthinker;
+  if (weakPair.has(0) && weakPair.has(2)) return types.performer;
+  if (weakPair.has(1) && weakPair.has(4)) return types.avoider;
+  if (weakPair.has(0) && weakPair.has(4)) return types.drifter;
+  if (lowest === 0 || lowest === 4) return types.drifter;
+  if (lowest === 1) return types.avoider;
+  if (lowest === 2) return types.performer;
+  return types.overthinker;
+}
+
+function calculateResults(answers: Record<number, number>) {
+  const domainScores = [0, 0, 0, 0, 0];
+  const domainCounts = [0, 0, 0, 0, 0];
+
+  questions.forEach((q) => {
+    const raw = answers[q.id] ?? 3;
+    const score = q.reversed ? 6 - raw : raw;
+    domainScores[q.domain] += score;
+    domainCounts[q.domain]++;
+  });
+
+  const scaled = domainScores.map((s, i) =>
+    Math.round((s / (domainCounts[i] * 5)) * 25)
+  );
+  const total = scaled.reduce((a, b) => a + b, 0);
+  const typeResult = getIdentityType(scaled);
+
+  return { domainScores: scaled, total, typeResult };
+}
+
+// ─── COMPONENT ────────────────────────────────────────────────────────────────
+
+type Stage = "intro" | "quiz" | "analysing" | "results" | "capture" | "done";
 
 export default function PettyAuditPage() {
-  const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [stage, setStage] = useState<Stage>("intro");
+  const [currentQ, setCurrentQ] = useState(0);
+  const [answers, setAnswers] = useState<Record<number, number>>({});
+  const [selected, setSelected] = useState<number | null>(null);
+  const [results, setResults] = useState<ReturnType<typeof calculateResults> | null>(null);
+  const [email, setEmail] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState(false);
+
+  const progress = Math.round((currentQ / questions.length) * 100);
+  const q = questions[currentQ];
+
+  function handleAnswer(value: number) {
+    setSelected(value);
+    setTimeout(() => {
+      const newAnswers = { ...answers, [q.id]: value };
+      setAnswers(newAnswers);
+      setSelected(null);
+
+      if (currentQ + 1 < questions.length) {
+        setCurrentQ(currentQ + 1);
+      } else {
+        setStage("analysing");
+        setTimeout(() => {
+          const r = calculateResults(newAnswers);
+          setResults(r);
+          setStage("results");
+        }, 2000);
+      }
+    }, 350);
+  }
+
+  function handleBack() {
+    if (currentQ > 0) {
+      setCurrentQ(currentQ - 1);
+      setSelected(null);
+    }
+  }
+
+  async function handleEmailSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (!results) return;
+    setSubmitting(true);
+    setSubmitError(false);
+
+    try {
+      const res = await fetch("/api/audit-report", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email,
+          firstName: firstName || undefined,
+          identityType: results.typeResult.type,
+          emailKey: results.typeResult.emailKey,
+          domainScores: results.domainScores,
+          total: results.total,
+        }),
+      });
+
+      if (!res.ok) throw new Error("Failed");
+      setStage("done");
+    } catch {
+      setSubmitError(true);
+    } finally {
+      setSubmitting(false);
+    }
+  }
 
   return (
-    <main className="bg-[#0A0A0A] text-white">
+    <main className="bg-[#0A0A0A] text-white min-h-screen">
 
-      {/* HERO */}
-      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{ background: "radial-gradient(ellipse 70% 60% at 50% 60%, rgba(0,142,151,0.10) 0%, transparent 70%)" }}
-        />
-        <div className="relative z-10 max-w-4xl mx-auto px-6 lg:px-8 text-center pt-32 pb-20">
-          <p className="section-label mb-6">Free Diagnostic Tool</p>
-          <h1
-            className="font-serif font-black mb-8 leading-tight"
-            style={{ fontSize: "clamp(2.2rem, 6vw, 5rem)" }}
-          >
-            Find out which 3 habits are quietly
-            <br />
-            <span className="text-[#008E97]">costing you the most.</span>
-          </h1>
-          <p className="text-white/70 text-base md:text-xl max-w-2xl mx-auto mb-4 font-light leading-relaxed">
-            The Petty Audit is a free 25-question diagnostic built directly from Petty Little Things. Answer honestly. Receive a scored report identifying your top 3 identity-level blockers and the pattern type running your life.
-          </p>
-          <p className="text-[#C8963E] font-medium mb-10 text-sm md:text-base">
-            Takes 5 minutes. The clarity lasts longer.
-          </p>
-          <a
-            href="https://forms.gle/REPLACE_WITH_TYPEFORM_URL"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="gold-button inline-flex items-center justify-center gap-2 w-full sm:w-auto text-base px-10 py-4"
-          >
-            Take the Free Audit
-            <ArrowRight size={18} />
-          </a>
-          <p className="text-white/30 text-sm mt-4">No signup required. Results delivered instantly.</p>
-        </div>
-      </section>
-
-      {/* WHAT YOU GET */}
-      <section className="py-16 md:py-24 bg-[#F0FAFB]">
-        <div className="max-w-5xl mx-auto px-6 lg:px-8">
-          <div className="text-center mb-12 md:mb-16">
-            <p className="section-label text-[#008E97] mb-4">What the Audit Delivers</p>
-            <h2 className="headline-lg text-[#0A0A0A]">Not a quiz. A diagnosis.</h2>
-            <p className="text-[#6B7280] text-base md:text-lg max-w-2xl mx-auto mt-4">
-              Most assessments tell you what you already know. This one tells you what has been running you without your permission.
+      {/* ── INTRO ── */}
+      {stage === "intro" && (
+        <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+          <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse 70% 60% at 50% 60%, rgba(0,142,151,0.10) 0%, transparent 70%)" }} />
+          <div className="relative z-10 max-w-3xl mx-auto px-6 lg:px-8 text-center pt-32 pb-20">
+            <p className="section-label mb-6">Free Diagnostic Tool</p>
+            <h1 className="font-serif font-black mb-8 leading-tight" style={{ fontSize: "clamp(2.2rem, 6vw, 4.5rem)" }}>
+              Find out which 3 habits are quietly
+              <br /><span className="text-[#008E97]">costing you the most.</span>
+            </h1>
+            <p className="text-white/70 text-base md:text-xl max-w-2xl mx-auto mb-4 font-light leading-relaxed">
+              25 questions. 5 identity domains. One honest result. You will see exactly which patterns are running your life and what they say about the identity underneath them.
             </p>
-          </div>
+            <p className="text-[#C8963E] font-medium mb-10 text-sm md:text-base">Takes 5 minutes. The clarity lasts longer.</p>
 
-          <div className="grid md:grid-cols-2 gap-5 md:gap-6">
-            {[
-              {
-                title: "Your score across 5 identity domains",
-                body: "Self-concept, habits, relationships, environment, and narrative. You will see exactly where the gaps are, not where you assume they are.",
-              },
-              {
-                title: "Your top 3 Petty Patterns",
-                body: "Named, explained, and connected to the identity layer underneath. These are the three habits costing you the most right now.",
-              },
-              {
-                title: "Your identity type",
-                body: "The Overthinker, The Performer, The Avoider, or The Drifter. Knowing which one you are is the first step to not being defined by it.",
-              },
-              {
-                title: "A specific next step",
-                body: "Not a generic recommendation. A pointed direction based on your results, whether that is the book, the program, or something else entirely.",
-              },
-            ].map((item, i) => (
-              <div key={i} className="bg-white rounded-2xl p-6 md:p-8 shadow-sm">
-                <div className="flex items-start gap-4">
-                  <div className="w-3 h-3 rounded-full bg-[#008E97] mt-1.5 flex-shrink-0" />
-                  <div>
-                    <h3 className="text-[#0A0A0A] font-bold text-base md:text-lg mb-2">{item.title}</h3>
-                    <p className="text-[#6B7280] leading-relaxed text-sm md:text-base">{item.body}</p>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12 max-w-2xl mx-auto">
+              {Object.values(types).map((t) => (
+                <div key={t.type} className="relative h-28 rounded-xl overflow-hidden">
+                  <Image src={t.image} alt={t.type} fill className="object-cover" sizes="200px" />
+                  <div className="absolute inset-0 bg-black/50 flex items-end p-3">
+                    <p className="text-white text-xs font-semibold leading-tight">{t.type}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <button
+              onClick={() => setStage("quiz")}
+              className="gold-button inline-flex items-center justify-center gap-2 w-full sm:w-auto text-base px-10 py-4"
+            >
+              Start the Audit
+              <ArrowRight size={18} />
+            </button>
+            <p className="text-white/30 text-sm mt-4">Free. No signup required to start.</p>
+          </div>
+        </section>
+      )}
+
+      {/* ── QUIZ ── */}
+      {stage === "quiz" && (
+        <section className="min-h-screen flex flex-col items-center justify-center px-6 py-20 pt-32">
+          <div className="w-full max-w-2xl mx-auto">
+            <div className="mb-8">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-white/40 text-xs">Question {currentQ + 1} of {questions.length}</span>
+                <span className="text-[#008E97] text-xs font-medium">{domainNames[q.domain]}</span>
+              </div>
+              <div className="h-1 bg-white/10 rounded-full overflow-hidden">
+                <div className="h-full bg-[#008E97] rounded-full transition-all duration-500" style={{ width: `${progress}%` }} />
+              </div>
+            </div>
+
+            <div className="bg-[#111111] border border-white/8 rounded-2xl p-8 md:p-12 mb-6">
+              <p className="text-white/50 text-xs font-semibold tracking-widest uppercase mb-6">{domainNames[q.domain]}</p>
+              <h2 className="font-serif text-xl md:text-2xl text-white leading-snug mb-10">{q.text}</h2>
+
+              <div className="space-y-3">
+                {answerLabels.map((opt) => (
+                  <button
+                    key={opt.value}
+                    onClick={() => handleAnswer(opt.value)}
+                    className={`w-full flex items-center gap-4 px-5 py-4 rounded-xl border text-left transition-all duration-200 ${
+                      selected === opt.value
+                        ? "bg-[#008E97] border-[#008E97] text-white"
+                        : answers[q.id] === opt.value
+                        ? "bg-[#008E97]/20 border-[#008E97]/50 text-white"
+                        : "bg-white/3 border-white/10 text-white/70 hover:border-[#008E97]/50 hover:text-white"
+                    }`}
+                  >
+                    <span className={`w-8 h-8 rounded-full border flex-shrink-0 flex items-center justify-center text-xs font-bold transition-all ${
+                      selected === opt.value || answers[q.id] === opt.value
+                        ? "border-white bg-white text-[#008E97]"
+                        : "border-white/20 text-white/40"
+                    }`}>
+                      {opt.value}
+                    </span>
+                    <span className="text-sm md:text-base">{opt.label}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {currentQ > 0 && (
+              <button onClick={handleBack} className="inline-flex items-center gap-2 text-white/40 hover:text-white/70 text-sm transition-colors">
+                <ArrowLeft size={14} />
+                Previous question
+              </button>
+            )}
+          </div>
+        </section>
+      )}
+
+      {/* ── ANALYSING ── */}
+      {stage === "analysing" && (
+        <section className="min-h-screen flex flex-col items-center justify-center px-6 text-center">
+          <div className="w-20 h-20 rounded-full border-2 border-[#008E97]/20 flex items-center justify-center mb-8">
+            <Loader2 className="w-8 h-8 text-[#008E97] animate-spin" />
+          </div>
+          <p className="section-label mb-4">Processing</p>
+          <h2 className="font-serif text-2xl md:text-3xl text-white mb-4">Analysing your responses...</h2>
+          <p className="text-white/50 text-base max-w-sm">Calculating your identity profile across all five domains.</p>
+        </section>
+      )}
+
+      {/* ── RESULTS ── */}
+      {stage === "results" && results && (
+        <section className="min-h-screen flex flex-col items-center justify-center px-6 py-20 pt-32">
+          <div className="w-full max-w-2xl mx-auto">
+            <p className="section-label text-center mb-6">Your Identity Type</p>
+
+            <div className="bg-[#111111] border border-white/8 rounded-2xl overflow-hidden mb-6">
+              <div className="relative h-52">
+                <Image src={results.typeResult.image} alt={results.typeResult.type} fill className="object-cover" sizes="672px" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#111111] via-[#111111]/40 to-transparent" />
+                <div className="absolute bottom-0 left-0 p-6">
+                  <div className="flex items-center gap-3">
+                    <div className="w-3 h-3 rounded-full flex-shrink-0" style={{ backgroundColor: results.typeResult.color }} />
+                    <h2 className="font-serif text-2xl md:text-3xl font-bold text-white">{results.typeResult.type}</h2>
                   </div>
                 </div>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* THE 5 DOMAINS */}
-      <section className="py-16 md:py-24 bg-[#0A0A0A]">
-        <div className="max-w-5xl mx-auto px-6 lg:px-8">
-          <div className="text-center mb-12 md:mb-16">
-            <p className="section-label mb-4">The Five Domains</p>
-            <h2 className="headline-lg">Where the audit looks.</h2>
-            <p className="text-white/60 text-base md:text-lg max-w-2xl mx-auto mt-4">
-              Most people only examine one or two areas of their identity. The Petty Audit covers all five, because a blind spot in any one of them can be running everything else.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-5 gap-4">
-            {domains.map((d, i) => (
-              <div key={i} className="bg-white/5 border border-white/10 rounded-xl p-5 md:p-6 text-center hover:border-[#008E97]/50 transition-colors">
-                <div className="w-10 h-10 rounded-full bg-[#008E97]/15 flex items-center justify-center mx-auto mb-4">
-                  <span className="text-[#008E97] font-bold text-sm">0{i + 1}</span>
-                </div>
-                <h3 className="text-white font-semibold text-sm mb-2">{d.name}</h3>
-                <p className="text-white/50 text-xs leading-relaxed">{d.desc}</p>
+              <div className="p-6 md:p-8">
+                <p className="text-white/75 text-base md:text-lg leading-relaxed">{results.typeResult.description}</p>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
+            </div>
 
-      {/* IDENTITY TYPES */}
-      <section className="py-16 md:py-24 bg-[#F7F4EF]">
-        <div className="max-w-5xl mx-auto px-6 lg:px-8">
-          <div className="text-center mb-12 md:mb-16">
-            <p className="section-label text-[#008E97] mb-4">The Four Identity Types</p>
-            <h2 className="headline-lg text-[#0A0A0A]">Which one are you?</h2>
-            <p className="text-[#6B7280] text-base md:text-lg max-w-2xl mx-auto mt-4">
-              Your audit results will identify which pattern type is most dominant. None of them are permanent. All of them can be changed. But you have to see it first.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-5 md:gap-6">
-            {identityTypes.map((t, i) => (
-              <div key={i} className="bg-white rounded-2xl overflow-hidden shadow-sm border border-transparent hover:border-[#008E97]/20 transition-colors">
-                {/* Image */}
-                <div className="relative w-full h-52 md:h-60">
-                  <Image
-                    src={t.image}
-                    alt={t.type}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                  />
-                </div>
-                {/* Content */}
-                <div className="p-6 md:p-8">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="w-3 h-3 rounded-full flex-shrink-0" style={{ backgroundColor: t.color }} />
-                    <h3 className="text-[#0A0A0A] font-bold text-lg md:text-xl font-serif">{t.type}</h3>
+            {/* Blurred domain teaser */}
+            <div className="bg-[#111111] border border-white/8 rounded-2xl p-6 mb-6">
+              <div className="flex items-center justify-between mb-4">
+                <p className="text-white/60 text-sm font-medium">Your 5 Domain Scores</p>
+                <span className="text-[#008E97] text-xs font-semibold">Full breakdown in your email</span>
+              </div>
+              <div className="space-y-3 blur-sm select-none pointer-events-none">
+                {domainNames.map((name, i) => (
+                  <div key={name}>
+                    <div className="flex items-center justify-between mb-1">
+                      <span className="text-white/60 text-xs">{name}</span>
+                      <span className="text-white/40 text-xs">{results.domainScores[i]}/25</span>
+                    </div>
+                    <div className="h-2 bg-white/10 rounded-full overflow-hidden">
+                      <div className="h-full rounded-full" style={{ width: `${(results.domainScores[i] / 25) * 100}%`, backgroundColor: results.typeResult.color }} />
+                    </div>
                   </div>
-                  <p className="text-[#6B7280] leading-relaxed text-sm md:text-base">{t.description}</p>
-                </div>
+                ))}
               </div>
-            ))}
+            </div>
+
+            <button
+              onClick={() => setStage("capture")}
+              className="gold-button inline-flex items-center justify-center gap-2 w-full text-base py-4"
+            >
+              Get Your Full Breakdown
+              <ArrowRight size={18} />
+            </button>
+            <p className="text-white/30 text-xs text-center mt-3">Your detailed report, top 3 blockers, and next steps — sent to your inbox.</p>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
-      {/* HOW IT WORKS */}
-      <section className="py-16 md:py-24 bg-[#0A0A0A]">
-        <div className="max-w-3xl mx-auto px-6 lg:px-8 text-center">
-          <p className="section-label mb-6">How It Works</p>
-          <h2 className="headline-lg mb-12">Simple. Honest. Useful.</h2>
+      {/* ── EMAIL CAPTURE ── */}
+      {stage === "capture" && results && (
+        <section className="min-h-screen flex flex-col items-center justify-center px-6 py-20 pt-32">
+          <div className="w-full max-w-md mx-auto">
+            <p className="section-label text-center mb-4">Almost there</p>
+            <h2 className="font-serif text-2xl md:text-3xl text-white text-center mb-3">
+              Where should we send your full report?
+            </h2>
+            <p className="text-white/50 text-sm text-center mb-8">
+              Your full breakdown includes domain scores, top 3 identity-level blockers, and a specific next step.
+            </p>
 
-          <div className="grid md:grid-cols-3 gap-8 text-left mb-14">
-            {[
-              { step: "01", title: "Answer 25 questions", body: "Straightforward questions across the five identity domains. No right answers. Just honest ones." },
-              { step: "02", title: "Get your scored report", body: "Your results are processed automatically. You receive a PDF report identifying your top 3 patterns and your identity type." },
-              { step: "03", title: "Know what to do next", body: "Your report includes a specific recommendation pointing you toward the right next step for where you actually are." },
-            ].map((s) => (
-              <div key={s.step} className="space-y-3">
-                <span className="text-[#008E97] text-sm font-semibold tracking-widest">{s.step}</span>
-                <h3 className="text-white font-bold text-base md:text-lg">{s.title}</h3>
-                <p className="text-white/60 text-sm md:text-base leading-relaxed">{s.body}</p>
-              </div>
-            ))}
+            <form onSubmit={handleEmailSubmit} className="space-y-4">
+              <input
+                type="text"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                placeholder="First name (optional)"
+                className="w-full px-4 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-white/30 focus:outline-none focus:border-[#008E97] transition-colors"
+              />
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Your email address"
+                required
+                className="w-full px-4 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-white/30 focus:outline-none focus:border-[#008E97] transition-colors"
+              />
+              {submitError && (
+                <p className="text-red-400 text-sm text-center">Something went wrong. Please try again.</p>
+              )}
+              <button
+                type="submit"
+                disabled={submitting}
+                className="w-full gold-button inline-flex items-center justify-center gap-2 py-4 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {submitting ? (
+                  <><Loader2 size={18} className="animate-spin" />Sending your report...</>
+                ) : (
+                  <>Send My Full Report<ArrowRight size={18} /></>
+                )}
+              </button>
+            </form>
+            <p className="text-white/20 text-xs text-center mt-4">No spam. Unsubscribe anytime.</p>
           </div>
+        </section>
+      )}
 
-          <a
-            href="https://forms.gle/REPLACE_WITH_TYPEFORM_URL"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="gold-button inline-flex items-center justify-center gap-2 w-full sm:w-auto text-base px-10 py-4"
-          >
-            Take the Free Audit
-            <ArrowRight size={18} />
-          </a>
-          <p className="text-white/30 text-sm mt-4">Free. Always. No obligation.</p>
-        </div>
-      </section>
-
-      {/* BRIDGE TO BOOK */}
-      <section className="py-16 md:py-20 bg-[#F0FAFB]">
-        <div className="max-w-3xl mx-auto px-6 lg:px-8 text-center">
-          <p className="section-label text-[#008E97] mb-4">From Petty Little Things</p>
-          <h2 className="headline-lg text-[#0A0A0A] mb-6">The audit names the patterns. The book shows you how to dismantle them.</h2>
-          <p className="text-[#6B7280] text-base md:text-lg leading-relaxed mb-8 max-w-2xl mx-auto">
-            Petty Little Things is the companion to everything the audit surfaces. 50 habits examined in full, with the identity shift required to move past each one.
+      {/* ── DONE ── */}
+      {stage === "done" && results && (
+        <section className="min-h-screen flex flex-col items-center justify-center px-6 py-20 text-center">
+          <div className="w-20 h-20 rounded-full bg-[#008E97]/15 flex items-center justify-center mx-auto mb-6">
+            <Check className="w-8 h-8 text-[#008E97]" />
+          </div>
+          <p className="section-label mb-4">Report Sent</p>
+          <h2 className="font-serif text-2xl md:text-3xl text-white mb-4">Check your inbox.</h2>
+          <p className="text-white/60 text-base max-w-md mx-auto mb-10">
+            Your full Petty Audit breakdown is on its way. If it does not arrive within a few minutes, check your spam folder.
           </p>
+
+          <div className="bg-[#111111] border border-white/8 rounded-2xl p-6 max-w-sm mx-auto mb-10">
+            <p className="text-white/40 text-xs uppercase tracking-widest mb-2">Your result</p>
+            <div className="flex items-center gap-3">
+              <div className="w-3 h-3 rounded-full flex-shrink-0" style={{ backgroundColor: results.typeResult.color }} />
+              <p className="text-white font-serif text-lg font-bold">{results.typeResult.type}</p>
+            </div>
+          </div>
+
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/book" className="gold-button inline-flex items-center justify-center gap-2 w-full sm:w-auto">
-              Get the Book
-              <ArrowRight size={18} />
+              Get Petty Little Things<ArrowRight size={18} />
             </Link>
-            <Link href="/forge-program" className="inline-flex items-center justify-center gap-2 px-6 py-4 border-2 border-[#0A0A0A]/20 rounded-lg text-[#0A0A0A] font-semibold hover:border-[#008E97] hover:text-[#008E97] transition-all w-full sm:w-auto text-sm">
-              Or apply for The Forge Program
+            <Link href="/forge-program" className="inline-flex items-center justify-center gap-2 px-6 py-4 border-2 border-white/10 rounded-lg text-white/70 font-semibold hover:border-[#008E97] hover:text-white transition-all w-full sm:w-auto text-sm">
+              Learn about The Forge Program
             </Link>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
     </main>
   );
