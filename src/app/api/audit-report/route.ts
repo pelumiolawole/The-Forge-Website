@@ -240,7 +240,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Invalid payload" }, { status: 400 });
     }
 
-    if (!SENDER_API_TOKEN) {
+    if (!SENDER_API_KEY) {
       return NextResponse.json({ error: "Missing API token" }, { status: 500 });
     }
 
