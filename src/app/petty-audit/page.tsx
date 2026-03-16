@@ -6,31 +6,40 @@ import Link from "next/link";
 import { ArrowRight, ArrowLeft, Check, Loader2 } from "lucide-react";
 
 const questions = [
-  { id: 1, domain: 0, text: "You have a clear sense of who you are regardless of what others think of you.", reversed: false },
-  { id: 2, domain: 0, text: "You often feel like the version of you others see is different from who you actually are.", reversed: true },
-  { id: 3, domain: 0, text: "You know what you stand for when it costs you something.", reversed: false },
-  { id: 4, domain: 0, text: "You change how you present yourself significantly depending on who is in the room.", reversed: true },
-  { id: 5, domain: 0, text: "You feel settled in your own identity rather than performing it.", reversed: false },
-  { id: 6, domain: 1, text: "You regularly start things you do not finish.", reversed: true },
-  { id: 7, domain: 1, text: "You find yourself avoiding specific tasks even when you know they matter.", reversed: true },
-  { id: 8, domain: 1, text: "Your behaviour under pressure reflects the person you are trying to become.", reversed: false },
-  { id: 9, domain: 1, text: "You have patterns you have tried to change multiple times without lasting success.", reversed: true },
-  { id: 10, domain: 1, text: "Your daily choices generally reflect your actual values.", reversed: false },
-  { id: 11, domain: 2, text: "You are able to ask for what you need in your closest relationships.", reversed: false },
-  { id: 12, domain: 2, text: "You find yourself becoming a different version of yourself around certain people.", reversed: true },
-  { id: 13, domain: 2, text: "Your relationships tend to bring out the best version of you.", reversed: false },
-  { id: 14, domain: 2, text: "You regularly sacrifice your own needs to maintain harmony with others.", reversed: true },
-  { id: 15, domain: 2, text: "You attract people who reflect the identity you are building.", reversed: false },
-  { id: 16, domain: 3, text: "Your physical and digital environment supports the person you are trying to become.", reversed: false },
-  { id: 17, domain: 3, text: "Your surroundings make it harder, not easier, to do your best work.", reversed: true },
-  { id: 18, domain: 3, text: "You have deliberately designed your environment to reinforce your identity.", reversed: false },
-  { id: 19, domain: 3, text: "You spend significant time in spaces that drain rather than build you.", reversed: true },
-  { id: 20, domain: 3, text: "The people and places you regularly expose yourself to push you forward.", reversed: false },
-  { id: 21, domain: 4, text: "The story you tell about yourself is one you have consciously chosen.", reversed: false },
-  { id: 22, domain: 4, text: "You often explain your situation in ways that position you as the victim of circumstances.", reversed: true },
-  { id: 23, domain: 4, text: "You believe the next chapter of your life is genuinely available to you.", reversed: false },
-  { id: 24, domain: 4, text: "Old failures or setbacks still define how you see your potential.", reversed: true },
-  { id: 25, domain: 4, text: "The way you talk about yourself to others reflects the person you are becoming.", reversed: false },
+  // SELF-CONCEPT
+  { id: 1, domain: 0, text: "When you are alone and no one will ever know the outcome, you still make the same decisions you would make publicly.", reversed: false },
+  { id: 2, domain: 0, text: "When someone praises you publicly, your first instinct is to feel exposed rather than seen.", reversed: true },
+  { id: 3, domain: 0, text: "You can name three things you genuinely believe about yourself that have nothing to do with what you produce or achieve.", reversed: false },
+  { id: 4, domain: 0, text: "You have adjusted your opinion mid-conversation because you sensed the other person disagreed, even before they said anything.", reversed: true },
+  { id: 5, domain: 0, text: "There is a version of yourself you privately believe is the real one, and you are not sure that person has ever fully shown up.", reversed: true },
+
+  // HABITS
+  { id: 6, domain: 1, text: "You have a task that has been on your list for more than two weeks that you already know exactly how to do.", reversed: true },
+  { id: 7, domain: 1, text: "When you imagine doing the thing you keep avoiding, the feeling underneath the resistance is closer to fear than laziness.", reversed: true },
+  { id: 8, domain: 1, text: "Your behaviour in the first hour of the day reflects the person you are trying to become, not the person you are trying to escape.", reversed: false },
+  { id: 9, domain: 1, text: "You have made the same commitment to yourself — about sleep, focus, food, movement, or money — and broken it more than five times.", reversed: true },
+  { id: 10, domain: 1, text: "You are more disciplined for other people than you are for yourself, and some part of you knows why.", reversed: true },
+
+  // RELATIONSHIPS
+  { id: 11, domain: 2, text: "After certain conversations, you feel less like yourself than you did before they started.", reversed: true },
+  { id: 12, domain: 2, text: "You know what someone needs to hear from you, and you have been choosing comfort over honesty for longer than you want to admit.", reversed: true },
+  { id: 13, domain: 2, text: "You have ended or significantly distanced yourself from a relationship because it was costing you your identity, not just your time.", reversed: false },
+  { id: 14, domain: 2, text: "When someone important to you is upset, your first priority is making the discomfort stop, even if that means abandoning what you actually think.", reversed: true },
+  { id: 15, domain: 2, text: "The people closest to you would describe you the same way whether you were in the room or not.", reversed: false },
+
+  // ENVIRONMENT
+  { id: 16, domain: 3, text: "Your physical space reflects who you are becoming, not who you were three years ago.", reversed: false },
+  { id: 17, domain: 3, text: "You regularly spend time in spaces or conversations that quietly confirm the smaller version of yourself.", reversed: true },
+  { id: 18, domain: 3, text: "The first thing you reach for when you have ten free minutes is something that numbs rather than builds.", reversed: true },
+  { id: 19, domain: 3, text: "You have deliberately removed something from your environment in the last six months because it was working against you.", reversed: false },
+  { id: 20, domain: 3, text: "There is a person in your regular life whose opinion of you has more control over your decisions than you would ever say out loud.", reversed: true },
+
+  // NARRATIVE
+  { id: 21, domain: 4, text: "When something goes wrong, your explanation tends to centre on the circumstances more than your role in creating them.", reversed: true },
+  { id: 22, domain: 4, text: "There is a story you tell about a period of your life that makes you the person things happened to, and you have never seriously questioned whether that version is accurate.", reversed: true },
+  { id: 23, domain: 4, text: "You can describe, in specific terms, the identity you are building and why it is different from the one you grew up with.", reversed: false },
+  { id: 24, domain: 4, text: "The ceiling you put on your own ambition is borrowed from someone else's opinion of you, and part of you knows exactly whose it is.", reversed: true },
+  { id: 25, domain: 4, text: "The way you talk about your future in private is genuinely different from how you talked about it five years ago.", reversed: false },
 ];
 
 const domainNames = ["Self-Concept", "Habits", "Relationships", "Environment", "Narrative"];
