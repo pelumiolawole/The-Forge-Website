@@ -10,6 +10,7 @@ const navLinks = [
   { href: "/book", label: "The Book" },
   { href: "/forge-program", label: "The Forge" },
   { href: "/podcast", label: "Podcast" },
+  { href: "/blog", label: "Blog" },
 ];
 
 export function Navigation() {
