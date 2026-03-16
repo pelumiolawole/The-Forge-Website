@@ -16,7 +16,7 @@ export function AboutPreview() {
 
           {/* Image side — stacks below content on mobile */}
           <div className="relative order-2 lg:order-1">
-            <div className="aspect-[4/5] rounded-2xl overflow-hidden max-w-sm mx-auto lg:max-w-none">
+            <div className="relative aspect-[4/5] rounded-2xl overflow-hidden max-w-sm mx-auto lg:max-w-none">
               <Image
                 src="/images/pelumi-headshot-1.png"
                 alt="Pelumi Olawole — Coach PO"
@@ -82,3 +82,4 @@ export function AboutPreview() {
     </section>
   );
 }
+

@@ -143,7 +143,7 @@ export default function BookPage() {
 
             {/* Flat lay image */}
             <div className="relative order-2 lg:order-1">
-              <div className="relative w-full h-72 md:h-[38rem] overflow-hidden shadow-2xl rounded-2xl">
+              <div className="relative w-full aspect-[4/5] overflow-hidden shadow-2xl rounded-2xl">
                 <NextImage
                   src="/images/book-page.png"
                   alt="Petty Little Things open book"
@@ -204,7 +204,7 @@ export default function BookPage() {
 
             {/* Image */}
             <div className="relative order-2 lg:order-1">
-              <div className="relative w-full h-72 md:h-[44rem] overflow-hidden shadow-xl rounded-2xl">
+              <div className="relative w-full aspect-[3/4] overflow-hidden shadow-xl rounded-2xl">
                 <NextImage
                   src="/images/book-man.png"
                   alt="Man reading Petty Little Things"
