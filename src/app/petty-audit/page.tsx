@@ -430,13 +430,29 @@ export default function PettyAuditPage() {
             Your full Petty Audit breakdown is on its way. If it does not arrive within a few minutes, check your spam folder.
           </p>
 
-          <div className="bg-[#111111] border border-white/8 rounded-2xl p-6 max-w-sm mx-auto mb-10">
-            <p className="text-white/40 text-xs uppercase tracking-widest mb-2">Your result</p>
-            <div className="flex items-center gap-3">
-              <div className="w-3 h-3 rounded-full flex-shrink-0" style={{ backgroundColor: results.typeResult.color }} />
-              <p className="text-white font-serif text-lg font-bold">{results.typeResult.type}</p>
-            </div>
-          </div>
+          <div className="bg-[#111111] border border-white/8 rounded-2xl overflow-hidden max-w-sm mx-auto mb-10">
+  {/* Type image */}
+  <div className="relative w-full h-40">
+    <Image
+      src={results.typeResult.image}
+      alt={results.typeResult.type}
+      fill
+      className="object-cover"
+      sizes="384px"
+    />
+    <div className="absolute inset-0 bg-gradient-to-t from-[#111111] via-[#111111]/30 to-transparent" />
+    <div className="absolute bottom-0 left-0 p-4">
+      <div className="flex items-center gap-3">
+        <div className="w-3 h-3 rounded-full flex-shrink-0" style={{ backgroundColor: results.typeResult.color }} />
+        <p className="text-white font-serif text-lg font-bold">{results.typeResult.type}</p>
+      </div>
+    </div>
+  </div>
+  <div className="px-5 py-3">
+    <p className="text-white/40 text-xs uppercase tracking-widest">Your result</p>
+  </div>
+</div>
+
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/book" className="gold-button inline-flex items-center justify-center gap-2 w-full sm:w-auto">
