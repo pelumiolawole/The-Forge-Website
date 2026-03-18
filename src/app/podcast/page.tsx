@@ -154,13 +154,17 @@ export default async function PodcastPage() {
           />
         </div>
 
-        <div className="relative z-10 px-6 md:px-12 text-center max-w-5xl mx-auto">
+        <div className="relative z-10 px-6 md:px-12 text-center max-w-3xl mx-auto">
           <h1 className="font-serif text-4xl md:text-7xl lg:text-8xl text-white leading-none mb-6 md:mb-8 tracking-tight">
             Influence Podcast
           </h1>
 
-          <p className="font-serif text-lg md:text-2xl lg:text-3xl text-[#008E97] italic mb-10 md:mb-12">
+          <p className="font-serif text-lg md:text-2xl lg:text-3xl text-[#008E97] italic mb-6 md:mb-8">
             Self-leadership. Identity. Influence.
+          </p>
+
+          <p className="text-white/60 text-base md:text-lg leading-relaxed mb-10 md:mb-12 max-w-xl mx-auto">
+            A regular examination of what it takes to become a person of genuine influence. Each episode puts the responsibility back where it belongs: with you.
           </p>
 
           <div className="flex flex-row gap-4 justify-center">

@@ -258,8 +258,17 @@ export default function AboutPage() {
             </div>
             <div className="group p-6 md:p-8 border border-[#1A1A1A] rounded-xl hover:border-[#008E97] transition-colors duration-300">
               <span className="text-[#008E97] text-sm font-medium tracking-widest uppercase">Builder</span>
-              <p className="text-[#A3A3A3] mt-3 mb-5 text-sm md:text-base">Founder of IIC Networks. Creator of OneGoal Pro.</p>
-              <span className="text-[#6B6B6B] text-sm">IIC Networks</span>
+              <p className="text-[#A3A3A3] mt-3 mb-5 text-sm md:text-base">
+                Founder of IIC Networks. Creator of OneGoal Pro — an AI-powered goal system built on the same identity-first philosophy as The Forge System. One goal. One identity. Daily.
+              </p>
+              <Link
+                href="https://onegoalpro.vercel.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-white text-sm hover:text-[#008E97] transition-colors"
+              >
+                Try OneGoal Pro
+              </Link>
             </div>
           </div>
         </div>
