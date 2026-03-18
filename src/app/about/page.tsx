@@ -234,42 +234,102 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* SECTION 6 — ROLE CARDS */}
+      {/* SECTION 6 — THE ECOSYSTEM */}
       <section className="px-6 md:px-12 lg:px-20 py-16 md:py-24 bg-[#0A0A0A]">
         <div className="max-w-7xl mx-auto">
-          <div className="mb-10">
-            <span className="text-[#008E97] text-sm font-medium tracking-widest uppercase">What I Build</span>
+          <div className="mb-12">
+            <span className="text-[#008E97] text-sm font-medium tracking-widest uppercase">The Ecosystem</span>
+            <h2 className="font-serif text-2xl md:text-4xl lg:text-5xl text-white mt-4 leading-tight">
+              One mission. Four expressions.
+            </h2>
           </div>
+
           <div className="grid md:grid-cols-2 gap-4 md:gap-6">
-            {[
-              { role: "Coach", desc: "Identity-based coaching for professionals and leaders.", href: "/forge-program", cta: "The Forge Program" },
-              { role: "Author", desc: "Petty Little Things. 50 habits quietly ruining your life.", href: "/book", cta: "The Book" },
-            ].map((c) => (
-              <div key={c.role} className="group p-6 md:p-8 border border-[#1A1A1A] rounded-xl hover:border-[#008E97] transition-colors duration-300">
-                <span className="text-[#008E97] text-sm font-medium tracking-widest uppercase">{c.role}</span>
-                <p className="text-[#A3A3A3] mt-3 mb-5 text-sm md:text-base">{c.desc}</p>
-                <Link href={c.href} className="inline-flex items-center gap-2 text-white text-sm hover:text-[#008E97] transition-colors">{c.cta}</Link>
+
+            {/* Coach */}
+            <div className="group border border-[#1A1A1A] rounded-2xl overflow-hidden hover:border-[#008E97]/50 transition-colors duration-300">
+              <div className="relative w-full h-44 overflow-hidden">
+                <Image
+                  src="/images/role-coach.png"
+                  alt="Coach"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/30 to-transparent" />
               </div>
-            ))}
-            <div className="group p-6 md:p-8 border border-[#1A1A1A] rounded-xl hover:border-[#008E97] transition-colors duration-300">
-              <span className="text-[#008E97] text-sm font-medium tracking-widest uppercase">Speaker</span>
-              <p className="text-[#A3A3A3] mt-3 mb-5 text-sm md:text-base">Available for corporate workshops and leadership events.</p>
-              <Link href="https://calendly.com/olawolepelumisunday/30min" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-white text-sm hover:text-[#008E97] transition-colors">Book a Call</Link>
+              <div className="p-6 md:p-8">
+                <span className="text-[#008E97] text-xs font-semibold tracking-widest uppercase">Coach</span>
+                <p className="text-[#A3A3A3] mt-3 mb-5 text-sm md:text-base">Identity-based coaching for professionals and leaders. One-to-one work that goes after the root, not the symptoms.</p>
+                <Link href="/forge-program" className="inline-flex items-center gap-2 text-white text-sm hover:text-[#008E97] transition-colors">
+                  The Forge Program
+                </Link>
+              </div>
             </div>
-            <div className="group p-6 md:p-8 border border-[#1A1A1A] rounded-xl hover:border-[#008E97] transition-colors duration-300">
-              <span className="text-[#008E97] text-sm font-medium tracking-widest uppercase">Builder</span>
-              <p className="text-[#A3A3A3] mt-3 mb-5 text-sm md:text-base">
-                Founder of IIC Networks. Creator of OneGoal Pro — an AI-powered goal system built on the same identity-first philosophy as The Forge System. One goal. One identity. Daily.
-              </p>
-              <Link
-                href="https://onegoalpro.vercel.app"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-white text-sm hover:text-[#008E97] transition-colors"
-              >
-                Try OneGoal Pro
-              </Link>
+
+            {/* Author */}
+            <div className="group border border-[#1A1A1A] rounded-2xl overflow-hidden hover:border-[#008E97]/50 transition-colors duration-300">
+              <div className="relative w-full h-44 overflow-hidden">
+                <Image
+                  src="/images/role-author.png"
+                  alt="Author"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/30 to-transparent" />
+              </div>
+              <div className="p-6 md:p-8">
+                <span className="text-[#008E97] text-xs font-semibold tracking-widest uppercase">Author</span>
+                <p className="text-[#A3A3A3] mt-3 mb-5 text-sm md:text-base">Petty Little Things. 50 habits quietly ruining your life and what the identity underneath each one is actually saying.</p>
+                <Link href="/book" className="inline-flex items-center gap-2 text-white text-sm hover:text-[#008E97] transition-colors">
+                  The Book
+                </Link>
+              </div>
             </div>
+
+            {/* Speaker */}
+            <div className="group border border-[#1A1A1A] rounded-2xl overflow-hidden hover:border-[#008E97]/50 transition-colors duration-300">
+              <div className="relative w-full h-44 overflow-hidden">
+                <Image
+                  src="/images/role-speaker.png"
+                  alt="Speaker"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/30 to-transparent" />
+              </div>
+              <div className="p-6 md:p-8">
+                <span className="text-[#008E97] text-xs font-semibold tracking-widest uppercase">Speaker</span>
+                <p className="text-[#A3A3A3] mt-3 mb-5 text-sm md:text-base">Available for corporate workshops, leadership events, and conference keynotes. The work translates to any room.</p>
+                <Link href="https://calendly.com/olawolepelumisunday/30min" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-white text-sm hover:text-[#008E97] transition-colors">
+                  Book a Call
+                </Link>
+              </div>
+            </div>
+
+            {/* Builder */}
+            <div className="group border border-[#1A1A1A] rounded-2xl overflow-hidden hover:border-[#008E97]/50 transition-colors duration-300">
+              <div className="relative w-full h-44 overflow-hidden">
+                <Image
+                  src="/images/role-builder.png"
+                  alt="Builder"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/30 to-transparent" />
+              </div>
+              <div className="p-6 md:p-8">
+                <span className="text-[#008E97] text-xs font-semibold tracking-widest uppercase">Builder</span>
+                <p className="text-[#A3A3A3] mt-3 mb-5 text-sm md:text-base">Founder of IIC Networks. Creator of OneGoal Pro — an AI-powered goal system built on the same identity-first philosophy as The Forge System. One goal. One identity. Daily.</p>
+                <Link href="https://onegoalpro.vercel.app" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-white text-sm hover:text-[#008E97] transition-colors">
+                  Try OneGoal Pro
+                </Link>
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
