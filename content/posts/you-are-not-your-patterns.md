@@ -2,6 +2,7 @@
 title: "You Are Not Your Patterns"
 slug: "you-are-not-your-patterns"
 category: "Identity"
+coverImage: "/images/blog/post-3a.png"
 excerpt: "Repeated behaviour is data about adaptation. It is not a verdict about who you are."
 readTime: "5 min read"
 publishedAt: "2023-09-14"

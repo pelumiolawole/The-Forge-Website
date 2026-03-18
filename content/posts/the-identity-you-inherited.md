@@ -2,6 +2,7 @@
 title: "The Identity You Inherited"
 slug: "the-identity-you-inherited"
 category: "Identity"
+coverImage: "/images/blog/post-6a.png"
 excerpt: "Much of who you are was not chosen. Adulthood is partly the long work of figuring out which parts to keep."
 readTime: "8 min read"
 publishedAt: "2024-11-05"

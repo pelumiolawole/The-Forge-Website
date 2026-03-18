@@ -2,6 +2,7 @@
 title: "The Transition Nobody Prepares You For"
 slug: "the-transition-nobody-prepares-you-for"
 category: "Leadership"
+coverImage: "/images/blog/post-18a.png"
 excerpt: "You were the best at what you did. Then you got promoted. And somewhere in the first six months, it stopped working. Here is what actually happened."
 readTime: "6 min read"
 publishedAt: "2024-10-17"

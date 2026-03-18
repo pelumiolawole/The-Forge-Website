@@ -11,13 +11,13 @@ export interface Post {
   excerpt: string;
   readTime: string;
   publishedAt: string;
+  coverImage?: string;
   content: string;
 }
 
 const postsDirectory = path.join(process.cwd(), 'content/posts');
 
 export function getAllPosts(): Post[] {
-  // Create directory if it doesn't exist
   if (!fs.existsSync(postsDirectory)) {
     return [];
   }
@@ -38,12 +38,12 @@ export function getAllPosts(): Post[] {
         excerpt: data.excerpt,
         readTime: data.readTime,
         publishedAt: data.publishedAt,
+        coverImage: data.coverImage || null,
         content,
       } as Post;
     });
 
-  // Sort by date
-  return allPosts.sort((a, b) => 
+  return allPosts.sort((a, b) =>
     new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
   );
 }
@@ -61,6 +61,7 @@ export function getPostBySlug(slug: string): Post | null {
       excerpt: data.excerpt,
       readTime: data.readTime,
       publishedAt: data.publishedAt,
+      coverImage: data.coverImage || null,
       content,
     } as Post;
   } catch {

@@ -2,6 +2,7 @@
 title: "The Validation Loop"
 slug: "the-validation-loop"
 category: "Petty Patterns"
+coverImage: "/images/blog/post-11a.png"
 excerpt: "Waiting for someone else's approval before you trust your own reading of things. Where this comes from and what it is quietly costing you."
 readTime: "5 min read"
 publishedAt: "2023-07-19"

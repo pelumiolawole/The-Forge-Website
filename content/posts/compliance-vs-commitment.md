@@ -2,6 +2,7 @@
 title: "Why Some Leaders Produce Compliance and Others Produce Commitment"
 slug: "compliance-vs-commitment"
 category: "Leadership"
+coverImage: "/images/blog/post-17a.png"
 excerpt: "People do what you say or they believe what you believe. The difference is not technique. It is who you are."
 readTime: "7 min read"
 publishedAt: "2023-10-23"

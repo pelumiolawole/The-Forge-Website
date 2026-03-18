@@ -2,6 +2,7 @@
 title: "Becoming vs Achieving"
 slug: "becoming-vs-achieving"
 category: "Identity"
+coverImage: "/images/blog/post-7a.png"
 excerpt: "The shelf of trophies. The corner office. The number in the account. And the quiet hollowness that nobody warned you about."
 readTime: "6 min read"
 publishedAt: "2023-03-17"

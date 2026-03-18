@@ -2,6 +2,7 @@
 title: "The Identity Lag"
 slug: "the-identity-lag"
 category: "Identity"
+coverImage: "/images/blog/post-2a.png"
 excerpt: "You decided to change months ago. So why does it still feel like you are pretending?"
 readTime: "6 min read"
 publishedAt: "2024-02-08"

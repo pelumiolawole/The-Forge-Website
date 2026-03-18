@@ -2,6 +2,7 @@
 title: "Presence as a Leadership Skill"
 slug: "presence-as-leadership"
 category: "Leadership"
+coverImage: "/images/blog/post-19a.png"
 excerpt: "Not charisma. Not public speaking. The quiet, rare capacity to be fully here. And what it changes when you have it."
 readTime: "5 min read"
 publishedAt: "2023-04-11"

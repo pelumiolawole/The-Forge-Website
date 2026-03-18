@@ -2,6 +2,7 @@
 title: "The Comparison Trap"
 slug: "the-comparison-trap"
 category: "Petty Patterns"
+coverImage: "/images/blog/post-14a.png"
 excerpt: "Comparison does not just hurt your feelings. It quietly replaces your strategy with someone else's."
 readTime: "5 min read"
 publishedAt: "2024-06-14"

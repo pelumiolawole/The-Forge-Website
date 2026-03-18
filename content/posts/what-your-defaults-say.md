@@ -2,6 +2,7 @@
 title: "What Your Defaults Say About You"
 slug: "what-your-defaults-say"
 category: "Identity"
+coverImage: "/images/blog/post-5a.png"
 excerpt: "Not who you are at your best. Who you are when you are tired, pressured, and no one is watching. That is the real data."
 readTime: "5 min read"
 publishedAt: "2023-06-03"

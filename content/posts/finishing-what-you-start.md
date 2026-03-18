@@ -2,6 +2,7 @@
 title: "Finishing What You Start"
 slug: "finishing-what-you-start"
 category: "Petty Patterns"
+coverImage: "/images/blog/post-13a.png"
 excerpt: "This is not about productivity. It is about what kind of person you have decided to be."
 readTime: "4 min read"
 publishedAt: "2023-05-02"

@@ -2,6 +2,7 @@
 title: "Leading Without a Title"
 slug: "leading-without-a-title"
 category: "Leadership"
+coverImage: "/images/blog/post-15a.png"
 excerpt: "A title is a lagging indicator. The influence always comes first. Here is what it actually takes to lead from any seat."
 readTime: "6 min read"
 publishedAt: "2023-08-07"

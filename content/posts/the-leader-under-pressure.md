@@ -2,6 +2,7 @@
 title: "The Leader You Become Under Pressure"
 slug: "the-leader-under-pressure"
 category: "Leadership"
+coverImage: "/images/blog/post-16a.png"
 excerpt: "Calm conditions reveal your capability. Pressure reveals your character. And your team is watching both."
 readTime: "5 min read"
 publishedAt: "2024-03-03"

@@ -2,6 +2,7 @@
 title: "Knowing When You're the Problem"
 slug: "knowing-when-youre-the-problem"
 category: "Leadership"
+coverImage: "/images/blog/post-20a.png"
 excerpt: "The hardest thing I have ever had to admit in my professional life. And why admitting it was the beginning of everything useful."
 readTime: "7 min read"
 publishedAt: "2024-08-29"

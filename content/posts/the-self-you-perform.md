@@ -2,6 +2,7 @@
 title: "The Self You Perform vs The Self You Are"
 slug: "the-self-you-perform"
 category: "Identity"
+coverImage: "/images/blog/post-4a.png"
 excerpt: "Managing impressions so well you lose track of what is actually underneath. On the cost of a life spent front stage."
 readTime: "7 min read"
 publishedAt: "2024-07-22"

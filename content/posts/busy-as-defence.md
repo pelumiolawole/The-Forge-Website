@@ -2,6 +2,7 @@
 title: "Busy as a Defence Mechanism"
 slug: "busy-as-defence"
 category: "Petty Patterns"
+coverImage: "/images/blog/post-10a.png"
 excerpt: "I heard a preacher say something once that I have never been able to shake. He said the enemy of the essential is not leisure. It is busyness."
 readTime: "6 min read"
 publishedAt: "2024-09-11"

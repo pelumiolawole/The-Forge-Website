@@ -2,6 +2,7 @@
 title: "Shrinking in the Room"
 slug: "shrinking-in-the-room"
 category: "Petty Patterns"
+coverImage: "/images/blog/post-12a.png"
 excerpt: "You walk into rooms where you belong and make yourself smaller than you are. This is not modesty. Let's talk about what it actually is."
 readTime: "7 min read"
 publishedAt: "2024-01-16"

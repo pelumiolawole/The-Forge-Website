@@ -2,6 +2,7 @@
 title: "The Overthinker's Tax"
 slug: "the-overthinkers-tax"
 category: "Petty Patterns"
+coverImage: "/images/blog/post-8a.png"
 excerpt: "Chronic analysis has a bill. Time, momentum, relationships, opportunity. And the cure is not simply deciding faster."
 readTime: "6 min read"
 publishedAt: "2024-04-29"

@@ -2,6 +2,7 @@
 title: "Why You Keep Starting Over"
 slug: "why-you-keep-starting-over"
 category: "Petty Patterns"
+coverImage: "/images/blog/post-9a.png"
 excerpt: "Strong launches, quiet abandonments, another fresh start. The pattern is not about discipline. It is about something closer to identity."
 readTime: "5 min read"
 publishedAt: "2023-11-28"

@@ -2,6 +2,7 @@
 title: "Identity Before Strategy"
 slug: "identity-before-strategy"
 category: "Identity"
+coverImage: "/images/blog/post-1a.png"
 excerpt: "You already know what you should be doing. The question worth asking is not why the plan keeps failing. It is who is executing it."
 readTime: "8 min read"
 publishedAt: "2026-03-14"
