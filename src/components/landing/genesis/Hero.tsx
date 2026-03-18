@@ -13,8 +13,8 @@ function AnimatedNumber({ target, suffix = "" }: { target: number; suffix?: stri
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => { if (entry.isIntersecting && !hasStarted) setHasStarted(true); },
-      { threshold: 0.5 }
-    );
+      { threshold: 0.1 }
+);
     if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
   }, [hasStarted]);
