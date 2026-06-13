@@ -10,12 +10,7 @@ export default function BookPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
-  const [waitlistEmail, setWaitlistEmail] = useState("");
-  const [waitlistSubmitting, setWaitlistSubmitting] = useState(false);
-  const [waitlistSuccess, setWaitlistSuccess] = useState(false);
-
   const CHAPTER_GROUP_ID = "bYYgWK";
-  const WAITLIST_GROUP_ID = "e7yoL1";
 
   const handleChapterSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -50,26 +45,6 @@ export default function BookPage() {
     setIsSuccess(false);
   };
 
-  const handleWaitlistSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setWaitlistSubmitting(true);
-    try {
-      await fetch("https://api.sender.net/v2/subscribers", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${process.env.NEXT_PUBLIC_SENDER_API_TOKEN}`,
-        },
-        body: JSON.stringify({ email: waitlistEmail, groups: [WAITLIST_GROUP_ID] }),
-      });
-      setWaitlistSuccess(true);
-    } catch (e) {
-      console.error(e);
-    } finally {
-      setWaitlistSubmitting(false);
-    }
-  };
-
   return (
     <main className="bg-[#0A0A0A] text-[#F7F4EF]">
 
@@ -96,15 +71,20 @@ export default function BookPage() {
             <h1 className="headline-xl text-white mb-4">
               Petty Little Things
             </h1>
-            <p className="text-[#F7F4EF]/60 text-base md:text-xl leading-relaxed mb-8 md:mb-10">
+            <p className="text-[#F7F4EF]/60 text-base md:text-xl leading-relaxed mb-3">
               50 habits quietly ruining your life and how to fix them.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4">
+            <p className="text-[#008E97] text-sm md:text-base font-medium italic mb-8 md:mb-10">
+              &ldquo;Because someone had to say it.&rdquo;
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 mb-6">
               <a
-                href="#waitlist"
+                href="https://www.amazon.co.uk/dp/B0H4J1NYBY"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="gold-button inline-flex items-center justify-center gap-2 w-full sm:w-auto"
               >
-                Join the Waitlist
+                Pre-Order on Kindle
                 <ArrowRight size={18} />
               </a>
               <button
@@ -112,9 +92,12 @@ export default function BookPage() {
                 className="inline-flex items-center justify-center gap-2 px-6 py-4 border-2 border-[#F7F4EF]/20 text-[#F7F4EF] font-semibold hover:border-[#008E97] hover:text-[#008E97] transition-all rounded-lg w-full sm:w-auto"
               >
                 <Download size={18} />
-                Free Sample Chapter
+                Read the First Habit Free
               </button>
             </div>
+            <p className="text-[#F7F4EF]/30 text-xs">
+              Kindle £6.99 &nbsp;&middot;&nbsp; Releasing July 1, 2026 &nbsp;&middot;&nbsp; Paperback coming soon
+            </p>
           </div>
         </div>
       </section>
@@ -158,14 +141,23 @@ export default function BookPage() {
             <div className="order-1 lg:order-2">
               <p className="section-label text-[#008E97] mb-4">What is Inside</p>
               <h2 className="headline-lg text-[#0A0A0A] mb-8">
-                50 habits quietly ruining your life and how to fix them.
+                50 habits. The psychology behind each one. And exactly how to stop.
               </h2>
 
               <div className="space-y-5 md:space-y-6 mb-8 md:mb-10">
                 {[
-                  { title: "The 50 Habits", body: "Named, examined, and connected to the identity pattern underneath. Not productivity tips. Identity diagnosis." },
-                  { title: "Real Client Stories", body: "People who recognised themselves in these pages and changed. Not case studies. Honest accounts." },
-                  { title: "The 30-Day Identity Reset", body: "A structured challenge to close the gap between who you are and who you need to become." },
+                  {
+                    title: "The 50 Habits",
+                    body: "Named, examined, and connected to the identity pattern underneath. Not productivity tips. Identity diagnosis.",
+                  },
+                  {
+                    title: "Real Client Stories",
+                    body: "People who recognised themselves in these pages and changed. Not case studies. Honest accounts of what the habit looked like and what it took to break it.",
+                  },
+                  {
+                    title: "The 30-Day Identity Reset",
+                    body: "A structured challenge to close the gap between who you are right now and who you are capable of becoming.",
+                  },
                 ].map((item) => (
                   <div key={item.title} className="flex gap-4">
                     <div className="w-8 h-8 rounded-full bg-[#008E97]/10 flex items-center justify-center flex-shrink-0 mt-0.5">
@@ -181,14 +173,14 @@ export default function BookPage() {
 
               <div className="border-t border-[#0A0A0A]/10 pt-6 md:pt-8">
                 <p className="text-[#6B7280] text-sm md:text-base leading-relaxed mb-5 md:mb-6">
-                  Not sure if this book is for you? Read a free chapter and decide for yourself.
+                  Not sure if this book is for you? Read the first habit and decide for yourself.
                 </p>
                 <button
                   onClick={() => setIsModalOpen(true)}
                   className="gold-button inline-flex items-center justify-center gap-2 w-full sm:w-auto"
                 >
                   <Download size={18} />
-                  Read a Free Chapter
+                  Read the First Habit Free
                 </button>
               </div>
             </div>
@@ -237,7 +229,7 @@ export default function BookPage() {
                   onClick={() => setIsModalOpen(true)}
                   className="gold-button inline-flex items-center justify-center gap-2 w-full sm:w-auto"
                 >
-                  Read a Free Chapter
+                  Read the First Habit Free
                   <ArrowRight size={18} />
                 </button>
               </div>
@@ -252,63 +244,41 @@ export default function BookPage() {
         <div className="max-w-3xl mx-auto px-6 lg:px-8 text-center">
           <p className="section-label text-[#008E97] mb-4">About the Author</p>
           <p className="text-[#0A0A0A] text-lg md:text-2xl font-light leading-relaxed mb-6">
-            Pelumi Olawole has spent nearly 10 years coaching people through the same habits he struggles with himself. He is not selling you a perfect system. He is sharing what he has learned from falling, adjusting, and trying again.
+            Pelumi Olawole has spent nearly a decade coaching people through the same habits he has struggled with himself. He is not selling a perfect system. He is sharing what he has learned from falling, adjusting, and trying again.
           </p>
-          <p className="text-[#6B7280] text-base md:text-lg leading-relaxed">
-            This book is his journey and the lessons he has gathered from others who have done the work. No expertise. Just experience.
+          <p className="text-[#6B7280] text-base md:text-lg leading-relaxed mb-8">
+            He works at the intersection of identity psychology, behavioural science, and performance — coaching growth-driven professionals and emerging leaders ready to move from intention to impact.
           </p>
+          <a
+            href="/"
+            className="text-[#008E97] font-semibold text-sm md:text-base hover:underline underline-offset-4 transition-all"
+          >
+            Find out more at pelumiolawole.com
+          </a>
         </div>
       </section>
 
-      {/* WAITLIST */}
-      <section id="waitlist" className="bg-[#0A0A0A] py-16 md:py-28 border-t border-[#F7F4EF]/10">
+      {/* PRE-ORDER SECTION */}
+      <section className="bg-[#0A0A0A] py-16 md:py-28 border-t border-[#F7F4EF]/10">
         <div className="max-w-2xl mx-auto px-6 lg:px-8 text-center">
-          <p className="section-label text-[#008E97] mb-4">Coming Soon</p>
+          <p className="section-label text-[#008E97] mb-4">Available Now for Pre-Order</p>
           <h2 className="headline-lg text-white mb-6">
-            Be first to know when it drops.
+            Order your copy before July 1, 2026.
           </h2>
           <p className="text-[#F7F4EF]/60 text-base md:text-lg leading-relaxed mb-8 md:mb-10">
-            Join the waitlist and get early access, behind-the-scenes updates, and a launch discount when the book goes live.
+            The Kindle edition is available now on Amazon. Pre-order secures your copy at launch. The book delivers to your device on July 1, 2026.
           </p>
-
-          {waitlistSuccess ? (
-            <div className="border border-[#C8963E] rounded-xl p-6 md:p-8">
-              <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-[#C8963E]/10 flex items-center justify-center">
-                <Check className="text-[#C8963E]" size={28} />
-              </div>
-              <p className="text-[#C8963E] font-semibold text-lg md:text-xl mb-2">
-                You are on the list.
-              </p>
-              <p className="text-[#F7F4EF]/60 text-sm md:text-base">
-                We will be in touch when the book is ready. Watch this space.
-              </p>
-            </div>
-          ) : (
-            <form onSubmit={handleWaitlistSubmit} className="flex flex-col sm:flex-row gap-0 max-w-lg mx-auto">
-              <input
-                type="email"
-                value={waitlistEmail}
-                onChange={(e) => setWaitlistEmail(e.target.value)}
-                placeholder="Your email address"
-                required
-                className="flex-1 bg-[#F7F4EF]/10 border border-[#F7F4EF]/20 text-[#F7F4EF] placeholder-[#F7F4EF]/40 px-5 py-4 text-base focus:outline-none focus:border-[#C8963E] transition-colors rounded-t-lg sm:rounded-l-lg sm:rounded-tr-none"
-              />
-              <button
-                type="submit"
-                disabled={waitlistSubmitting}
-                className="gold-button inline-flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap rounded-b-lg sm:rounded-r-lg sm:rounded-bl-none"
-              >
-                {waitlistSubmitting ? (
-                  <><Loader2 size={18} className="animate-spin" />Joining...</>
-                ) : (
-                  <><ArrowRight size={18} />Join the Waitlist</>
-                )}
-              </button>
-            </form>
-          )}
-
+          <a
+            href="https://www.amazon.co.uk/dp/B0H4J1NYBY"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="gold-button inline-flex items-center justify-center gap-2 mx-auto"
+          >
+            Pre-Order on Amazon Kindle
+            <ArrowRight size={18} />
+          </a>
           <p className="text-[#F7F4EF]/30 text-sm mt-5 md:mt-6">
-            No spam. Unsubscribe any time.
+            Kindle £6.99 &nbsp;&middot;&nbsp; Paperback £9.99 coming soon &nbsp;&middot;&nbsp; ISBN: 9798180577054
           </p>
         </div>
       </section>
@@ -328,10 +298,10 @@ export default function BookPage() {
                     <Download className="text-[#008E97]" size={26} />
                   </div>
                   <h3 className="text-xl md:text-2xl font-serif font-bold text-white mb-2">
-                    Read a Free Chapter
+                    Read the First Habit Free
                   </h3>
-                  <p className="text-white/60 text-sm">
-                    Enter your email and we will trigger the download instantly and send a copy to your inbox.
+                  <p className="text-white/60 text-sm leading-relaxed">
+                    Habit #1 will tell you whether this book is for you. Enter your email and the download starts immediately.
                   </p>
                 </div>
 
@@ -352,7 +322,7 @@ export default function BookPage() {
                     {isSubmitting ? (
                       <><Loader2 size={18} className="animate-spin" />Sending...</>
                     ) : (
-                      <>Send Me the Sample<ArrowRight size={18} /></>
+                      <>Send Me Habit #1<ArrowRight size={18} /></>
                     )}
                   </button>
                 </form>
@@ -368,9 +338,18 @@ export default function BookPage() {
                   It is on its way.
                 </h3>
                 <p className="text-white/60 text-sm mb-4">
-                  Your sample is downloading now. Check your inbox for a copy and what comes next.
+                  Your download has started. Check your inbox for a copy. If you recognise yourself in Habit #1, the other 49 are waiting.
                 </p>
-                <button onClick={closeModal} className="teal-button">Close</button>
+                <a
+                  href="https://www.amazon.co.uk/dp/B0H4J1NYBY"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="gold-button inline-flex items-center justify-center gap-2 w-full"
+                >
+                  Pre-Order the Full Book
+                  <ArrowRight size={18} />
+                </a>
+                <button onClick={closeModal} className="mt-3 text-white/30 text-xs hover:text-white/60 transition-colors">Close</button>
               </div>
             )}
           </div>
