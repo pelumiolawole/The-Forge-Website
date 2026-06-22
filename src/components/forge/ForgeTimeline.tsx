@@ -13,6 +13,7 @@ const phases = [
     weeks: "Weeks 1–4",
     desc: "We identify the beliefs, patterns, and identities that have been running you without your permission. Nothing is added here. We only look, name, and release.",
     color: "#008e97",
+    video: "/videos/forge-strip.webm",
   },
   {
     phase: "02",
@@ -20,6 +21,7 @@ const phases = [
     weeks: "Weeks 5–8",
     desc: "You begin to inhabit the identity that was always true of you. Not a new personality. A clearer one. We build the behaviours that flow from who you actually are.",
     color: "#007a82",
+    video: "/videos/forge-forge.webm",
   },
   {
     phase: "03",
@@ -27,6 +29,7 @@ const phases = [
     weeks: "Weeks 9–12",
     desc: "You practice operating from the new identity under real conditions. Pressure, decisions, relationships. This is where the shift becomes permanent.",
     color: "#006e75",
+    video: "/videos/forge-lead.webm",
   },
 ];
 
@@ -133,6 +136,14 @@ export function ForgeTimeline() {
               }`}
             >
               <div className="bg-white border border-[#d0e8ea] rounded-2xl p-6 md:p-8 hover:border-[#008e97] hover:shadow-[0_4px_24px_rgba(0,142,151,0.1)] transition-all duration-300">
+                <video
+                  src={item.video}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="w-full rounded-xl mb-4 aspect-video object-cover"
+                />
                 <span className="inline-block text-xs font-semibold tracking-[0.18em] uppercase text-[#008e97] mb-3 px-3 py-1 bg-[#e6f6f7] rounded-full">
                   {item.weeks}
                 </span>
