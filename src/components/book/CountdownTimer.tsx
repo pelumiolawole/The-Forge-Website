@@ -39,17 +39,19 @@ export function CountdownTimer({ targetDate, label = "Until launch", theme = "li
   if (!mounted) return null;
 
   const isDark = theme === "dark";
-  const labelColor = isDark ? "text-white/50" : "text-[#7a9ea1]";
-  const unitLabelColor = isDark ? "text-white/40" : "text-[#7a9ea1]";
-  const separatorColor = isDark ? "text-white/30" : "text-[#008e97]";
-  const digitBg = isDark ? "bg-white/10 border border-white/15" : "bg-[#0f1f20]";
-  const digitColor = isDark ? "text-white" : "text-white";
+  const labelColor     = isDark ? "text-white/50"  : "text-[#7a9ea1]";
+  const unitLabelColor = isDark ? "text-white/40"  : "text-[#7a9ea1]";
+  const separatorColor = isDark ? "text-white/30"  : "text-[#008e97]";
+  const digitBg        = isDark
+    ? "bg-white/10 border border-white/15"
+    : "bg-[#f4fafb] border border-[#d0e8ea]";
+  const digitColor     = isDark ? "text-white" : "text-[#0f1f20]";
 
   const units = [
-    { value: time.days, label: "Days" },
-    { value: time.hours, label: "Hrs" },
-    { value: time.minutes, label: "Min" },
-    { value: time.seconds, label: "Sec" },
+    { value: time.days,    label: "Days" },
+    { value: time.hours,   label: "Hrs"  },
+    { value: time.minutes, label: "Min"  },
+    { value: time.seconds, label: "Sec"  },
   ];
 
   return (
