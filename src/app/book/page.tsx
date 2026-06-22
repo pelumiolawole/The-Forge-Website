@@ -53,13 +53,13 @@ export default function BookPage() {
       {/* HERO */}
       <section className="relative min-h-screen flex items-center overflow-hidden">
         <div className="absolute inset-0">
-          <NextImage
-            src="/images/book-hero-3d.png"
-            alt="Petty Little Things by Pelumi Olawole"
-            fill
-            className="object-cover object-center"
-            priority
-            sizes="100vw"
+          <video
+            src="/videos/book-hero.webm"
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover object-center"
           />
         </div>
         <div className="absolute inset-0 bg-gradient-to-r from-[#0f1f20] via-[#0f1f20]/85 to-[#0f1f20]/40" />
