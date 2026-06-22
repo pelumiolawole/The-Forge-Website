@@ -81,6 +81,16 @@ export function Hero() {
       {/* Ambient — bottom-left */}
       <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#f4fafb] rounded-full blur-[100px] opacity-80 pointer-events-none" />
 
+      {/* Hero accent video */}
+      <video
+        src="/videos/hero-accent.webm"
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover opacity-10 pointer-events-none"
+      />
+
       <m.div
         className="relative z-10 max-w-6xl mx-auto px-6 lg:px-8 text-center"
         variants={heroVariants}
