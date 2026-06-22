@@ -2,14 +2,16 @@
 
 import React, { useState } from "react";
 import { ArrowRight, Download, X, Loader2, Check } from "lucide-react";
-import NextImage from "next/image";
 import Link from "next/link";
+import { m } from "framer-motion";
+import { fadeLeft, fadeRight, staggerContainer, staggerItem, VIEWPORT_ONCE } from "@/lib/motion";
+import { BookTilt } from "@/components/book/BookTilt";
 
 export function BookPreview() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [email, setEmail] = useState("");
+  const [email, setEmail]             = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
+  const [isSuccess, setIsSuccess]     = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -35,18 +37,28 @@ export function BookPreview() {
 
   return (
     <>
-      <section id="book" className="py-16 md:py-24 bg-[#F7F4EF] relative overflow-hidden">
-        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+      <section id="book" className="py-16 md:py-24 bg-white relative overflow-hidden">
+        {/* Ambient glow accents */}
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#e6f6f7] rounded-full blur-[100px] opacity-50 pointer-events-none" />
+        <div className="absolute top-0 right-0 w-72 h-72 bg-[#f4fafb] rounded-full blur-[80px] pointer-events-none" />
+
+        <div className="max-w-6xl mx-auto px-6 lg:px-8 relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 
             {/* Content */}
-            <div className="order-1">
-              <div className="section-label mb-4 text-[#008E97]">The Book</div>
-              <h2 className="headline-lg text-[#0A0A0A] mb-6">
+            <m.div
+              className="order-1"
+              variants={staggerContainer}
+              initial="hidden"
+              whileInView="visible"
+              viewport={VIEWPORT_ONCE}
+            >
+              <m.div className="section-label mb-4" variants={staggerItem}>The Book</m.div>
+              <m.h2 className="headline-lg mb-6" variants={staggerItem}>
                 Petty Little Things
-              </h2>
+              </m.h2>
 
-              <div className="space-y-4 text-[#6B7280] text-base md:text-lg leading-relaxed">
+              <m.div className="space-y-4 text-[#3d5a5c] text-base md:text-lg leading-relaxed" variants={staggerItem}>
                 <p>
                   Most people don&apos;t fail because of big mistakes. They fail because
                   of small ones they never noticed, repeated daily, compounding quietly,
@@ -57,70 +69,74 @@ export function BookPreview() {
                   This book names 50 of those habits. Calls them out. And shows you exactly
                   how to replace them, not with better tactics, but with a better identity.
                 </p>
-                <p className="text-[#0A0A0A] font-semibold">
+                <p className="text-[#0f1f20] font-semibold">
                   The book is where the work begins. The Forge System is where it finishes.
                 </p>
-              </div>
+              </m.div>
 
-              <div className="mt-8 md:mt-10 flex flex-col sm:flex-row gap-4">
+              <m.div className="mt-8 md:mt-10 flex flex-col sm:flex-row gap-4" variants={staggerItem}>
                 <Link
                   href="/book"
-                  className="gold-button inline-flex items-center justify-center gap-2 w-full sm:w-auto"
+                  className="primary-button inline-flex items-center justify-center gap-2 w-full sm:w-auto"
                 >
                   Get the Book
                   <ArrowRight size={18} />
                 </Link>
                 <button
                   onClick={() => setIsModalOpen(true)}
-                  className="inline-flex items-center justify-center gap-2 px-6 py-4 border-2 border-[#0A0A0A]/20 rounded-lg text-[#0A0A0A] font-semibold hover:border-[#008E97] hover:text-[#008E97] transition-all w-full sm:w-auto"
+                  className="ghost-button inline-flex items-center justify-center gap-2 w-full sm:w-auto"
                 >
                   <Download size={18} />
                   Free Sample Chapter
                 </button>
-              </div>
-            </div>
+              </m.div>
+            </m.div>
 
             {/* Book cover */}
-            <div className="relative flex justify-center order-2">
-              <div className="relative animate-float">
-                <div className="relative w-56 h-80 md:w-72 md:h-[28rem] lg:w-80 lg:h-[32rem] rounded-lg shadow-2xl overflow-hidden">
-                  <NextImage
-                    src="/images/book-cover.png"
-                    alt="Petty Little Things by Pelumi Olawole"
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 224px, (max-width: 1024px) 288px, 320px"
-                    priority
-                  />
-                </div>
-                <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-48 h-8 bg-black/20 blur-xl rounded-full" />
-              </div>
-              <div className="absolute top-1/4 -left-8 w-32 h-32 bg-[#008E97]/10 rounded-full blur-3xl" />
-              <div className="absolute bottom-1/4 -right-8 w-40 h-40 bg-[#C8963E]/10 rounded-full blur-3xl" />
-            </div>
+            <m.div
+              className="relative flex justify-center order-2"
+              variants={fadeRight}
+              initial="hidden"
+              whileInView="visible"
+              viewport={VIEWPORT_ONCE}
+            >
+              <BookTilt
+                src="/images/book-cover.png"
+                alt="Petty Little Things by Pelumi Olawole"
+                width={640}
+                height={960}
+                className="w-56 md:w-72 lg:w-80 mx-auto"
+              />
+              <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-48 h-8 bg-[#008e97]/10 blur-xl rounded-full" />
+              <div className="absolute top-1/4 -left-8 w-32 h-32 bg-[#e6f6f7] rounded-full blur-3xl" />
+            </m.div>
 
           </div>
         </div>
       </section>
 
-      {/* Modal */}
+      {/* Sample chapter modal — light theme */}
       {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 bg-black/60 backdrop-blur-sm">
-          <div className="relative w-full sm:max-w-md bg-[#0A0A0A] border border-white/10 rounded-t-2xl sm:rounded-2xl p-6 md:p-8 shadow-2xl">
-            <button onClick={closeModal} className="absolute top-4 right-4 text-white/50 hover:text-white transition-colors">
+        <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 bg-[#0f1f20]/40 backdrop-blur-sm">
+          <div className="relative w-full sm:max-w-md bg-white border border-[#d0e8ea] rounded-t-2xl sm:rounded-2xl p-6 md:p-8 shadow-[0_24px_64px_rgba(0,142,151,0.15)]">
+            <button
+              onClick={closeModal}
+              className="absolute top-4 right-4 text-[#7a9ea1] hover:text-[#0f1f20] transition-colors"
+              aria-label="Close"
+            >
               <X size={24} />
             </button>
 
             {!isSuccess ? (
               <>
                 <div className="text-center mb-6">
-                  <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-[#008E97]/10 flex items-center justify-center">
-                    <Download className="text-[#008E97]" size={28} />
+                  <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-[#e6f6f7] flex items-center justify-center">
+                    <Download className="text-[#008e97]" size={28} />
                   </div>
-                  <h3 className="text-xl md:text-2xl font-['Fraunces'] font-bold text-white mb-2">
+                  <h3 className="text-xl md:text-2xl font-['Fraunces'] font-bold text-[#0f1f20] mb-2">
                     Read the First Chapter Free
                   </h3>
-                  <p className="text-white/60 text-sm">
+                  <p className="text-[#7a9ea1] text-sm">
                     Enter your email and we will send you a sample chapter from Petty Little Things instantly.
                   </p>
                 </div>
@@ -131,12 +147,12 @@ export function BookPreview() {
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="your@email.com"
                     required
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder:text-white/30 focus:outline-none focus:border-[#008E97] transition-colors"
+                    className="w-full px-4 py-3 bg-white border-[1.5px] border-[#d0e8ea] rounded-lg text-[#0f1f20] placeholder:text-[#b3dde0] focus:outline-none focus:border-[#008e97] focus:shadow-[0_0_0_3px_rgba(0,142,151,0.1)] transition-all"
                   />
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full gold-button inline-flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full primary-button inline-flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {isSubmitting ? (
                       <><Loader2 size={18} className="animate-spin" />Sending...</>
@@ -145,18 +161,18 @@ export function BookPreview() {
                     )}
                   </button>
                 </form>
-                <p className="text-white/30 text-xs text-center mt-4">No spam. Unsubscribe anytime.</p>
+                <p className="text-[#b3dde0] text-xs text-center mt-4">No spam. Unsubscribe anytime.</p>
               </>
             ) : (
               <div className="text-center py-8">
-                <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-[#008E97]/20 flex items-center justify-center">
-                  <Check className="w-8 h-8 text-[#008E97]" />
+                <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-[#e6f6f7] flex items-center justify-center">
+                  <Check className="w-8 h-8 text-[#008e97]" />
                 </div>
-                <h3 className="text-2xl font-['Fraunces'] font-bold text-white mb-2">It is on its way.</h3>
-                <p className="text-white/60 text-sm mb-4">
+                <h3 className="text-2xl font-['Fraunces'] font-bold text-[#0f1f20] mb-2">It is on its way.</h3>
+                <p className="text-[#7a9ea1] text-sm mb-4">
                   Your sample is downloading now. Check your inbox for a copy and what comes next.
                 </p>
-                <button onClick={closeModal} className="teal-button">Close</button>
+                <button onClick={closeModal} className="ghost-button text-sm px-6 py-2">Close</button>
               </div>
             )}
           </div>
