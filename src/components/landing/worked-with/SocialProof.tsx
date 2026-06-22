@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import { m } from "framer-motion";
+import { fadeIn, VIEWPORT_ONCE } from "@/lib/motion";
 
-// Placeholder logos - will be replaced with actual client logos
 const clients = [
   { abbr: "S3", name: "Seven30 Real Estate" },
   { abbr: "EA", name: "Eyitayo Agri Hub" },
@@ -24,10 +25,16 @@ export function SocialProof() {
   const [isPaused, setIsPaused] = useState(false);
 
   return (
-    <section className="relative z-0 py-16 bg-[#0A0A0A] border-y border-white/5">
-      <div className="max-w-6xl mx-auto px-6 lg:px-8 mb-8">
+    <section className="relative z-0 py-16 bg-[#f4fafb] border-y border-[#d0e8ea]">
+      <m.div
+        className="max-w-6xl mx-auto px-6 lg:px-8 mb-8"
+        variants={fadeIn}
+        initial="hidden"
+        whileInView="visible"
+        viewport={VIEWPORT_ONCE}
+      >
         <p className="section-label text-center">Trusted by teams at</p>
-      </div>
+      </m.div>
 
       <div
         className="marquee-container"
@@ -41,13 +48,13 @@ export function SocialProof() {
           {[...clients, ...clients].map((client, index) => (
             <div
               key={index}
-              className="flex items-center justify-center h-16 grayscale opacity-40 hover:opacity-100 hover:grayscale-0 transition-all duration-500"
+              className="flex items-center justify-center h-16 grayscale opacity-50 hover:opacity-100 hover:grayscale-0 transition-all duration-500"
             >
-              <div className="flex items-center gap-3 text-white/60">
-                <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center font-bold text-sm flex-shrink-0">
+              <div className="flex items-center gap-3 text-[#0f1f20]">
+                <div className="w-10 h-10 rounded-lg bg-[#e6f6f7] border border-[#d0e8ea] flex items-center justify-center font-bold text-sm flex-shrink-0 text-[#008e97]">
                   {client.abbr}
                 </div>
-                <span className="font-semibold text-sm whitespace-nowrap">{client.name}</span>
+                <span className="font-semibold text-sm whitespace-nowrap text-[#3d5a5c]">{client.name}</span>
               </div>
             </div>
           ))}

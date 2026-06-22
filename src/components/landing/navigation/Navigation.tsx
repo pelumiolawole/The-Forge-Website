@@ -6,61 +6,61 @@ import Image from "next/image";
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
-  { href: "/about", label: "About" },
-  { href: "/book", label: "The Book" },
+  { href: "/about",         label: "About" },
+  { href: "/book",          label: "The Book" },
   { href: "/forge-program", label: "The Forge" },
-  { href: "/podcast", label: "Podcast" },
-  { href: "/blog", label: "Blog" },
+  { href: "/podcast",       label: "Podcast" },
+  { href: "/blog",          label: "Blog" },
 ];
 
 export function Navigation() {
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [isScrolled, setIsScrolled]           = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", handleScroll);
+    const handleScroll = () => setIsScrolled(window.scrollY > 40);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useEffect(() => {
-    document.body.style.overflow = isMobileMenuOpen ? "hidden" : "unset";
-    return () => { document.body.style.overflow = "unset"; };
+    document.body.style.overflow = isMobileMenuOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
   }, [isMobileMenuOpen]);
 
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled
-            ? "bg-[#0A0A0A]/70 backdrop-blur-md border-b border-white/5"
+            ? "bg-white/95 backdrop-blur-md border-b border-[#d0e8ea] shadow-[0_1px_16px_rgba(0,142,151,0.06)]"
             : "bg-transparent"
         }`}
       >
         <nav className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
 
-            {/* Logo — signature image, generous container */}
+            {/* Logo */}
             <Link href="/" className="flex items-center">
-              <div className="relative h-20 w-72">
+              <div className="relative h-16 w-64">
                 <Image
                   src="/images/logo-main.png"
                   alt="Pelumi Olawole"
                   fill
                   className="object-contain object-left"
-                  sizes="208px"
+                  sizes="256px"
                   priority
                 />
               </div>
             </Link>
 
             {/* Desktop nav */}
-            <div className="hidden md:flex items-center gap-8">
+            <div className="hidden md:flex items-center gap-2">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-white/80 hover:text-white text-sm font-medium transition-colors duration-300"
+                  className="text-[#3d5a5c] hover:text-[#008e97] text-sm font-medium px-3 py-2 rounded-md transition-colors duration-200 hover:bg-[#e6f6f7]"
                 >
                   {link.label}
                 </Link>
@@ -69,7 +69,7 @@ export function Navigation() {
                 href="https://calendly.com/olawolepelumisunday/30min"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="teal-button text-sm"
+                className="teal-button text-sm ml-4"
               >
                 Book a Call
               </a>
@@ -78,8 +78,9 @@ export function Navigation() {
             {/* Mobile hamburger */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden text-white p-2 relative z-50"
-              aria-label="Toggle menu"
+              className="md:hidden text-[#0f1f20] p-2 relative z-50 hover:bg-[#e6f6f7] rounded-md transition-colors"
+              aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={isMobileMenuOpen}
             >
               {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -93,7 +94,7 @@ export function Navigation() {
           isMobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
       >
-        <div className="absolute inset-0 bg-[#0A0A0A]" />
+        <div className="absolute inset-0 bg-white" />
         <div className="relative z-10 flex flex-col items-center justify-center h-full px-6">
           {/* Logo in mobile menu */}
           <div className="relative h-14 w-52 mb-12">
@@ -105,13 +106,13 @@ export function Navigation() {
               sizes="208px"
             />
           </div>
-          <nav className="flex flex-col items-center gap-8">
+          <nav className="flex flex-col items-center gap-6">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="text-white text-2xl font-medium hover:text-[#008E97] transition-colors"
+                className="text-[#0f1f20] text-2xl font-medium hover:text-[#008e97] transition-colors"
               >
                 {link.label}
               </Link>
@@ -121,7 +122,7 @@ export function Navigation() {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setIsMobileMenuOpen(false)}
-              className="gold-button text-center mt-4 text-lg"
+              className="primary-button mt-4 text-base"
             >
               Book a Call
             </a>
@@ -131,4 +132,3 @@ export function Navigation() {
     </>
   );
 }
-

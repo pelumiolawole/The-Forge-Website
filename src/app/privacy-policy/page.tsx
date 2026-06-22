@@ -5,23 +5,23 @@ export default function PrivacyPolicyPage() {
   const lastUpdated = "March 2026";
 
   return (
-    <main className="min-h-screen bg-[#F7F4EF]">
+    <main className="min-h-[100dvh] bg-white">
       <div className="max-w-3xl mx-auto px-6 lg:px-8 pt-32 pb-20 md:pt-40 md:pb-28">
 
         <div className="mb-12">
           <Link href="/" className="text-[#008E97] text-sm hover:underline">
             Back to home
           </Link>
-          <h1 className="font-serif text-3xl md:text-5xl text-[#0A0A0A] font-bold mt-6 mb-4 leading-tight">
+          <h1 className="font-serif text-3xl md:text-5xl text-[#0f1f20] font-bold mt-6 mb-4 leading-tight">
             Privacy Policy
           </h1>
-          <p className="text-[#6B7280] text-sm">Last updated: {lastUpdated}</p>
+          <p className="text-[#7a9ea1] text-sm">Last updated: {lastUpdated}</p>
         </div>
 
-        <div className="prose-custom space-y-10 text-[#4B4B4B] text-base md:text-lg leading-relaxed">
+        <div className="prose-custom space-y-10 text-[#3d5a5c] text-base md:text-lg leading-relaxed">
 
           <section>
-            <h2 className="font-serif text-xl md:text-2xl text-[#0A0A0A] font-bold mb-4">Who we are</h2>
+            <h2 className="font-serif text-xl md:text-2xl text-[#0f1f20] font-bold mb-4">Who we are</h2>
             <p>
               This website is operated by Pelumi Olawole, trading as Coach PO / The Forge System, based in the United Kingdom. References to "we", "us", or "our" in this policy refer to Pelumi Olawole.
             </p>
@@ -31,7 +31,7 @@ export default function PrivacyPolicyPage() {
           </section>
 
           <section>
-            <h2 className="font-serif text-xl md:text-2xl text-[#0A0A0A] font-bold mb-4">What data we collect</h2>
+            <h2 className="font-serif text-xl md:text-2xl text-[#0f1f20] font-bold mb-4">What data we collect</h2>
             <p>We collect personal data in the following circumstances:</p>
             <ul className="mt-3 space-y-2 list-none">
               {[
@@ -49,7 +49,7 @@ export default function PrivacyPolicyPage() {
           </section>
 
           <section>
-            <h2 className="font-serif text-xl md:text-2xl text-[#0A0A0A] font-bold mb-4">How we use your data</h2>
+            <h2 className="font-serif text-xl md:text-2xl text-[#0f1f20] font-bold mb-4">How we use your data</h2>
             <p>We use your data for the following purposes:</p>
             <ul className="mt-3 space-y-2 list-none">
               {[
@@ -70,7 +70,7 @@ export default function PrivacyPolicyPage() {
           </section>
 
           <section>
-            <h2 className="font-serif text-xl md:text-2xl text-[#0A0A0A] font-bold mb-4">Legal basis for processing (UK GDPR)</h2>
+            <h2 className="font-serif text-xl md:text-2xl text-[#0f1f20] font-bold mb-4">Legal basis for processing (UK GDPR)</h2>
             <p>
               Where you have submitted your email address voluntarily to receive content or updates, we process your data on the basis of your consent. You may withdraw consent at any time by clicking the unsubscribe link in any email.
             </p>
@@ -80,7 +80,7 @@ export default function PrivacyPolicyPage() {
           </section>
 
           <section>
-            <h2 className="font-serif text-xl md:text-2xl text-[#0A0A0A] font-bold mb-4">Third-party services</h2>
+            <h2 className="font-serif text-xl md:text-2xl text-[#0f1f20] font-bold mb-4">Third-party services</h2>
             <p>We use the following third-party tools to operate this website and business:</p>
             <ul className="mt-3 space-y-2 list-none">
               {[
@@ -98,7 +98,7 @@ export default function PrivacyPolicyPage() {
           </section>
 
           <section>
-            <h2 className="font-serif text-xl md:text-2xl text-[#0A0A0A] font-bold mb-4">Cookies</h2>
+            <h2 className="font-serif text-xl md:text-2xl text-[#0f1f20] font-bold mb-4">Cookies</h2>
             <p>
               This website may use cookies for analytics purposes. These are used to understand how visitors use the site and to improve the experience. No personally identifiable information is collected through cookies without your consent.
             </p>
@@ -108,14 +108,14 @@ export default function PrivacyPolicyPage() {
           </section>
 
           <section>
-            <h2 className="font-serif text-xl md:text-2xl text-[#0A0A0A] font-bold mb-4">How long we keep your data</h2>
+            <h2 className="font-serif text-xl md:text-2xl text-[#0f1f20] font-bold mb-4">How long we keep your data</h2>
             <p>
               We retain email subscriber data for as long as you remain subscribed. When you unsubscribe, your email is removed from active sending lists. You may request full deletion at any time by contacting us.
             </p>
           </section>
 
           <section>
-            <h2 className="font-serif text-xl md:text-2xl text-[#0A0A0A] font-bold mb-4">Your rights</h2>
+            <h2 className="font-serif text-xl md:text-2xl text-[#0f1f20] font-bold mb-4">Your rights</h2>
             <p>Under UK GDPR you have the right to:</p>
             <ul className="mt-3 space-y-2 list-none">
               {[
@@ -140,7 +140,7 @@ export default function PrivacyPolicyPage() {
           </section>
 
           <section>
-            <h2 className="font-serif text-xl md:text-2xl text-[#0A0A0A] font-bold mb-4">Changes to this policy</h2>
+            <h2 className="font-serif text-xl md:text-2xl text-[#0f1f20] font-bold mb-4">Changes to this policy</h2>
             <p>
               We may update this policy from time to time. When we do, we will update the date at the top of this page. Continued use of this website after changes are posted constitutes your acceptance of the revised policy.
             </p>
@@ -151,4 +151,3 @@ export default function PrivacyPolicyPage() {
     </main>
   );
 }
-

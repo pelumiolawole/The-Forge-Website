@@ -2,6 +2,8 @@
 
 import React from "react";
 import Link from "next/link";
+import { m } from "framer-motion";
+import { staggerContainer, staggerItem, fadeUp, VIEWPORT_ONCE } from "@/lib/motion";
 
 const CALENDLY_URL = "https://calendly.com/olawolepelumisunday/30min";
 
@@ -43,78 +45,83 @@ const paths: PathCard[] = [
 
 export default function FindYourPath() {
   return (
-    <section className="bg-[#0A0A0A] py-16 md:py-24 lg:py-32">
+    <section className="bg-white py-16 md:py-24 lg:py-32">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Header */}
-        <div className="text-center mb-12 md:mb-20">
-          <span className="text-[#008E97] text-sm font-semibold tracking-[0.2em] uppercase mb-4 block">
+        <m.div
+          className="text-center mb-12 md:mb-20"
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={VIEWPORT_ONCE}
+        >
+          <m.span className="section-label block mb-4" variants={staggerItem}>
             What&apos;s Your Next Step
-          </span>
-          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight font-['Fraunces']">
+          </m.span>
+          <m.h2 className="headline-lg" variants={staggerItem}>
             Find Your Path
-          </h2>
-        </div>
+          </m.h2>
+        </m.div>
 
         {/* Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 lg:gap-8 items-stretch">
+        <m.div
+          className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 lg:gap-8 items-stretch"
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={VIEWPORT_ONCE}
+        >
           {paths.map((path) => (
-            <Link
-              key={path.title}
-              href={path.href}
-              className={`
-                group relative flex flex-col rounded-2xl p-6 md:p-8 lg:p-10
-                transition-all duration-300 ease-out cursor-pointer
-                hover:-translate-y-1
-                ${path.variant === "featured"
-                  ? "bg-[#0A0A0A] border-2 border-[#C8963E] md:scale-105 hover:shadow-[0_0_24px_rgba(200,150,62,0.25)]"
-                  : "bg-[#111111] border border-[#222222] hover:border-[#008E97]"
-                }
-              `}
-            >
-              {/* Label */}
-              <span
+            <m.div key={path.title} variants={staggerItem}>
+              <Link
+                href={path.href}
                 className={`
-                  inline-block self-start text-xs font-semibold tracking-[0.15em] uppercase mb-5 px-3 py-1 rounded-full
+                  group relative flex flex-col rounded-2xl p-6 md:p-8 lg:p-10 h-full
+                  transition-all duration-300 ease-out cursor-pointer
+                  hover:-translate-y-1
                   ${path.variant === "featured"
-                    ? "bg-[#C8963E]/10 text-[#C8963E]"
-                    : "bg-[#008E97]/10 text-[#008E97]"
+                    ? "bg-white border-2 border-[#008e97] md:scale-105 hover:shadow-[0_8px_32px_rgba(0,142,151,0.15)]"
+                    : "bg-[#f4fafb] border border-[#d0e8ea] hover:border-[#008e97] hover:shadow-[0_4px_16px_rgba(0,142,151,0.08)]"
                   }
                 `}
               >
-                {path.label}
-              </span>
-
-              {/* Title */}
-              <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-white mb-3 tracking-tight font-['Fraunces']">
-                {path.title}
-              </h3>
-
-              {/* Body */}
-              <p className="text-[#A0A0A0] text-sm md:text-base leading-relaxed mb-6 flex-grow">
-                {path.body}
-              </p>
-
-              {/* Button */}
-              <div className="mt-auto">
-                <span
-                  className={`
-                    inline-flex items-center justify-center w-full px-6 py-3 md:py-4 rounded-lg font-semibold text-sm tracking-wide
-                    transition-all duration-300 ease-out
-                    ${path.variant === "featured"
-                      ? "bg-[#C8963E] text-[#0A0A0A] group-hover:bg-[#D4A84A]"
-                      : path.variant === "free"
-                      ? "bg-[#008E97] text-white group-hover:bg-[#00A8B3]"
-                      : "bg-transparent border-2 border-[#008E97] text-[#008E97] group-hover:bg-[#008E97] group-hover:text-white"
-                    }
-                  `}
-                >
-                  {path.buttonText}
+                {/* Label */}
+                <span className="inline-block self-start text-xs font-semibold tracking-[0.15em] uppercase mb-5 px-3 py-1 rounded-full bg-[#008e97]/10 text-[#008e97]">
+                  {path.label}
                 </span>
-              </div>
-            </Link>
+
+                {/* Title */}
+                <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-[#0f1f20] mb-3 tracking-tight font-['Fraunces']">
+                  {path.title}
+                </h3>
+
+                {/* Body */}
+                <p className="text-[#3d5a5c] text-sm md:text-base leading-relaxed mb-6 flex-grow">
+                  {path.body}
+                </p>
+
+                {/* Button */}
+                <div className="mt-auto">
+                  <span
+                    className={`
+                      inline-flex items-center justify-center w-full px-6 py-3 md:py-4 rounded-lg font-semibold text-sm tracking-wide
+                      transition-all duration-300 ease-out
+                      ${path.variant === "featured"
+                        ? "bg-[#008e97] text-white group-hover:bg-[#006e75]"
+                        : path.variant === "free"
+                        ? "bg-[#008e97] text-white group-hover:bg-[#006e75]"
+                        : "bg-transparent border-2 border-[#008e97] text-[#008e97] group-hover:bg-[#008e97] group-hover:text-white"
+                      }
+                    `}
+                  >
+                    {path.buttonText}
+                  </span>
+                </div>
+              </Link>
+            </m.div>
           ))}
-        </div>
+        </m.div>
 
       </div>
     </section>

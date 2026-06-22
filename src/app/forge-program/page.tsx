@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { ForgeTimeline } from "@/components/forge/ForgeTimeline";
 
 const faqs = [
   {
@@ -35,10 +36,10 @@ export default function ForgeProgramPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   return (
-    <main className="bg-[#0A0A0A] text-white">
+    <main className="bg-white text-[#0f1f20]">
 
       {/* HERO */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden">
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
@@ -55,7 +56,7 @@ export default function ForgeProgramPage() {
             <br />
             <span className="text-[#008E97]">It is a reconstruction.</span>
           </h1>
-          <p className="text-white/70 text-lg md:text-2xl max-w-2xl mx-auto mb-10 font-light leading-relaxed">
+          <p className="text-[#3d5a5c] text-lg md:text-2xl max-w-2xl mx-auto mb-10 font-light leading-relaxed">
             Twelve weeks. One question. Who are you, now, consistently?
           </p>
           <a
@@ -81,14 +82,14 @@ export default function ForgeProgramPage() {
             priority
             placeholder="empty"
           />
-          <div className="absolute top-0 left-0 right-0" style={{ height: "120px", background: "linear-gradient(to bottom, #0A0A0A, transparent)" }} />
-          <div className="absolute bottom-0 left-0 right-0" style={{ height: "160px", background: "linear-gradient(to top, #0A0A0A, transparent)" }} />
+          <div className="absolute top-0 left-0 right-0" style={{ height: "120px", background: "linear-gradient(to bottom, #ffffff, transparent)" }} />
+          <div className="absolute bottom-0 left-0 right-0" style={{ height: "160px", background: "linear-gradient(to top, #ffffff, transparent)" }} />
           <div className="absolute inset-0" style={{ background: "rgba(10,10,10,0.25)" }} />
         </div>
       </section>
 
       {/* THE PROBLEM */}
-      <section className="py-16 md:py-28 bg-[#0A0A0A]">
+      <section className="py-16 md:py-28 bg-white">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid lg:grid-cols-[1fr_auto] gap-12 lg:gap-16 items-start">
 
@@ -97,7 +98,7 @@ export default function ForgeProgramPage() {
               <h2 className="headline-lg mb-8">
                 You do not have a strategy problem.
               </h2>
-              <div className="space-y-5 text-white/70 text-base md:text-lg leading-relaxed">
+              <div className="space-y-5 text-[#3d5a5c] text-base md:text-lg leading-relaxed">
                 <p>
                   I have sat across from hundreds of driven, intelligent, capable people who could not explain why they were not moving. They had the plans. They had the skills. They had the reasons. And still, something was not adding up between who they knew they could be and who they actually were in the room.
                 </p>
@@ -110,7 +111,7 @@ export default function ForgeProgramPage() {
               </div>
 
               <div className="mt-10 pl-6 border-l-4 border-[#008E97]">
-                <p className="text-white text-lg md:text-xl italic font-light leading-relaxed font-serif">
+                <p className="text-[#0f1f20] text-lg md:text-xl italic font-light leading-relaxed font-serif">
                   "Most coaching fixes the doing. I work on the being."
                 </p>
               </div>
@@ -133,40 +134,22 @@ export default function ForgeProgramPage() {
       </section>
 
       {/* THE PROGRAMME */}
-      <section className="py-16 md:py-28 bg-[#F0FAFB]">
+      <section className="py-16 md:py-28 bg-[#f4fafb]">
         <div className="max-w-5xl mx-auto px-6 lg:px-8 text-center">
           <p className="section-label text-[#008E97] mb-6">The Forge System</p>
-          <h2 className="headline-lg text-[#0A0A0A] mb-6">
+          <h2 className="headline-lg text-[#0f1f20] mb-6">
             Three phases. Twelve weeks. One identity shift.
           </h2>
-          <p className="text-[#6B7280] text-base md:text-lg max-w-2xl mx-auto mb-16">
+          <p className="text-[#7a9ea1] text-base md:text-lg max-w-2xl mx-auto mb-16">
             The programme does not add to who you are. It removes what no longer belongs.
           </p>
 
-          <div className="relative">
-            <div className="hidden md:block absolute top-6 left-0 right-0 h-px bg-[#008E97]/30" />
-            <div className="grid md:grid-cols-3 gap-10 md:gap-8 relative">
-              {[
-                { phase: "01", name: "Strip", weeks: "Weeks 1 to 4", desc: "We identify the beliefs, patterns, and identities that have been running you without your permission. Nothing is added here. We only look, name, and release." },
-                { phase: "02", name: "Forge", weeks: "Weeks 5 to 8", desc: "You begin to inhabit the identity that was always true of you. Not a new personality. A clearer one. We build the behaviours that flow from who you actually are." },
-                { phase: "03", name: "Lead", weeks: "Weeks 9 to 12", desc: "You practice operating from the new identity under real conditions. Pressure, decisions, relationships. This is where the shift becomes permanent." },
-              ].map((item) => (
-                <div key={item.phase} className="flex flex-col items-center text-center relative">
-                  <div className="w-12 h-12 rounded-full bg-[#008E97] flex items-center justify-center mb-6 relative z-10 flex-shrink-0">
-                    <span className="text-white font-bold text-sm">{item.phase}</span>
-                  </div>
-                  <p className="text-[#008E97] text-xs font-semibold tracking-widest uppercase mb-2">{item.weeks}</p>
-                  <h3 className="text-[#0A0A0A] text-xl md:text-2xl font-bold mb-4 font-serif">{item.name}</h3>
-                  <p className="text-[#6B7280] text-sm md:text-base leading-relaxed">{item.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
+          <ForgeTimeline />
         </div>
       </section>
 
       {/* WHO IT IS FOR */}
-      <section className="py-16 md:py-28 bg-[#0A0A0A]">
+      <section className="py-16 md:py-28 bg-white">
         <div className="max-w-5xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-12 md:mb-16">
             <p className="section-label mb-6">Is this for you?</p>
@@ -187,14 +170,14 @@ export default function ForgeProgramPage() {
                 ].map((text, i) => (
                   <div key={i} className="flex gap-4">
                     <div className="w-2 h-2 rounded-full bg-[#008E97] mt-2 flex-shrink-0" />
-                    <p className="text-white/80 leading-relaxed text-sm md:text-base">{text}</p>
+                    <p className="text-[#3d5a5c] leading-relaxed text-sm md:text-base">{text}</p>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="bg-white/3 border border-white/8 rounded-2xl p-6 md:p-8">
-              <p className="text-[#6B7280] font-semibold tracking-widest uppercase text-xs mb-6 md:mb-8">
+            <div className="bg-[#f4fafb] border border-[#d0e8ea] rounded-2xl p-6 md:p-8">
+              <p className="text-[#7a9ea1] font-semibold tracking-widest uppercase text-xs mb-6 md:mb-8">
                 This is not for you if
               </p>
               <div className="space-y-5">
@@ -205,8 +188,8 @@ export default function ForgeProgramPage() {
                   "You want to feel better without changing. Feeling better is a side effect. Changing is the work.",
                 ].map((text, i) => (
                   <div key={i} className="flex gap-4">
-                    <div className="w-2 h-2 rounded-full bg-white/30 mt-2 flex-shrink-0" />
-                    <p className="text-white/50 leading-relaxed text-sm md:text-base">{text}</p>
+                    <div className="w-2 h-2 rounded-full bg-[#d0e8ea] mt-2 flex-shrink-0" />
+                    <p className="text-[#7a9ea1] leading-relaxed text-sm md:text-base">{text}</p>
                   </div>
                 ))}
               </div>
@@ -216,11 +199,11 @@ export default function ForgeProgramPage() {
       </section>
 
       {/* WHAT IS INCLUDED */}
-      <section className="py-16 md:py-28 bg-[#F7F4EF]">
+      <section className="py-16 md:py-28 bg-[#f4fafb]">
         <div className="max-w-5xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-12 md:mb-16">
             <p className="section-label text-[#008E97] mb-6">What you get</p>
-            <h2 className="headline-lg text-[#0A0A0A]">Everything you need. Nothing you do not.</h2>
+            <h2 className="headline-lg text-[#0f1f20]">Everything you need. Nothing you do not.</h2>
           </div>
 
           <div className="grid md:grid-cols-2 gap-4 md:gap-8">
@@ -234,8 +217,8 @@ export default function ForgeProgramPage() {
                 <div className="flex items-start gap-4">
                   <div className="w-3 h-3 rounded-full bg-[#008E97] mt-1.5 flex-shrink-0" />
                   <div>
-                    <h3 className="text-[#0A0A0A] text-lg md:text-xl font-bold mb-2 md:mb-3">{item.title}</h3>
-                    <p className="text-[#6B7280] leading-relaxed text-sm md:text-base">{item.desc}</p>
+                    <h3 className="text-[#0f1f20] text-lg md:text-xl font-bold mb-2 md:mb-3">{item.title}</h3>
+                    <p className="text-[#7a9ea1] leading-relaxed text-sm md:text-base">{item.desc}</p>
                   </div>
                 </div>
               </div>
@@ -245,7 +228,7 @@ export default function ForgeProgramPage() {
       </section>
 
       {/* TESTIMONIALS */}
-      <section className="py-16 md:py-28 bg-[#0A0A0A]">
+      <section className="py-16 md:py-28 bg-white">
         <div className="max-w-5xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-12 md:mb-16">
             <p className="section-label mb-6">From people who have done the work</p>
@@ -265,13 +248,13 @@ export default function ForgeProgramPage() {
                 role: "Founder and CEO, Tech Startup",
               },
             ].map((t, i) => (
-              <div key={i} className="border border-white/10 rounded-2xl p-6 md:p-8 flex flex-col gap-5">
-                <p className="text-white/85 text-base md:text-lg italic leading-relaxed font-serif">
+              <div key={i} className="border border-[#d0e8ea] rounded-2xl p-6 md:p-8 flex flex-col gap-5">
+                <p className="text-[#3d5a5c] text-base md:text-lg italic leading-relaxed font-serif">
                   "{t.quote}"
                 </p>
                 <div>
-                  <p className="text-white font-semibold text-sm md:text-base">{t.name}</p>
-                  <p className="text-[#6B7280] text-sm">{t.role}</p>
+                  <p className="text-[#0f1f20] font-semibold text-sm md:text-base">{t.name}</p>
+                  <p className="text-[#7a9ea1] text-sm">{t.role}</p>
                 </div>
               </div>
             ))}
@@ -290,12 +273,12 @@ export default function ForgeProgramPage() {
             sizes="100vw"
           />
           <div className="absolute inset-0 bg-[#0A0A0A]/75" />
-          <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#0A0A0A] to-transparent" />
+          <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#f4fafb] to-transparent" />
         </div>
 
         <div className="relative z-10 max-w-3xl mx-auto px-6 lg:px-8 text-center">
           <p className="section-label mb-6">The Investment</p>
-          <h2 className="font-serif font-black text-[#C8963E] mb-6" style={{ fontSize: "clamp(4rem, 12vw, 8rem)" }}>
+          <h2 className="font-serif font-black text-white mb-6" style={{ fontSize: "clamp(4rem, 12vw, 8rem)" }}>
             £1,997
           </h2>
           <p className="text-white/80 text-base md:text-2xl font-light leading-relaxed max-w-xl mx-auto mb-10">
@@ -328,11 +311,11 @@ export default function ForgeProgramPage() {
       </section>
 
       {/* FAQ */}
-      <section className="py-16 md:py-28 bg-[#F0FAFB]">
+      <section className="py-16 md:py-28 bg-[#f4fafb]">
         <div className="max-w-3xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-12 md:mb-16">
             <p className="section-label text-[#008E97] mb-6">Common questions</p>
-            <h2 className="headline-lg text-[#0A0A0A]">Before you decide</h2>
+            <h2 className="headline-lg text-[#0f1f20]">Before you decide</h2>
           </div>
 
           <div className="space-y-2">
@@ -342,7 +325,7 @@ export default function ForgeProgramPage() {
                   onClick={() => setOpenFaq(openFaq === i ? null : i)}
                   className="w-full flex items-center justify-between px-5 md:px-6 py-4 md:py-5 text-left"
                 >
-                  <span className="text-[#0A0A0A] font-semibold text-sm md:text-base pr-4">
+                  <span className="text-[#0f1f20] font-semibold text-sm md:text-base pr-4">
                     {faq.q}
                   </span>
                   <span className={`text-[#008E97] text-xl flex-shrink-0 transition-transform duration-300 ${openFaq === i ? "rotate-45" : ""}`}>
@@ -350,7 +333,7 @@ export default function ForgeProgramPage() {
                   </span>
                 </button>
                 <div className={`overflow-hidden transition-all duration-300 ${openFaq === i ? "max-h-64" : "max-h-0"}`}>
-                  <div className="px-5 md:px-6 pb-5 md:pb-6 text-[#6B7280] leading-relaxed border-t border-[#008E97]/10 pt-4 text-sm md:text-base">
+                  <div className="px-5 md:px-6 pb-5 md:pb-6 text-[#7a9ea1] leading-relaxed border-t border-[#008E97]/10 pt-4 text-sm md:text-base">
                     {faq.a}
                   </div>
                 </div>
@@ -361,15 +344,15 @@ export default function ForgeProgramPage() {
       </section>
 
       {/* FINAL CTA */}
-      <section className="py-16 md:py-28 bg-[#0A0A0A] text-center">
+      <section className="py-16 md:py-28 bg-[#008e97] text-center">
         <div className="max-w-2xl mx-auto px-6">
           <p className="section-label mb-6">Ready to begin</p>
           <h2 className="headline-lg mb-6">
             The next version of you is not a goal.
             <br />
-            <span className="text-[#008E97]">It is an identity.</span>
+            <span className="italic font-light">It is an identity.</span>
           </h2>
-          <p className="text-white/60 text-base md:text-lg mb-10">
+          <p className="text-white/80 text-base md:text-lg mb-10">
             The work starts with one conversation.
           </p>
           <a

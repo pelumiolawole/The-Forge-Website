@@ -72,7 +72,7 @@ const types: Record<string, TypeResult> = {
     type: "The Performer",
     emailKey: "performer",
     description: "You are extraordinary at showing up for others. In every room, every relationship, every role, you deliver. The gap no one sees is between that version of you and the one that exists when the audience is gone. You have become so good at being what others need that you have lost reliable access to what you actually are.",
-    color: "#C8963E",
+    color: "#008e97",
     image: "/images/type-performer.png",
   },
   avoider: {
@@ -86,7 +86,7 @@ const types: Record<string, TypeResult> = {
     type: "The Drifter",
     emailKey: "drifter",
     description: "You are capable. People around you know it. You probably know it too. And yet something keeps you from fully committing to a direction and holding it. The issue is not effort or intelligence. It is that you have not yet built an identity strong enough to keep you anchored when the motivation fades. Potential without direction is just noise.",
-    color: "#C8963E",
+    color: "#008e97",
     image: "/images/type-drifter.png",
   },
 };
@@ -201,11 +201,11 @@ export default function PettyAuditPage() {
   }
 
   return (
-    <main className="bg-[#0A0A0A] text-white min-h-screen">
+    <main className="bg-white text-[#0f1f20] min-h-[100dvh]">
 
       {/* INTRO */}
       {stage === "intro" && (
-        <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <section className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden">
           <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse 70% 60% at 50% 60%, rgba(0,142,151,0.10) 0%, transparent 70%)" }} />
           <div className="relative z-10 max-w-3xl mx-auto px-6 lg:px-8 text-center pt-32 pb-20">
             <p className="section-label mb-6">Free Diagnostic Tool</p>
@@ -213,16 +213,16 @@ export default function PettyAuditPage() {
               Find out which 3 habits are quietly
               <br /><span className="text-[#008E97]">costing you the most.</span>
             </h1>
-            <p className="text-white/70 text-base md:text-xl max-w-2xl mx-auto mb-4 font-light leading-relaxed">
+            <p className="text-[#3d5a5c] text-base md:text-xl max-w-2xl mx-auto mb-4 font-light leading-relaxed">
               25 questions. 5 identity domains. One honest result. You will see exactly which patterns are running your life and what they say about the identity underneath them.
             </p>
-            <p className="text-[#C8963E] font-medium mb-10 text-sm md:text-base">Takes 5 minutes. The clarity lasts longer.</p>
+            <p className="text-[#008e97] font-medium mb-10 text-sm md:text-base">Takes 5 minutes. The clarity lasts longer.</p>
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12 max-w-2xl mx-auto">
               {Object.values(types).map((t) => (
                 <div key={t.type} className="relative h-28 rounded-xl overflow-hidden">
                   <Image src={t.image} alt={t.type} fill className="object-cover" sizes="200px" />
-                  <div className="absolute inset-0 bg-black/50 flex items-end p-3">
+                  <div className="absolute inset-0 bg-[#0f1f20]/50 flex items-end p-3">
                     <p className="text-white text-xs font-semibold leading-tight">{t.type}</p>
                   </div>
                 </div>
@@ -236,28 +236,28 @@ export default function PettyAuditPage() {
               Start the Audit
               <ArrowRight size={18} />
             </button>
-            <p className="text-white/30 text-sm mt-4">Free. No signup required to start.</p>
+            <p className="text-[#b3dde0] text-sm mt-4">Free. No signup required to start.</p>
           </div>
         </section>
       )}
 
       {/* QUIZ */}
       {stage === "quiz" && (
-        <section className="min-h-screen flex flex-col items-center justify-center px-6 py-20 pt-32">
+        <section className="min-h-[100dvh] flex flex-col items-center justify-center px-6 py-20 pt-32">
           <div className="w-full max-w-2xl mx-auto">
             <div className="mb-8">
               <div className="flex items-center justify-between mb-2">
-                <span className="text-white/40 text-xs">Question {currentQ + 1} of {questions.length}</span>
+                <span className="text-[#7a9ea1] text-xs">Question {currentQ + 1} of {questions.length}</span>
                 <span className="text-[#008E97] text-xs font-medium">{domainNames[q.domain]}</span>
               </div>
-              <div className="h-1 bg-white/10 rounded-full overflow-hidden">
+              <div className="h-1 bg-[#d0e8ea] rounded-full overflow-hidden">
                 <div className="h-full bg-[#008E97] rounded-full transition-all duration-500" style={{ width: `${progress}%` }} />
               </div>
             </div>
 
-            <div className="bg-[#111111] border border-white/8 rounded-2xl p-8 md:p-12 mb-6">
-              <p className="text-white/50 text-xs font-semibold tracking-widest uppercase mb-6">{domainNames[q.domain]}</p>
-              <h2 className="font-serif text-xl md:text-2xl text-white leading-snug mb-10">{q.text}</h2>
+            <div className="bg-white border border-[#d0e8ea] shadow-sm rounded-2xl p-8 md:p-12 mb-6">
+              <p className="text-[#7a9ea1] text-xs font-semibold tracking-widest uppercase mb-6">{domainNames[q.domain]}</p>
+              <h2 className="font-serif text-xl md:text-2xl text-[#0f1f20] leading-snug mb-10">{q.text}</h2>
 
               <div className="space-y-3">
                 {answerLabels.map((opt) => (
@@ -268,14 +268,14 @@ export default function PettyAuditPage() {
                       selected === opt.value
                         ? "bg-[#008E97] border-[#008E97] text-white"
                         : answers[q.id] === opt.value
-                        ? "bg-[#008E97]/20 border-[#008E97]/50 text-white"
-                        : "bg-white/3 border-white/10 text-white/70 hover:border-[#008E97]/50 hover:text-white"
+                        ? "bg-[#e6f6f7] border-[#008e97]/50 text-[#0f1f20]"
+                        : "bg-[#f4fafb] border-[#d0e8ea] text-[#3d5a5c] hover:border-[#008e97] hover:text-[#0f1f20]"
                     }`}
                   >
                     <span className={`w-8 h-8 rounded-full border flex-shrink-0 flex items-center justify-center text-xs font-bold transition-all ${
                       selected === opt.value || answers[q.id] === opt.value
                         ? "border-white bg-white text-[#008E97]"
-                        : "border-white/20 text-white/40"
+                        : "border-[#d0e8ea] text-[#7a9ea1]"
                     }`}>
                       {opt.value}
                     </span>
@@ -286,7 +286,7 @@ export default function PettyAuditPage() {
             </div>
 
             {currentQ > 0 && (
-              <button onClick={handleBack} className="inline-flex items-center gap-2 text-white/40 hover:text-white/70 text-sm transition-colors">
+              <button onClick={handleBack} className="inline-flex items-center gap-2 text-[#7a9ea1] hover:text-[#3d5a5c] text-sm transition-colors">
                 <ArrowLeft size={14} />
                 Previous question
               </button>
@@ -297,26 +297,26 @@ export default function PettyAuditPage() {
 
       {/* ANALYSING */}
       {stage === "analysing" && (
-        <section className="min-h-screen flex flex-col items-center justify-center px-6 text-center">
+        <section className="min-h-[100dvh] flex flex-col items-center justify-center px-6 text-center">
           <div className="w-20 h-20 rounded-full border-2 border-[#008E97]/20 flex items-center justify-center mb-8">
             <Loader2 className="w-8 h-8 text-[#008E97] animate-spin" />
           </div>
           <p className="section-label mb-4">Processing</p>
-          <h2 className="font-serif text-2xl md:text-3xl text-white mb-4">Analysing your responses...</h2>
-          <p className="text-white/50 text-base max-w-sm">Calculating your identity profile across all five domains.</p>
+          <h2 className="font-serif text-2xl md:text-3xl text-[#0f1f20] mb-4">Analysing your responses...</h2>
+          <p className="text-[#7a9ea1] text-base max-w-sm">Calculating your identity profile across all five domains.</p>
         </section>
       )}
 
       {/* RESULTS */}
       {stage === "results" && results && (
-        <section className="min-h-screen flex flex-col items-center justify-center px-6 py-20 pt-32">
+        <section className="min-h-[100dvh] flex flex-col items-center justify-center px-6 py-20 pt-32">
           <div className="w-full max-w-2xl mx-auto">
             <p className="section-label text-center mb-6">Your Identity Type</p>
 
-            <div className="bg-[#111111] border border-white/8 rounded-2xl overflow-hidden mb-6">
+            <div className="bg-white border border-[#d0e8ea] shadow-sm rounded-2xl overflow-hidden mb-6">
               <div className="relative h-52">
                 <Image src={results.typeResult.image} alt={results.typeResult.type} fill className="object-cover" sizes="672px" />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#111111] via-[#111111]/40 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-white via-white/40 to-transparent" />
                 <div className="absolute bottom-0 left-0 p-6">
                   <div className="flex items-center gap-3">
                     <div className="w-3 h-3 rounded-full flex-shrink-0" style={{ backgroundColor: results.typeResult.color }} />
@@ -325,23 +325,23 @@ export default function PettyAuditPage() {
                 </div>
               </div>
               <div className="p-6 md:p-8">
-                <p className="text-white/75 text-base md:text-lg leading-relaxed">{results.typeResult.description}</p>
+                <p className="text-[#3d5a5c] text-base md:text-lg leading-relaxed">{results.typeResult.description}</p>
               </div>
             </div>
 
-            <div className="bg-[#111111] border border-white/8 rounded-2xl p-6 mb-6">
+            <div className="bg-[#f4fafb] border border-[#d0e8ea] rounded-2xl p-6 mb-6">
               <div className="flex items-center justify-between mb-4">
-                <p className="text-white/60 text-sm font-medium">Your 5 Domain Scores</p>
+                <p className="text-[#7a9ea1] text-sm font-medium">Your 5 Domain Scores</p>
                 <span className="text-[#008E97] text-xs font-semibold">Full breakdown in your email</span>
               </div>
               <div className="space-y-3 blur-sm select-none pointer-events-none">
                 {domainNames.map((name, i) => (
                   <div key={name}>
                     <div className="flex items-center justify-between mb-1">
-                      <span className="text-white/60 text-xs">{name}</span>
-                      <span className="text-white/40 text-xs">{results.domainScores[i]}/25</span>
+                      <span className="text-[#7a9ea1] text-xs">{name}</span>
+                      <span className="text-[#b3dde0] text-xs">{results.domainScores[i]}/25</span>
                     </div>
-                    <div className="h-2 bg-white/10 rounded-full overflow-hidden">
+                    <div className="h-2 bg-[#d0e8ea] rounded-full overflow-hidden">
                       <div className="h-full rounded-full" style={{ width: `${(results.domainScores[i] / 25) * 100}%`, backgroundColor: results.typeResult.color }} />
                     </div>
                   </div>
@@ -356,20 +356,20 @@ export default function PettyAuditPage() {
               Get Your Full Breakdown
               <ArrowRight size={18} />
             </button>
-            <p className="text-white/30 text-xs text-center mt-3">Your detailed report, top 3 blockers, and next steps sent to your inbox.</p>
+            <p className="text-[#b3dde0] text-xs text-center mt-3">Your detailed report, top 3 blockers, and next steps sent to your inbox.</p>
           </div>
         </section>
       )}
 
       {/* EMAIL CAPTURE */}
       {stage === "capture" && results && (
-        <section className="min-h-screen flex flex-col items-center justify-center px-6 py-20 pt-32">
+        <section className="min-h-[100dvh] flex flex-col items-center justify-center px-6 py-20 pt-32">
           <div className="w-full max-w-md mx-auto">
             <p className="section-label text-center mb-4">Almost there</p>
-            <h2 className="font-serif text-2xl md:text-3xl text-white text-center mb-3">
+            <h2 className="font-serif text-2xl md:text-3xl text-[#0f1f20] text-center mb-3">
               Where should we send your full report?
             </h2>
-            <p className="text-white/50 text-sm text-center mb-8">
+            <p className="text-[#7a9ea1] text-sm text-center mb-8">
               Your full breakdown includes domain scores, top 3 identity-level blockers, and a specific next step.
             </p>
 
@@ -379,7 +379,7 @@ export default function PettyAuditPage() {
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
                 placeholder="First name (optional)"
-                className="w-full px-4 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-white/30 focus:outline-none focus:border-[#008E97] transition-colors"
+                className="w-full px-4 py-4 bg-white border border-[#d0e8ea] rounded-xl text-[#0f1f20] placeholder:text-[#b3dde0] focus:border-[#008e97] focus:outline-none transition-colors"
               />
               <input
                 type="email"
@@ -387,10 +387,10 @@ export default function PettyAuditPage() {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Your email address"
                 required
-                className="w-full px-4 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-white/30 focus:outline-none focus:border-[#008E97] transition-colors"
+                className="w-full px-4 py-4 bg-white border border-[#d0e8ea] rounded-xl text-[#0f1f20] placeholder:text-[#b3dde0] focus:border-[#008e97] focus:outline-none transition-colors"
               />
               {submitError && (
-                <p className="text-red-400 text-sm text-center">Something went wrong. Please try again.</p>
+                <p className="text-red-500 text-sm text-center">Something went wrong. Please try again.</p>
               )}
               <button
                 type="submit"
@@ -404,24 +404,24 @@ export default function PettyAuditPage() {
                 )}
               </button>
             </form>
-            <p className="text-white/20 text-xs text-center mt-4">No spam. Unsubscribe anytime.</p>
+            <p className="text-[#b3dde0] text-xs text-center mt-4">No spam. Unsubscribe anytime.</p>
           </div>
         </section>
       )}
 
       {/* DONE */}
       {stage === "done" && results && (
-        <section className="min-h-screen flex flex-col items-center justify-center px-6 py-20 text-center">
-          <div className="w-20 h-20 rounded-full bg-[#008E97]/15 flex items-center justify-center mx-auto mb-6">
+        <section className="min-h-[100dvh] flex flex-col items-center justify-center px-6 py-20 text-center">
+          <div className="w-20 h-20 rounded-full bg-[#e6f6f7] flex items-center justify-center mx-auto mb-6">
             <Check className="w-8 h-8 text-[#008E97]" />
           </div>
           <p className="section-label mb-4">Report Sent</p>
-          <h2 className="font-serif text-2xl md:text-3xl text-white mb-4">Check your inbox.</h2>
-          <p className="text-white/60 text-base max-w-md mx-auto mb-10">
+          <h2 className="font-serif text-2xl md:text-3xl text-[#0f1f20] mb-4">Check your inbox.</h2>
+          <p className="text-[#3d5a5c] text-base max-w-md mx-auto mb-10">
             Your full Petty Audit breakdown is on its way. If it does not arrive within a few minutes, check your spam folder.
           </p>
 
-          <div className="bg-[#111111] border border-white/8 rounded-2xl overflow-hidden w-full max-w-xs mx-auto mb-10">
+          <div className="bg-white border border-[#d0e8ea] shadow-sm rounded-2xl overflow-hidden w-full max-w-xs mx-auto mb-10">
             <div className="relative w-full h-48">
               <Image
                 src={results.typeResult.image}
@@ -430,12 +430,12 @@ export default function PettyAuditPage() {
                 className="object-cover"
                 sizes="320px"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#111111] via-[#111111]/20 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-white via-white/20 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-4">
-                <p className="text-white/40 text-xs uppercase tracking-widest mb-1">Your result</p>
+                <p className="text-[#7a9ea1] text-xs uppercase tracking-widest mb-1">Your result</p>
                 <div className="flex items-center gap-2">
                   <div className="w-2.5 h-2.5 rounded-full flex-shrink-0" style={{ backgroundColor: results.typeResult.color }} />
-                  <p className="text-white font-serif text-lg font-bold">{results.typeResult.type}</p>
+                  <p className="text-[#0f1f20] font-serif text-lg font-bold">{results.typeResult.type}</p>
                 </div>
               </div>
             </div>
@@ -445,7 +445,7 @@ export default function PettyAuditPage() {
             <Link href="/book" className="gold-button inline-flex items-center justify-center gap-2 w-full sm:w-auto">
               Get Petty Little Things<ArrowRight size={18} />
             </Link>
-            <Link href="/forge-program" className="inline-flex items-center justify-center gap-2 px-6 py-4 border-2 border-white/10 rounded-lg text-white/70 font-semibold hover:border-[#008E97] hover:text-white transition-all w-full sm:w-auto text-sm">
+            <Link href="/forge-program" className="inline-flex items-center justify-center gap-2 px-6 py-4 border-2 border-[#d0e8ea] rounded-lg text-[#3d5a5c] font-semibold hover:border-[#008e97] hover:text-[#008e97] transition-all w-full sm:w-auto text-sm">
               Learn about The Forge Program
             </Link>
           </div>

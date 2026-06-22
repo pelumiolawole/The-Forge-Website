@@ -3,6 +3,8 @@
 import React, { useState } from "react";
 import { ArrowRight, Download, X, Loader2, Check } from "lucide-react";
 import NextImage from "next/image";
+import { CountdownTimer } from "@/components/book/CountdownTimer";
+import { BookTilt } from "@/components/book/BookTilt";
 
 export default function BookPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -46,7 +48,7 @@ export default function BookPage() {
   };
 
   return (
-    <main className="bg-[#0A0A0A] text-[#F7F4EF]">
+    <main className="bg-white text-[#0f1f20]">
 
       {/* HERO */}
       <section className="relative min-h-screen flex items-center overflow-hidden">
@@ -60,8 +62,8 @@ export default function BookPage() {
             sizes="100vw"
           />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0A0A0A] via-[#0A0A0A]/85 to-[#0A0A0A]/40" />
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#0A0A0A] to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0f1f20] via-[#0f1f20]/85 to-[#0f1f20]/40" />
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#0f1f20] to-transparent" />
 
         <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-8 pt-28 pb-20 md:pt-36 md:pb-28">
           <div className="max-w-lg">
@@ -103,13 +105,13 @@ export default function BookPage() {
       </section>
 
       {/* HOOK */}
-      <section className="bg-[#0A0A0A] py-16 md:py-28">
+      <section className="bg-white py-16 md:py-28">
         <div className="max-w-4xl mx-auto px-6 lg:px-8">
           <div className="border-l-2 border-[#008E97] pl-6 md:pl-8">
-            <p className="text-[#F7F4EF]/90 text-xl md:text-3xl font-light leading-relaxed mb-6">
+            <p className="text-[#0f1f20] text-xl md:text-3xl font-light leading-relaxed mb-6">
               You know what you should be doing. You have read the books, listened to the podcasts, made the plans. But somehow, you are still not where you want to be.
             </p>
-            <p className="text-[#F7F4EF]/60 text-lg md:text-2xl font-light leading-relaxed mb-6">
+            <p className="text-[#3d5a5c] text-lg md:text-2xl font-light leading-relaxed mb-6">
               The problem is not your strategy. It is the 50 small habits quietly destroying your progress every single day. They do not feel like problems. They feel like personality.
             </p>
             <p className="text-[#008E97] text-lg md:text-2xl font-semibold leading-relaxed">
@@ -120,7 +122,7 @@ export default function BookPage() {
       </section>
 
       {/* WHAT IS INSIDE */}
-      <section className="bg-[#F0FAFB] py-16 md:py-28">
+      <section className="bg-[#f4fafb] py-16 md:py-28">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 md:gap-16 items-center">
 
@@ -165,14 +167,14 @@ export default function BookPage() {
                     </div>
                     <div>
                       <p className="text-[#0A0A0A] font-semibold mb-1 text-sm md:text-base">{item.title}</p>
-                      <p className="text-[#6B7280] leading-relaxed text-sm md:text-base">{item.body}</p>
+                      <p className="text-[#3d5a5c] leading-relaxed text-sm md:text-base">{item.body}</p>
                     </div>
                   </div>
                 ))}
               </div>
 
               <div className="border-t border-[#0A0A0A]/10 pt-6 md:pt-8">
-                <p className="text-[#6B7280] text-sm md:text-base leading-relaxed mb-5 md:mb-6">
+                <p className="text-[#3d5a5c] text-sm md:text-base leading-relaxed mb-5 md:mb-6">
                   Not sure if this book is for you? Read the first habit and decide for yourself.
                 </p>
                 <button
@@ -190,7 +192,7 @@ export default function BookPage() {
       </section>
 
       {/* FOR THE PERSON WHO KNOWS */}
-      <section className="bg-[#F7F4EF] py-16 md:py-28">
+      <section className="bg-white py-16 md:py-28">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 md:gap-16 items-center">
 
@@ -215,10 +217,10 @@ export default function BookPage() {
               <h2 className="headline-lg text-[#0A0A0A] mb-6">
                 This book is not for people who lack information.
               </h2>
-              <p className="text-[#6B7280] text-base md:text-lg leading-relaxed mb-5">
+              <p className="text-[#3d5a5c] text-base md:text-lg leading-relaxed mb-5">
                 It is for the person who has absorbed every podcast, every framework, every morning routine and still finds themselves falling back into the same patterns.
               </p>
-              <p className="text-[#6B7280] text-base md:text-lg leading-relaxed mb-5">
+              <p className="text-[#3d5a5c] text-base md:text-lg leading-relaxed mb-5">
                 Because the issue was never knowledge. It was identity. And identity does not change through information alone. It changes when you see yourself clearly enough to decide to be different.
               </p>
               <p className="text-[#0A0A0A] text-base md:text-lg font-semibold leading-relaxed">
@@ -240,13 +242,13 @@ export default function BookPage() {
       </section>
 
       {/* ABOUT THE AUTHOR */}
-      <section className="bg-[#F0FAFB] py-16 md:py-20">
+      <section className="bg-[#f4fafb] py-16 md:py-20">
         <div className="max-w-3xl mx-auto px-6 lg:px-8 text-center">
           <p className="section-label text-[#008E97] mb-4">About the Author</p>
           <p className="text-[#0A0A0A] text-lg md:text-2xl font-light leading-relaxed mb-6">
             Pelumi Olawole has spent nearly a decade coaching people through the same habits he has struggled with himself. He is not selling a perfect system. He is sharing what he has learned from falling, adjusting, and trying again.
           </p>
-          <p className="text-[#6B7280] text-base md:text-lg leading-relaxed mb-8">
+          <p className="text-[#3d5a5c] text-base md:text-lg leading-relaxed mb-8">
             He works at the intersection of identity psychology, behavioural science, and performance — coaching growth-driven professionals and emerging leaders ready to move from intention to impact.
           </p>
           <a
@@ -259,15 +261,18 @@ export default function BookPage() {
       </section>
 
       {/* PRE-ORDER SECTION */}
-      <section className="bg-[#0A0A0A] py-16 md:py-28 border-t border-[#F7F4EF]/10">
+      <section className="bg-[#008e97] py-16 md:py-28 border-t border-[#008e97]">
         <div className="max-w-2xl mx-auto px-6 lg:px-8 text-center">
-          <p className="section-label text-[#008E97] mb-4">Available Now for Pre-Order</p>
+          <p className="section-label text-white mb-4">Available Now for Pre-Order</p>
           <h2 className="headline-lg text-white mb-6">
             Order your copy before July 1, 2026.
           </h2>
-          <p className="text-[#F7F4EF]/60 text-base md:text-lg leading-relaxed mb-8 md:mb-10">
+          <p className="text-white/80 text-base md:text-lg leading-relaxed mb-8 md:mb-10">
             The Kindle edition is available now on Amazon. Pre-order secures your copy at launch. The book delivers to your device on July 1, 2026.
           </p>
+          <div className="mb-8">
+            <CountdownTimer targetDate="2026-07-01T00:00:00Z" label="Until launch" theme="dark" />
+          </div>
           <a
             href="https://www.amazon.co.uk/dp/B0H4J1NYBY"
             target="_blank"
@@ -277,7 +282,7 @@ export default function BookPage() {
             Pre-Order on Amazon Kindle
             <ArrowRight size={18} />
           </a>
-          <p className="text-[#F7F4EF]/30 text-sm mt-5 md:mt-6">
+          <p className="text-white/60 text-sm mt-5 md:mt-6">
             Kindle £6.99 &nbsp;&middot;&nbsp; Paperback £9.99 coming soon &nbsp;&middot;&nbsp; ISBN: 9798180577054
           </p>
         </div>
@@ -286,8 +291,8 @@ export default function BookPage() {
       {/* CHAPTER MODAL */}
       {isModalOpen && (
         <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 bg-black/60 backdrop-blur-sm">
-          <div className="relative w-full sm:max-w-md bg-[#0A0A0A] border border-white/10 rounded-t-2xl sm:rounded-2xl p-6 md:p-8 shadow-2xl">
-            <button onClick={closeModal} className="absolute top-4 right-4 text-white/50 hover:text-white transition-colors">
+          <div className="relative w-full sm:max-w-md bg-white border border-[#d0e8ea] rounded-t-2xl sm:rounded-2xl p-6 md:p-8 shadow-2xl">
+            <button onClick={closeModal} className="absolute top-4 right-4 text-[#7a9ea1] hover:text-[#0f1f20] transition-colors">
               <X size={24} />
             </button>
 
@@ -297,10 +302,10 @@ export default function BookPage() {
                   <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-[#008E97]/10 flex items-center justify-center">
                     <Download className="text-[#008E97]" size={26} />
                   </div>
-                  <h3 className="text-xl md:text-2xl font-serif font-bold text-white mb-2">
+                  <h3 className="text-xl md:text-2xl font-serif font-bold text-[#0f1f20] mb-2">
                     Read the First Habit Free
                   </h3>
-                  <p className="text-white/60 text-sm leading-relaxed">
+                  <p className="text-[#7a9ea1] text-sm leading-relaxed">
                     Habit #1 will tell you whether this book is for you. Enter your email and the download starts immediately.
                   </p>
                 </div>
@@ -312,7 +317,7 @@ export default function BookPage() {
                     onChange={(e) => setChapterEmail(e.target.value)}
                     placeholder="your@email.com"
                     required
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder:text-white/30 focus:outline-none focus:border-[#008E97] transition-colors"
+                    className="w-full px-4 py-3 bg-white border-[1.5px] border-[#d0e8ea] rounded-lg text-[#0f1f20] placeholder:text-[#b3dde0] focus:outline-none focus:border-[#008E97] transition-colors"
                   />
                   <button
                     type="submit"
@@ -327,17 +332,17 @@ export default function BookPage() {
                   </button>
                 </form>
 
-                <p className="text-white/30 text-xs text-center mt-4">No spam. Unsubscribe anytime.</p>
+                <p className="text-[#b3dde0] text-xs text-center mt-4">No spam. Unsubscribe anytime.</p>
               </>
             ) : (
               <div className="text-center py-6 md:py-8">
-                <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-[#008E97]/20 flex items-center justify-center">
+                <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-[#e6f6f7] flex items-center justify-center">
                   <Check className="w-7 h-7 text-[#008E97]" />
                 </div>
-                <h3 className="text-xl md:text-2xl font-serif font-bold text-white mb-2">
+                <h3 className="text-xl md:text-2xl font-serif font-bold text-[#0f1f20] mb-2">
                   It is on its way.
                 </h3>
-                <p className="text-white/60 text-sm mb-4">
+                <p className="text-[#7a9ea1] text-sm mb-4">
                   Your download has started. Check your inbox for a copy. If you recognise yourself in Habit #1, the other 49 are waiting.
                 </p>
                 <a
@@ -349,7 +354,7 @@ export default function BookPage() {
                   Pre-Order the Full Book
                   <ArrowRight size={18} />
                 </a>
-                <button onClick={closeModal} className="mt-3 text-white/30 text-xs hover:text-white/60 transition-colors">Close</button>
+                <button onClick={closeModal} className="mt-3 text-[#b3dde0] text-xs hover:text-[#7a9ea1] transition-colors">Close</button>
               </div>
             )}
           </div>

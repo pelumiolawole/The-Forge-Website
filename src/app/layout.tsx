@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Navigation } from "@/components/landing/navigation/Navigation";
-import { Analytics } from "@vercel/analytics/react"
+import { Analytics } from "@vercel/analytics/react";
+import { MotionProvider } from "@/components/motion/MotionProvider";
+import { ScrollProgressBar } from "@/components/motion/ScrollProgressBar";
 
 export const metadata: Metadata = {
   title: "Coach PO | Identity Coach & Author",
@@ -28,9 +30,12 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
       <body className="antialiased">
-        <Navigation />
-        {children}
-        <Footer />
+        <MotionProvider>
+          <ScrollProgressBar />
+          <Navigation />
+          {children}
+          <Footer />
+        </MotionProvider>
         <Analytics />
       </body>
     </html>
