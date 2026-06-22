@@ -28,8 +28,8 @@ function EpisodeCard({ episode }: { episode: Episode }) {
   const hasImage = episode.image && episode.image.length > 0;
 
   return (
-    <article className="group bg-[#111111] rounded-2xl overflow-hidden border border-[#1A1A1A] hover:border-[#008E97] transition-all duration-300">
-      <div className="aspect-square relative overflow-hidden bg-[#111111]">
+    <article className="group bg-white rounded-2xl overflow-hidden border border-[#d0e8ea] hover:border-[#008E97] transition-all duration-300 shadow-sm">
+      <div className="aspect-square relative overflow-hidden bg-[#f4fafb]">
         {hasImage ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img
@@ -38,23 +38,23 @@ function EpisodeCard({ episode }: { episode: Episode }) {
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
           />
         ) : (
-          <div className="w-full h-full flex items-center justify-center bg-[#111111] border-b border-[#1A1A1A]">
+          <div className="w-full h-full flex items-center justify-center bg-[#f4fafb] border-b border-[#d0e8ea]">
             <span className="font-serif text-3xl text-[#008E97]">IP</span>
           </div>
         )}
       </div>
 
       <div className="p-5 md:p-6">
-        <h3 className="font-serif text-base md:text-lg text-white leading-tight mb-2 line-clamp-2">
+        <h3 className="font-serif text-base md:text-lg text-[#0f1f20] leading-tight mb-2 line-clamp-2">
           {episode.title}
         </h3>
 
-        <p className="text-[#6B6B6B] text-sm leading-relaxed mb-4 line-clamp-2">
+        <p className="text-[#7a9ea1] text-sm leading-relaxed mb-4 line-clamp-2">
           {truncateDescription(episode.description)}
         </p>
 
         <div className="flex items-center justify-between">
-          <span className="text-[#6B6B6B] text-xs">{episode.duration}</span>
+          <span className="text-[#7a9ea1] text-xs">{episode.duration}</span>
           <Link
             href={episode.link}
             target="_blank"
@@ -90,7 +90,7 @@ export default function EpisodeList({ initialEpisodes, startHereEpisodes = [] }:
               <span className="text-[#008E97] text-sm font-medium tracking-widest uppercase block mb-2">
                 Start Here
               </span>
-              <h2 className="font-serif text-2xl md:text-3xl text-white">
+              <h2 className="font-serif text-2xl md:text-3xl text-[#0f1f20]">
                 Episodes worth your time
               </h2>
             </div>
@@ -110,15 +110,15 @@ export default function EpisodeList({ initialEpisodes, startHereEpisodes = [] }:
             <span className="text-[#008E97] text-sm font-medium tracking-widest uppercase block mb-2">
               Latest Episodes
             </span>
-            <h2 className="font-serif text-2xl md:text-3xl text-white">
+            <h2 className="font-serif text-2xl md:text-3xl text-[#0f1f20]">
               Recent conversations
             </h2>
           </div>
 
           {episodes.length === 0 ? (
-            <div className="text-center py-12 border border-[#1A1A1A] rounded-2xl">
-              <p className="text-[#6B6B6B] mb-2">Unable to load episodes.</p>
-              <p className="text-[#4A4A4A] text-sm">Please check your connection or try again later.</p>
+            <div className="text-center py-12 border border-[#d0e8ea] rounded-2xl">
+              <p className="text-[#7a9ea1] mb-2">Unable to load episodes.</p>
+              <p className="text-[#b3dde0] text-sm">Please check your connection or try again later.</p>
             </div>
           ) : (
             <>
