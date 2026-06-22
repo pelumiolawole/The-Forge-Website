@@ -5,12 +5,32 @@
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,700;0,9..144,800;0,9..144,900;1,9..144,700&family=Inter:wght@400;500;600;700&display=swap');
 
 :root {
-  --teal: #008E97;
-  --gold: #C8963E;
-  --dark: #0A0A0A;
-  --off-white: #F7F4EF;
-  --surface: #F0FAFB;
-  --mid-grey: #6B7280;
+  /* Brand palette */
+  --color-bg:           #ffffff;
+  --color-bg-tint:      #e6f6f7;
+  --color-bg-subtle:    #f4fafb;
+  --color-brand:        #008e97;
+  --color-brand-dark:   #006e75;
+  --color-brand-light:  #b3dde0;
+  --color-heading:      #0f1f20;
+  --color-body:         #3d5a5c;
+  --color-muted:        #7a9ea1;
+  --color-border:       #d0e8ea;
+  --color-surface:      #ffffff;
+
+  /* Motion tokens */
+  --duration-fast:      150ms;
+  --duration-base:      300ms;
+  --duration-slow:      600ms;
+  --duration-entrance:  800ms;
+  --ease-out:           cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out:        cubic-bezier(0.4, 0, 0.2, 1);
+  --stagger:            120ms;
+
+  /* Legacy aliases kept for gradual component migration */
+  --teal:     #008e97;
+  --dark:     #ffffff;
+  --surface:  #f4fafb;
 }
 
 @layer base {
@@ -20,8 +40,8 @@
 
   body {
     font-family: 'Inter', sans-serif;
-    background-color: var(--dark);
-    color: var(--off-white);
+    background-color: var(--color-bg);
+    color: var(--color-body);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -29,6 +49,7 @@
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Fraunces', serif;
     font-weight: 800;
+    color: var(--color-heading);
   }
 }
 
@@ -38,7 +59,7 @@
     text-transform: uppercase;
     letter-spacing: 0.2em;
     font-weight: 600;
-    color: var(--teal);
+    color: var(--color-brand);
     font-size: 0.875rem;
   }
 
@@ -48,6 +69,7 @@
     font-size: clamp(3rem, 8vw, 6rem);
     line-height: 1.1;
     letter-spacing: -0.02em;
+    color: var(--color-heading);
   }
 
   .headline-lg {
@@ -56,6 +78,7 @@
     font-size: clamp(2rem, 5vw, 3.5rem);
     line-height: 1.15;
     letter-spacing: -0.01em;
+    color: var(--color-heading);
   }
 
   .headline-md {
@@ -63,6 +86,7 @@
     font-weight: 700;
     font-size: clamp(1.5rem, 3vw, 2rem);
     line-height: 1.2;
+    color: var(--color-heading);
   }
 
   .body-text {
@@ -70,79 +94,130 @@
     font-weight: 400;
     font-size: 1.125rem;
     line-height: 1.7;
-    color: var(--mid-grey);
+    color: var(--color-body);
   }
 
-  .gold-button {
-    background-color: var(--gold);
-    color: var(--dark);
+  /* Primary CTA — brand teal */
+  .primary-button {
+    background-color: var(--color-brand);
+    color: #ffffff;
     font-family: 'Inter', sans-serif;
     font-weight: 600;
-    padding: 1rem 2rem;
-    border-radius: 0.5rem;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    overflow: hidden;
+    padding: 0.875rem 2rem;
+    border-radius: 6px;
+    transition: background-color var(--duration-base) var(--ease-in-out),
+                transform var(--duration-fast) var(--ease-out),
+                box-shadow var(--duration-base) var(--ease-in-out);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .primary-button:hover {
+    background-color: var(--color-brand-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(0, 142, 151, 0.25);
+  }
+
+  .primary-button:active {
+    transform: translateY(0) scale(0.98);
+    box-shadow: none;
+  }
+
+  /* Ghost/outline button */
+  .ghost-button {
+    background-color: transparent;
+    color: var(--color-brand);
+    border: 1.5px solid var(--color-brand);
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    padding: 0.875rem 2rem;
+    border-radius: 6px;
+    transition: background-color var(--duration-base) var(--ease-in-out),
+                color var(--duration-base) var(--ease-in-out),
+                transform var(--duration-fast) var(--ease-out);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .ghost-button:hover {
+    background-color: var(--color-bg-tint);
+    transform: translateY(-1px);
+  }
+
+  .ghost-button:active {
+    transform: scale(0.98);
+  }
+
+  /* Legacy gold-button — now maps to primary teal */
+  .gold-button {
+    background-color: var(--color-brand);
+    color: #ffffff;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    padding: 0.875rem 2rem;
+    border-radius: 6px;
+    transition: background-color var(--duration-base) var(--ease-in-out),
+                transform var(--duration-fast) var(--ease-out),
+                box-shadow var(--duration-base) var(--ease-in-out);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
   }
 
   .gold-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 40px -10px rgba(200, 150, 62, 0.5);
+    background-color: var(--color-brand-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(0, 142, 151, 0.25);
   }
 
-  .gold-button::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
-    transform: translateX(-100%);
-    transition: transform 0.6s, opacity 0.3s;
-    opacity: 0;
+  .gold-button:active {
+    transform: scale(0.98);
+    box-shadow: none;
   }
 
-  .gold-button:hover::after {
-    transform: translateX(100%);
-    opacity: 1;
-  }
-
+  /* Legacy teal-button — ghost variant */
   .teal-button {
     background-color: transparent;
-    color: var(--teal);
-    border: 1.5px solid var(--teal);
+    color: var(--color-brand);
+    border: 1.5px solid var(--color-brand);
     font-family: 'Inter', sans-serif;
     font-weight: 600;
     padding: 0.75rem 1.5rem;
-    border-radius: 0.5rem;
-    transition: all 0.3s ease;
+    border-radius: 6px;
+    transition: background-color var(--duration-base) var(--ease-in-out),
+                color var(--duration-base) var(--ease-in-out);
   }
 
   .teal-button:hover {
-    background-color: var(--teal);
-    color: var(--dark);
+    background-color: var(--color-brand);
+    color: #ffffff;
   }
 
   .noise-overlay {
     position: absolute;
     inset: 0;
-    opacity: 0.03;
+    opacity: 0.025;
     pointer-events: none;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
   }
 
   .gradient-text {
-    background: linear-gradient(135deg, #fff 0%, #008E97 100%);
+    background: linear-gradient(135deg, var(--color-heading) 0%, var(--color-brand) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
   .card-hover {
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all var(--duration-base) var(--ease-in-out);
   }
 
   .card-hover:hover {
-    transform: scale(1.03);
-    border-color: var(--teal);
+    transform: scale(1.02) translateY(-2px);
+    border-color: var(--color-brand);
+    box-shadow: 0 8px 32px rgba(0, 142, 151, 0.1);
   }
 
   /* Testimonials marquee */
@@ -181,7 +256,7 @@
   100% { transform: translateX(0); }
 }
 
-/* SocialProof logo scroll — translateX(-33.333%) because array is triplicated */
+/* SocialProof logo scroll */
 @keyframes marquee {
   0% { transform: translateX(0); }
   100% { transform: translateX(-33.333%); }
@@ -208,23 +283,30 @@
 }
 
 .animate-fade-up {
-  animation: fadeUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation: fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
-/* Scrollbar styling */
+/* Scrollbar styling — light theme */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--dark);
+  background: var(--color-bg-subtle);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(0, 142, 151, 0.6);
-  border-radius: 4px;
+  background: var(--color-brand-light);
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 142, 151, 0.8);
+  background: var(--color-brand);
+}
+
+/* Focus ring — accessible, brand-coloured */
+:focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 3px;
+  border-radius: 4px;
 }
