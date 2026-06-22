@@ -48,7 +48,7 @@ export function FinalCTA() {
             style={{ fontSize: "clamp(2rem, 5vw, 3rem)" }}
             variants={staggerItem}
           >
-            Ten days. One decision.
+            x Days. One decision.
           </m.h2>
 
           {/* Body */}
