@@ -3,7 +3,17 @@
 import React, { useEffect, useRef, useState } from "react";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
-import Image from "next/image";
+import { m, useReducedMotion } from "framer-motion";
+import { fadeUp, fadeIn, lineReveal, staggerContainer, staggerItem, VIEWPORT_ONCE } from "@/lib/motion";
+import { IdentityMorph } from "@/components/motion/IdentityMorph";
+
+const IDENTITY_WORDS = [
+  "achievers",
+  "leaders",
+  "the driven",
+  "executives",
+  "founders",
+];
 
 function AnimatedNumber({ target, suffix = "" }: { target: number; suffix?: string }) {
   const [count, setCount] = useState(0);
@@ -14,7 +24,7 @@ function AnimatedNumber({ target, suffix = "" }: { target: number; suffix?: stri
     const observer = new IntersectionObserver(
       ([entry]) => { if (entry.isIntersecting && !hasStarted) setHasStarted(true); },
       { threshold: 0.1 }
-);
+    );
     if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
   }, [hasStarted]);
@@ -34,87 +44,139 @@ function AnimatedNumber({ target, suffix = "" }: { target: number; suffix?: stri
   }, [hasStarted, target]);
 
   return (
-    <div ref={ref} className="text-3xl md:text-4xl font-bold text-[#C8963E] font-['Fraunces']">
+    <div ref={ref} className="text-3xl md:text-4xl font-bold text-[#008e97] font-['Fraunces']">
       {count}{suffix}
     </div>
   );
 }
 
-export function Hero() {
-  const heroRef = useRef<HTMLDivElement>(null);
+const heroVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.12,
+      delayChildren: 0.05,
+    },
+  },
+};
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (heroRef.current) {
-        heroRef.current.style.transform = `translateY(${window.scrollY * 0.3}px)`;
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+export function Hero() {
+  const reduce = useReducedMotion();
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0A0A0A] pt-24 pb-16 md:pt-0 md:pb-0">
-      <div className="noise-overlay z-10" />
-      <div className="absolute inset-0 bg-gradient-to-b from-[#0A0A0A] via-[#0A0A0A] to-[#0f1419]" />
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#008E97]/10 rounded-full blur-[120px]" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#C8963E]/5 rounded-full blur-[120px]" />
+    <section className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden bg-white pt-24 pb-16 md:pt-0 md:pb-0">
+      {/* Subtle dot-grid texture */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage: "radial-gradient(circle, #008e97 1px, transparent 1px)",
+          backgroundSize: "28px 28px",
+          opacity: 0.04,
+        }}
+      />
 
-      <div ref={heroRef} className="relative z-20 max-w-6xl mx-auto px-6 lg:px-8 text-center">
-        <div className="section-label mb-6 animate-fade-up" style={{ animationDelay: "0.1s" }}>
-          Leadership Coach & Author
-        </div>
+      {/* Ambient teal glow — top-right */}
+      <div className="absolute top-0 right-0 w-[600px] h-[500px] bg-[#e6f6f7] rounded-full blur-[120px] opacity-60 pointer-events-none -translate-y-1/4 translate-x-1/4" />
 
-        <h1
-          className="font-['Fraunces'] font-black text-white mb-8 animate-fade-up max-w-3xl mx-auto"
-          style={{ animationDelay: "0.2s", fontSize: "clamp(2.5rem, 6vw, 5.5rem)", lineHeight: 1.1, letterSpacing: "-0.02em" }}
+      {/* Ambient — bottom-left */}
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#f4fafb] rounded-full blur-[100px] opacity-80 pointer-events-none" />
+
+      <m.div
+        className="relative z-10 max-w-6xl mx-auto px-6 lg:px-8 text-center"
+        variants={heroVariants}
+        initial={reduce ? "visible" : "hidden"}
+        animate="visible"
+      >
+        {/* Eyebrow */}
+        <m.div className="section-label mb-6" variants={fadeIn}>
+          Leadership Coach &amp; Author
+        </m.div>
+
+        {/* Teal rule — scaleX reveal */}
+        <m.div
+          className="w-20 h-[2px] bg-[#008e97] mx-auto mb-8"
+          variants={lineReveal}
+        />
+
+        {/* Headline — word stagger */}
+        <m.h1
+          className="font-['Fraunces'] font-black text-[#0f1f20] mb-4 max-w-4xl mx-auto"
+          style={{
+            fontSize: "clamp(2.5rem, 6vw, 5rem)",
+            lineHeight: 1.1,
+            letterSpacing: "-0.02em",
+          }}
+          variants={staggerContainer}
         >
-          <span className="block text-white">You already know what to do.</span>
-          <span className="block text-[#008E97]">So why aren&apos;t you doing it?</span>
-        </h1>
+          <m.span className="block" variants={staggerItem}>
+            Built for{" "}
+            <IdentityMorph
+              words={IDENTITY_WORDS}
+              className="text-[#008e97] italic"
+            />
+            .
+          </m.span>
+          <m.span className="block" variants={staggerItem}>
+            You already know what to do.
+          </m.span>
+          <m.span className="block text-[#008e97]" variants={staggerItem}>
+            So why aren&apos;t you doing it?
+          </m.span>
+        </m.h1>
 
-        <p className="body-text max-w-xl mx-auto mb-10 text-white/70 animate-fade-up mt-6 text-base md:text-lg" style={{ animationDelay: "0.3s" }}>
+        <m.p
+          className="text-[#3d5a5c] max-w-xl mx-auto mb-10 text-base md:text-lg leading-relaxed"
+          variants={fadeUp}
+        >
           Most people don&apos;t lack knowledge. They lack the identity to act on it.
           I help driven professionals close that gap through The Forge System.
-        </p>
+        </m.p>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-up" style={{ animationDelay: "0.4s" }}>
+        <m.div
+          className="flex flex-col sm:flex-row items-center justify-center gap-4"
+          variants={fadeUp}
+        >
           <a
             href="https://calendly.com/olawolepelumisunday/30min"
             target="_blank"
             rel="noopener noreferrer"
-            className="gold-button inline-flex items-center gap-2 text-base w-full sm:w-auto justify-center"
+            className="primary-button text-base w-full sm:w-auto justify-center"
           >
             Book a Discovery Call
             <ArrowRight size={18} />
           </a>
           <Link
             href="/forge-program"
-            className="inline-flex items-center justify-center gap-2 text-white/70 hover:text-white transition-colors font-medium text-sm w-full sm:w-auto"
+            className="inline-flex items-center justify-center gap-2 text-[#3d5a5c] hover:text-[#008e97] transition-colors font-medium text-sm w-full sm:w-auto"
           >
             Learn about The Forge Program
           </Link>
-        </div>
+        </m.div>
 
-        <div className="mt-16 grid grid-cols-3 gap-4 md:gap-8 max-w-2xl mx-auto animate-fade-up" style={{ animationDelay: "0.5s" }}>
-          <div className="text-center">
+        {/* Stats */}
+        <m.div
+          className="mt-16 grid grid-cols-3 gap-4 md:gap-8 max-w-2xl mx-auto"
+          variants={staggerContainer}
+        >
+          <m.div className="text-center" variants={staggerItem}>
             <AnimatedNumber target={10} suffix="+" />
-            <div className="text-xs md:text-sm text-white/50 mt-1">Years Experience</div>
-          </div>
-          <div className="text-center border-x border-white/10">
+            <div className="text-xs md:text-sm text-[#7a9ea1] mt-1">Years Experience</div>
+          </m.div>
+          <m.div className="text-center border-x border-[#d0e8ea]" variants={staggerItem}>
             <AnimatedNumber target={5000} suffix="+" />
-            <div className="text-xs md:text-sm text-white/50 mt-1">People Trained</div>
-          </div>
-          <div className="text-center">
+            <div className="text-xs md:text-sm text-[#7a9ea1] mt-1">People Trained</div>
+          </m.div>
+          <m.div className="text-center" variants={staggerItem}>
             <AnimatedNumber target={2} />
-            <div className="text-xs md:text-sm text-white/50 mt-1">Continents</div>
-          </div>
-        </div>
-      </div>
+            <div className="text-xs md:text-sm text-[#7a9ea1] mt-1">Continents</div>
+          </m.div>
+        </m.div>
+      </m.div>
 
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 animate-bounce">
-        <div className="w-6 h-10 rounded-full border-2 border-white/20 flex justify-center pt-2">
-          <div className="w-1 h-2 bg-white/40 rounded-full" />
+      {/* Scroll indicator */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 animate-bounce">
+        <div className="w-6 h-10 rounded-full border-2 border-[#d0e8ea] flex justify-center pt-2">
+          <div className="w-1 h-2 bg-[#008e97] rounded-full opacity-60" />
         </div>
       </div>
     </section>
