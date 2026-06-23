@@ -30,8 +30,8 @@ function pages(): Page[] {
       content: (
         <div className="flex flex-col justify-center h-full py-8">
           <p className="text-[#3d5a5c] leading-relaxed mb-8 italic" style={{ lineHeight: 2 }}>
-            DEDICATION
-
+            DEDICATION<br />
+          <br />
             To God — for the calling.<br />
             To my family — for the foundation.<br />
             To my friends — for the fuel.
