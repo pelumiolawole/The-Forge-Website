@@ -1,4 +1,5 @@
 import { HookHero } from "@/components/book/HookHero";
+import { BannerCarousel } from "@/components/book/BannerCarousel";
 import { ForewoodStory } from "@/components/book/ForewoodStory";
 import { BookReveal } from "@/components/book/BookReveal";
 import { HabitQuiz } from "@/components/book/HabitQuiz";
@@ -12,6 +13,7 @@ export default function BookPage() {
   return (
     <main>
       <section id="hook-hero"><HookHero /></section>
+      <BannerCarousel />
       <section id="foreword-story"><ForewoodStory /></section>
       <section id="book-reveal"><BookReveal /></section>
       <section id="habit-quiz"><HabitQuiz /></section>
