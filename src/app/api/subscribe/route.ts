@@ -8,15 +8,25 @@ const GROUP_IDS: Record<string, string> = {
   book: "bYYgWK",
 };
 
+interface ScorecardFields {
+  score?: number | string;
+  dominant_domain?: string;
+  result_bucket?: string;
+  id_shift_statement?: string;
+  daily_action?: string;
+}
+
 interface SubscribePayload {
   email: string;
   firstName?: string;
   list?: keyof typeof GROUP_IDS;
+  groupId?: string;
+  fields?: ScorecardFields;
 }
 
 export async function POST(req: NextRequest) {
   try {
-    const { email, firstName, list = "newsletter" }: SubscribePayload = await req.json();
+    const { email, firstName, list = "newsletter", groupId, fields }: SubscribePayload = await req.json();
 
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       return NextResponse.json({ error: "Invalid email" }, { status: 400 });
@@ -26,7 +36,21 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Service unavailable" }, { status: 503 });
     }
 
-    const groupId = GROUP_IDS[list] ?? GROUP_IDS.newsletter;
+    const resolvedGroupId = groupId ?? GROUP_IDS[list] ?? GROUP_IDS.newsletter;
+
+    const body: Record<string, unknown> = {
+      email,
+      firstname: firstName || undefined,
+      groups: [resolvedGroupId],
+    };
+
+    if (fields && Object.keys(fields).length > 0) {
+      body.fields = {
+        ...fields,
+        // Sender.net custom fields must be strings
+        ...(fields.score !== undefined ? { score: String(fields.score) } : {}),
+      };
+    }
 
     const res = await fetch("https://api.sender.net/v2/subscribers", {
       method: "POST",
@@ -34,11 +58,7 @@ export async function POST(req: NextRequest) {
         "Content-Type": "application/json",
         Authorization: `Bearer ${SENDER_API_KEY}`,
       },
-      body: JSON.stringify({
-        email,
-        firstname: firstName || undefined,
-        groups: [groupId],
-      }),
+      body: JSON.stringify(body),
     });
 
     if (!res.ok && res.status !== 409) {

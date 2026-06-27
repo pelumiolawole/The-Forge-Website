@@ -448,6 +448,9 @@ export default function PettyAuditPage() {
             <Link href="/forge-program" className="inline-flex items-center justify-center gap-2 px-6 py-4 border-2 border-[#d0e8ea] rounded-lg text-[#3d5a5c] font-semibold hover:border-[#008e97] hover:text-[#008e97] transition-all w-full sm:w-auto text-sm">
               Learn about The Forge Program
             </Link>
+            <Link href="/scorecard" className="inline-flex items-center justify-center gap-2 px-6 py-4 border-2 border-[#008e97] rounded-lg text-[#008e97] font-semibold hover:bg-[#008e97] hover:text-white transition-all w-full sm:w-auto text-sm">
+              Take the Petty Habit Scorecard <ArrowRight size={16} />
+            </Link>
           </div>
         </section>
       )}
