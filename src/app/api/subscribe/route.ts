@@ -9,7 +9,7 @@ const GROUP_IDS: Record<string, string> = {
 };
 
 interface ScorecardFields {
-  score?: number;
+  score?: number | string;
   dominant_domain?: string;
   result_bucket?: string;
   id_shift_statement?: string;
@@ -45,7 +45,11 @@ export async function POST(req: NextRequest) {
     };
 
     if (fields && Object.keys(fields).length > 0) {
-      body.fields = fields;
+      body.fields = {
+        ...fields,
+        // Sender.net custom fields must be strings
+        ...(fields.score !== undefined ? { score: String(fields.score) } : {}),
+      };
     }
 
     const res = await fetch("https://api.sender.net/v2/subscribers", {
