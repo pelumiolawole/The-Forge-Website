@@ -4,9 +4,6 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { ArrowRight, Loader2, RotateCcw } from "lucide-react";
 
-const JUNO_URL =
-  "https://api.getjuno.com/api/v1/db/exposures/eyJfcmFpbHMiOnsiZGF0YSI6ImUyNjM1MTIxLTMyNWYtNGEwZi1iNGZhLTVkNTYxODQ0NGI2MSIsInB1ciI6InRhc2tfZGF0YWJhc2VfZXhwb3N1cmUvdGFza19kYXRhYmFzZV9leHBvc3VyZV9leGVjdXRpb24ifX0--efed42e38b0892d08279c47f243e0d38d48a6ac00c3a0102bc596dbc4a5ca341";
-
 const SCORECARD_GROUP_ID = "epny2X";
 
 const questions = [
@@ -231,22 +228,8 @@ export function ScorecardClient() {
 
     setResults(computed);
 
-    await Promise.allSettled([
-      fetch(JUNO_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: firstName || "Anonymous",
-          email,
-          score: scorePct,
-          dominant_domain: dominantDomain,
-          answers: JSON.stringify(answers),
-          result_bucket: bucket,
-          source: "petty_habit_scorecard",
-          submitted_at: new Date().toISOString().slice(0, 10),
-        }),
-      }),
-      fetch("/api/subscribe", {
+    try {
+      await fetch("/api/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -261,8 +244,10 @@ export function ScorecardClient() {
             daily_action: shift.action,
           },
         }),
-      }),
-    ]);
+      });
+    } catch (err) {
+      console.error("Scorecard submission error:", err);
+    }
 
     setSubmitting(false);
     setView("results");
