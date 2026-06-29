@@ -23,7 +23,7 @@ export function HookHero() {
   const init = reduce ? "visible" : "hidden";
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white pt-20">
+    <section className="relative overflow-hidden bg-white pt-20 pb-16">
       {/* Dot grid texture */}
       <div
         className="absolute inset-0 pointer-events-none"
@@ -74,7 +74,7 @@ export function HookHero() {
           This book closes the gap.
         </m.p>
 
-        {/* Rule after line 3 */}
+        {/* Rule after hook */}
         <m.div
           className="w-[60px] h-[2px] bg-[#008e97] mx-auto mb-10"
           variants={ruleAfterHook}
@@ -92,21 +92,6 @@ export function HookHero() {
             Launching
           </p>
           <CountdownTimer targetDate="2026-07-01T00:00:00Z" theme="light" />
-        </m.div>
-
-        {/* Scroll cue */}
-        <m.div
-          className="mt-16 flex flex-col items-center gap-2"
-          variants={fadeUpVariant(1.4)}
-          initial={init}
-          animate="visible"
-        >
-          <span className="text-[#7a9ea1] text-xs">Continue reading</span>
-          <m.div
-            className="w-[1px] h-8 bg-[#b3dde0]"
-            animate={{ scaleY: [1, 0.4, 1], opacity: [1, 0.3, 1] }}
-            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-          />
         </m.div>
       </div>
     </section>
