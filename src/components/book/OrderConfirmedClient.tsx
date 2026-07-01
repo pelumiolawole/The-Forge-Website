@@ -1,7 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { Check, Loader2 } from "lucide-react";
+import { Check, Loader2, ArrowRight } from "lucide-react";
+
+const WHATSAPP_URL =
+  "https://wa.me/2347068508343?text=Hi%20Coach%20PO%2C%20I%20just%20ordered%20Petty%20Little%20Things%20on%20Selar.%20My%20delivery%20details%20are%3A%0AName%3A%20%0AAddress%3A%20%0ACity%2FState%3A%20";
 
 export function OrderConfirmedClient() {
   const [firstName, setFirstName] = useState("");
@@ -35,27 +38,51 @@ export function OrderConfirmedClient() {
   return (
     <main className="min-h-screen bg-white pt-32 pb-20">
       <div className="max-w-[520px] mx-auto px-6">
+
+        {/* Page header */}
         <p className="text-[#008e97] text-xs font-semibold uppercase tracking-[0.18em] mb-6">
           Petty Little Things
         </p>
-
-        <div
-          className="w-10 h-[2px] bg-[#008e97] mb-8"
-        />
-
+        <div className="w-10 h-[2px] bg-[#008e97] mb-8" />
         <h1
           className="font-['Fraunces'] font-bold text-[#0f1f20] mb-5 leading-tight"
           style={{ fontSize: "clamp(1.8rem, 5vw, 2.8rem)", letterSpacing: "-0.02em" }}
         >
           Your order is confirmed. Welcome to the PLT family.
         </h1>
-
         <p className="text-[#3d5a5c] text-base leading-relaxed mb-3">
           Your copy of Petty Little Things is on its way. Dispatch begins mid-July &mdash; you&rsquo;ll hear from us before then.
         </p>
 
-        <p className="text-[#3d5a5c] text-base leading-relaxed mb-10">
-          Want to stay in the loop with Coach PO? Drop your name and email below.
+        {/* WhatsApp delivery section */}
+        <div className="mt-10 mb-10">
+          <h2 className="font-['Fraunces'] font-bold text-[#0f1f20] mb-3 leading-tight" style={{ fontSize: "clamp(1.2rem, 3vw, 1.6rem)" }}>
+            One last step &mdash; confirm your delivery on WhatsApp
+          </h2>
+          <p className="text-[#3d5a5c] text-base leading-relaxed mb-6">
+            Tap the button below. A message will open with your order details pre-filled.
+            Just add your address and send.
+          </p>
+          <a
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full inline-flex items-center justify-center gap-2 px-6 py-4 rounded-xl bg-[#008e97] text-white text-base font-semibold hover:bg-[#007a82] transition-colors mb-3"
+          >
+            Send My Delivery Details on WhatsApp
+            <ArrowRight size={18} />
+          </a>
+          <p className="text-[#7a9ea1] text-xs text-center leading-relaxed">
+            This opens WhatsApp with a pre-filled message. Add your name, address, and city then hit send.
+          </p>
+        </div>
+
+        {/* Divider */}
+        <div className="border-t border-[#d0e8ea] mb-10" />
+
+        {/* Newsletter opt-in */}
+        <p className="text-[#008e97] text-xs font-semibold uppercase tracking-[0.18em] mb-6">
+          While you&rsquo;re here
         </p>
 
         {!success ? (
