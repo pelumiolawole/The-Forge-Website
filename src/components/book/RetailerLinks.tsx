@@ -27,7 +27,7 @@ const retailers = [
   },
   {
     name: "Barnes & Noble",
-    logo: "/images/retailers/barnes-noble-logo.png",
+    logo: "/images/retailers/barnes-noble-logo.svg",
     text: "Order Ebook and Paperback on Barnes & Noble",
     url: "https://www.barnesandnoble.com/w/petty-little-things-pelumi-olawole/1150473408?ean=9798182503242",
   },
