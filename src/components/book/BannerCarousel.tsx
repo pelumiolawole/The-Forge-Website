@@ -7,15 +7,15 @@ import NextImage from "next/image";
 const banners = [
   {
     src: "/images/book/plt-banner-a.png",
-    alt: "Petty Little Things — Out July 1, Golden Hour",
+    alt: "Petty Little Things — Available Now",
   },
   {
     src: "/images/book/plt-banner-b.png",
-    alt: "Petty Little Things — Out July 1, Cinematic",
+    alt: "Petty Little Things — Available Now",
   },
   {
     src: "/images/book/plt-banner-c.png",
-    alt: "Petty Little Things — Out July 1, Warm",
+    alt: "Petty Little Things — Available Now",
   },
 ];
 
@@ -54,7 +54,6 @@ export function BannerCarousel() {
     if (!reduce && !isPaused) startInterval();
   }
 
-  // Reduced-motion fallback: static vertical stack
   if (reduce) {
     return (
       <m.section
@@ -90,7 +89,6 @@ export function BannerCarousel() {
       transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
       viewport={{ once: true, margin: "-10%" }}
     >
-      {/* Carousel */}
       <div
         className="relative w-full aspect-video overflow-hidden"
         onMouseEnter={() => setIsPaused(true)}
@@ -116,7 +114,6 @@ export function BannerCarousel() {
           </m.div>
         </AnimatePresence>
 
-        {/* Dot indicators */}
         <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 z-10">
           {banners.map((_, i) => (
             <button
@@ -151,18 +148,12 @@ export function BannerCarousel() {
 
 function CaptionBar() {
   return (
-    <div className="w-full bg-[#f4fafb] border-t border-[#d0e8ea] px-6 py-3 flex flex-col sm:flex-row items-center justify-between gap-1 sm:gap-0">
+    <div className="w-full bg-[#f4fafb] border-t border-[#d0e8ea] px-6 py-3 flex items-center justify-center">
       <span
-        className="text-[#7a9ea1] text-center sm:text-left"
+        className="text-[#7a9ea1] text-center"
         style={{ fontSize: 13, letterSpacing: "0.06em" }}
       >
-        Petty Little Things — Out July 1, 2026
-      </span>
-      <span
-        className="text-[#7a9ea1] text-center sm:text-right"
-        style={{ fontSize: 13, letterSpacing: "0.06em" }}
-      >
-        Kindle &amp; Paperback · Amazon
+        Petty Little Things &mdash; Available Now
       </span>
     </div>
   );

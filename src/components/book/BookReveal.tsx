@@ -1,7 +1,7 @@
 "use client";
 
 import { m, useReducedMotion } from "framer-motion";
-import { ArrowRight, Download } from "lucide-react";
+import { Download } from "lucide-react";
 import { BookTilt } from "@/components/book/BookTilt";
 import { staggerContainer, staggerItem, VIEWPORT_ONCE } from "@/lib/motion";
 
@@ -80,16 +80,7 @@ export function BookReveal() {
 
             <m.div className="h-px bg-[#d0e8ea] mb-8" variants={staggerItem} />
 
-            <m.div className="flex flex-col gap-3" variants={staggerItem}>
-              <a
-                href="https://www.amazon.co.uk/dp/B0H4J1NYBY"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-6 py-4 bg-[#008e97] text-white font-semibold rounded-lg hover:bg-[#007a82] transition-colors text-sm"
-              >
-                Kindle Edition &mdash; Order on Amazon
-                <ArrowRight size={16} />
-              </a>
+            <m.div variants={staggerItem}>
               <a
                 href="#sample-reader"
                 className="inline-flex items-center justify-center gap-2 px-6 py-4 border-[1.5px] border-[#008e97] text-[#008e97] font-semibold rounded-lg hover:bg-[#e6f6f7] transition-colors text-sm"
@@ -98,10 +89,6 @@ export function BookReveal() {
                 Read the First Chapter Free
               </a>
             </m.div>
-
-            <m.p className="text-[#7a9ea1] text-[12px] mt-4 text-center" variants={staggerItem}>
-              Paperback + Kindle available on Amazon
-            </m.p>
           </m.div>
 
         </div>

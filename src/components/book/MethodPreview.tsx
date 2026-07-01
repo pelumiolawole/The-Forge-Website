@@ -46,6 +46,12 @@ const blocks = [
 export function MethodPreview() {
   const reduce = useReducedMotion();
 
+  function scrollToRetailers() {
+    document.getElementById("retailer-links")?.scrollIntoView({
+      behavior: reduce ? "auto" : "smooth",
+    });
+  }
+
   return (
     <section className="bg-[#f4fafb] py-20 md:py-28">
       <div className="max-w-[760px] mx-auto px-6">
@@ -103,7 +109,7 @@ export function MethodPreview() {
           whileInView="visible"
           viewport={VIEWPORT_ONCE}
         >
-          Habit #01 — Hitting Snooze
+          Habit #01 &mdash; Hitting Snooze
         </m.p>
 
         {/* 4 content blocks */}
@@ -141,15 +147,13 @@ export function MethodPreview() {
         >
           <p className="text-[#0f1f20] font-semibold mb-1">Identity first. Strategy second. Results inevitable.</p>
           <p className="text-[#7a9ea1] mb-8">This is one habit. There are fifty.</p>
-          <a
-            href="https://www.amazon.co.uk/dp/B0H4J1NYBY"
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            onClick={scrollToRetailers}
             className="inline-flex items-center gap-2 px-6 py-4 bg-[#008e97] text-white font-semibold rounded-lg hover:bg-[#007a82] transition-colors text-sm"
           >
             Get all 50
             <ArrowRight size={16} />
-          </a>
+          </button>
         </m.div>
       </div>
     </section>

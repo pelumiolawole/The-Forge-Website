@@ -39,7 +39,7 @@ export function OrderConfirmedClient() {
     <main className="min-h-screen bg-white pt-32 pb-20">
       <div className="max-w-[520px] mx-auto px-6">
 
-        {/* Page header */}
+        {/* Header */}
         <p className="text-[#008e97] text-xs font-semibold uppercase tracking-[0.18em] mb-6">
           Petty Little Things
         </p>
@@ -48,40 +48,32 @@ export function OrderConfirmedClient() {
           className="font-['Fraunces'] font-bold text-[#0f1f20] mb-5 leading-tight"
           style={{ fontSize: "clamp(1.8rem, 5vw, 2.8rem)", letterSpacing: "-0.02em" }}
         >
-          Your order is confirmed. Welcome to the PLT family.
+          Your order is confirmed.
         </h1>
-        <p className="text-[#3d5a5c] text-base leading-relaxed mb-3">
-          Your copy of Petty Little Things is on its way. Dispatch begins mid-July &mdash; you&rsquo;ll hear from us before then.
+        <p className="text-[#3d5a5c] text-base leading-relaxed mb-10">
+          Your book and delivery fee are paid. One last step &mdash; tap the button below to send
+          me your delivery details on WhatsApp. I&rsquo;ll confirm your delivery date from there.
         </p>
 
-        {/* WhatsApp delivery section */}
-        <div className="mt-10 mb-10">
-          <h2 className="font-['Fraunces'] font-bold text-[#0f1f20] mb-3 leading-tight" style={{ fontSize: "clamp(1.2rem, 3vw, 1.6rem)" }}>
-            One last step &mdash; confirm your delivery on WhatsApp
-          </h2>
-          <p className="text-[#3d5a5c] text-base leading-relaxed mb-6">
-            Tap the button below. A message will open with your order details pre-filled.
-            Just add your address and send.
-          </p>
-          <a
-            href={WHATSAPP_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full inline-flex items-center justify-center gap-2 px-6 py-4 rounded-xl bg-[#008e97] text-white text-base font-semibold hover:bg-[#007a82] transition-colors mb-3"
-          >
-            Send My Delivery Details on WhatsApp
-            <ArrowRight size={18} />
-          </a>
-          <p className="text-[#7a9ea1] text-xs text-center leading-relaxed">
-            This opens WhatsApp with a pre-filled message. Add your name, address, and city then hit send.
-          </p>
-        </div>
+        {/* WhatsApp CTA */}
+        <a
+          href={WHATSAPP_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="w-full inline-flex items-center justify-center gap-2 px-6 py-4 rounded-xl bg-[#008e97] text-white text-base font-semibold hover:bg-[#007a82] transition-colors mb-3"
+        >
+          Send My Delivery Details on WhatsApp
+          <ArrowRight size={18} />
+        </a>
+        <p className="text-[#7a9ea1] text-xs text-center leading-relaxed mb-12">
+          This opens WhatsApp with a pre-filled message. Just add your name, address, and city then hit send.
+        </p>
 
         {/* Divider */}
         <div className="border-t border-[#d0e8ea] mb-10" />
 
         {/* Newsletter opt-in */}
-        <p className="text-[#008e97] text-xs font-semibold uppercase tracking-[0.18em] mb-6">
+        <p className="text-[#008e97] text-xs font-semibold uppercase tracking-[0.18em] mb-8">
           While you&rsquo;re here
         </p>
 
@@ -131,14 +123,14 @@ export function OrderConfirmedClient() {
             </p>
           </form>
         ) : (
-          <div className="py-10">
+          <div className="py-8 text-center">
             <div className="w-14 h-14 mx-auto mb-6 rounded-full bg-[#e6f6f7] flex items-center justify-center">
               <Check className="w-7 h-7 text-[#008e97]" />
             </div>
-            <p className="font-['Fraunces'] text-xl font-bold text-[#0f1f20] mb-3 text-center">
+            <p className="font-['Fraunces'] text-xl font-bold text-[#0f1f20] mb-3">
               You&rsquo;re on the list, {firstName}.
             </p>
-            <p className="text-[#3d5a5c] text-base text-center leading-relaxed">
+            <p className="text-[#3d5a5c] text-base leading-relaxed">
               Check your inbox &mdash; something&rsquo;s coming.
             </p>
           </div>
