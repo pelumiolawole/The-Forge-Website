@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Navigation } from "@/components/landing/navigation/Navigation";
 import { Analytics } from "@vercel/analytics/react";
 import { MotionProvider } from "@/components/motion/MotionProvider";
 import { ScrollProgressBar } from "@/components/motion/ScrollProgressBar";
+import { ConditionalNav, ConditionalFooter } from "@/components/layout/ConditionalChrome";
 
 export const metadata: Metadata = {
   title: "Coach PO | Identity Coach & Author",
@@ -17,7 +17,6 @@ export const metadata: Metadata = {
   },
 };
 
-import { Footer } from "@/components/landing/navigation/Footer";
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -32,9 +31,9 @@ export default function RootLayout({
       <body className="antialiased">
         <MotionProvider>
           <ScrollProgressBar />
-          <Navigation />
+          <ConditionalNav />
           {children}
-          <Footer />
+          <ConditionalFooter />
         </MotionProvider>
         <Analytics />
       </body>
