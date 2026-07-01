@@ -10,7 +10,6 @@ export function BookReveal() {
 
   return (
     <section id="book-reveal" className="relative bg-white py-24 md:py-32 overflow-hidden">
-      {/* Atmospheric video backdrop */}
       <video
         src="/videos/book-hero.webm"
         autoPlay
@@ -24,7 +23,6 @@ export function BookReveal() {
       <div className="relative z-10 max-w-6xl mx-auto px-6 lg:px-8">
         <div className="grid lg:grid-cols-[45fr_55fr] gap-12 lg:gap-16 items-center">
 
-          {/* Left — Book cover */}
           <m.div
             className="flex justify-center"
             variants={staggerItem}
@@ -41,7 +39,6 @@ export function BookReveal() {
             />
           </m.div>
 
-          {/* Right — Details */}
           <m.div
             variants={staggerContainer}
             initial={reduce ? "visible" : "hidden"}
@@ -53,7 +50,7 @@ export function BookReveal() {
               style={{ fontSize: 11 }}
               variants={staggerItem}
             >
-              Available Now on Kindle
+              Available Now
             </m.p>
 
             <m.h2
@@ -90,7 +87,7 @@ export function BookReveal() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 px-6 py-4 bg-[#008e97] text-white font-semibold rounded-lg hover:bg-[#007a82] transition-colors text-sm"
               >
-                Pre-order on Kindle — Available Now
+                Kindle Edition &mdash; Order on Amazon
                 <ArrowRight size={16} />
               </a>
               <a
@@ -103,7 +100,7 @@ export function BookReveal() {
             </m.div>
 
             <m.p className="text-[#7a9ea1] text-[12px] mt-4 text-center" variants={staggerItem}>
-              Paperback + Kindle available July 1 on Amazon
+              Paperback + Kindle available on Amazon
             </m.p>
           </m.div>
 

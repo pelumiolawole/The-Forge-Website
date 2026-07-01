@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { m, useReducedMotion } from "framer-motion";
 import { ArrowRight, Check, Loader2 } from "lucide-react";
-import { CountdownTimer } from "@/components/book/CountdownTimer";
 import { staggerContainer, staggerItem } from "@/lib/motion";
 
 export function FinalCTA() {
@@ -22,7 +21,7 @@ export function FinalCTA() {
         body: JSON.stringify({ email, senderGroupId: "e7yoL1" }),
       });
     } catch {
-      // fail silently — user still sees success
+      // fail silently
     }
     setSuccess(true);
     setSubmitting(false);
@@ -37,52 +36,34 @@ export function FinalCTA() {
           whileInView="visible"
           viewport={{ once: true }}
         >
-          {/* Countdown */}
-          <m.div className="mb-8" variants={staggerItem}>
-            <CountdownTimer targetDate="2026-07-01T00:00:00Z" theme="dark" />
-          </m.div>
-
-          {/* Headline */}
           <m.h2
             className="text-white font-extrabold leading-tight mb-5"
             style={{ fontSize: "clamp(2rem, 5vw, 3rem)" }}
             variants={staggerItem}
           >
-            x Days. One decision.
+            The habits are already running your life.
           </m.h2>
 
-          {/* Body */}
           <m.p
             className="mb-10 leading-relaxed"
             style={{ color: "rgba(255,255,255,0.85)", fontSize: "1.1rem", lineHeight: 1.7 }}
             variants={staggerItem}
           >
-            The habits in this book are already running your life. The only question is whether
-            they&rsquo;re running it for you or against you.
+            The only question is whether they&rsquo;re running it for you or against you.
           </m.p>
 
-          {/* CTA buttons */}
-          <m.div className="flex flex-col sm:flex-row gap-4 justify-center mb-4" variants={staggerItem}>
+          <m.div className="flex flex-col sm:flex-row gap-4 justify-center mb-12" variants={staggerItem}>
             <a
               href="https://www.amazon.co.uk/dp/B0H4J1NYBY"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 px-7 py-4 bg-white text-[#008e97] font-bold rounded-lg hover:bg-white/90 transition-colors text-sm"
             >
-              Pre-order on Kindle — Available Now
+              Kindle Edition &mdash; Order on Amazon
               <ArrowRight size={16} />
             </a>
           </m.div>
 
-          <m.p
-            className="text-[12px] mb-12"
-            style={{ color: "rgba(255,255,255,0.6)" }}
-            variants={staggerItem}
-          >
-            Also available in paperback from July 1 on Amazon
-          </m.p>
-
-          {/* Email waitlist */}
           <m.div variants={staggerItem}>
             {!success ? (
               <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
@@ -107,7 +88,7 @@ export function FinalCTA() {
             ) : (
               <div className="flex items-center justify-center gap-2 text-white font-medium">
                 <Check size={16} />
-                You&rsquo;re on the list. We&rsquo;ll email you on July 1.
+                You&rsquo;re on the list.
               </div>
             )}
           </m.div>

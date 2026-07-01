@@ -1,7 +1,6 @@
 "use client";
 
 import { m, useReducedMotion, type Variants } from "framer-motion";
-import { CountdownTimer } from "@/components/book/CountdownTimer";
 
 const fadeUpVariant = (delay = 0): Variants => ({
   hidden: { opacity: 0, y: 20 },
@@ -35,7 +34,6 @@ export function HookHero() {
       />
 
       <div className="relative z-10 max-w-[720px] mx-auto px-6 text-center">
-        {/* Teal anchor line */}
         <m.div
           className="w-[60px] h-[2px] bg-[#008e97] mx-auto mb-10"
           variants={lineReveal}
@@ -43,7 +41,6 @@ export function HookHero() {
           animate="visible"
         />
 
-        {/* Hook lines */}
         <m.p
           className="text-[#3d5a5c] italic leading-relaxed mb-4"
           style={{ fontSize: "1.25rem" }}
@@ -74,25 +71,12 @@ export function HookHero() {
           This book closes the gap.
         </m.p>
 
-        {/* Rule after hook */}
         <m.div
-          className="w-[60px] h-[2px] bg-[#008e97] mx-auto mb-10"
+          className="w-[60px] h-[2px] bg-[#008e97] mx-auto"
           variants={ruleAfterHook}
           initial={init}
           animate="visible"
         />
-
-        {/* Countdown */}
-        <m.div
-          variants={fadeUpVariant(1.1)}
-          initial={init}
-          animate="visible"
-        >
-          <p className="text-[#7a9ea1] font-semibold tracking-[0.15em] text-[11px] uppercase mb-4">
-            Launching
-          </p>
-          <CountdownTimer targetDate="2026-07-01T00:00:00Z" theme="light" />
-        </m.div>
       </div>
     </section>
   );
