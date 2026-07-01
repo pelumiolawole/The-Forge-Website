@@ -1,36 +1,24 @@
 "use client";
 
 import { useState } from "react";
-import { m, useReducedMotion } from "framer-motion";
-import { ArrowRight, Check, Loader2 } from "lucide-react";
-import { staggerContainer, staggerItem } from "@/lib/motion";
+import { Check, Loader2 } from "lucide-react";
 
 export function OrderConfirmedClient() {
-  const reduce = useReducedMotion();
-  const [form, setForm] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
-    address: "",
-  });
+  const [firstName, setFirstName] = useState("");
+  const [email, setEmail] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
-
-  function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
-    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  }
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setSubmitting(true);
     setError(false);
     try {
-      const res = await fetch("/api/nigeria-order", {
+      const res = await fetch("/api/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ email, firstName, list: "newsletter" }),
       });
       if (!res.ok) throw new Error("Failed");
       setSuccess(true);
@@ -46,124 +34,88 @@ export function OrderConfirmedClient() {
 
   return (
     <main className="min-h-screen bg-white pt-32 pb-20">
-      <div className="max-w-[560px] mx-auto px-6">
-        <m.div
-          variants={staggerContainer}
-          initial={reduce ? "visible" : "hidden"}
-          animate="visible"
+      <div className="max-w-[520px] mx-auto px-6">
+        <p className="text-[#008e97] text-xs font-semibold uppercase tracking-[0.18em] mb-6">
+          Petty Little Things
+        </p>
+
+        <div
+          className="w-10 h-[2px] bg-[#008e97] mb-8"
+        />
+
+        <h1
+          className="font-['Fraunces'] font-bold text-[#0f1f20] mb-5 leading-tight"
+          style={{ fontSize: "clamp(1.8rem, 5vw, 2.8rem)", letterSpacing: "-0.02em" }}
         >
-          <m.p
-            className="text-[#008e97] text-xs font-semibold uppercase tracking-[0.18em] mb-4"
-            variants={staggerItem}
-          >
-            Nigeria Orders
-          </m.p>
+          Your order is confirmed. Welcome to the PLT family.
+        </h1>
 
-          <m.h1
-            className="font-['Fraunces'] font-bold text-[#0f1f20] mb-4 leading-tight"
-            style={{ fontSize: "clamp(1.8rem, 5vw, 2.8rem)", letterSpacing: "-0.02em" }}
-            variants={staggerItem}
-          >
-            You&rsquo;re in. Let&rsquo;s get your book to you.
-          </m.h1>
+        <p className="text-[#3d5a5c] text-base leading-relaxed mb-3">
+          Your copy of Petty Little Things is on its way. Dispatch begins mid-July &mdash; you&rsquo;ll hear from us before then.
+        </p>
 
-          <m.p className="text-[#3d5a5c] text-base leading-relaxed mb-10" variants={staggerItem}>
-            Complete your delivery details below so we can confirm your order and get in touch about
-            delivery.
-          </m.p>
+        <p className="text-[#3d5a5c] text-base leading-relaxed mb-10">
+          Want to stay in the loop with Coach PO? Drop your name and email below.
+        </p>
 
-          {!success ? (
-            <m.form onSubmit={handleSubmit} className="space-y-4" variants={staggerItem}>
-              <div className="grid grid-cols-2 gap-4">
-                <input
-                  type="text"
-                  name="firstName"
-                  value={form.firstName}
-                  onChange={handleChange}
-                  placeholder="First Name"
-                  required
-                  className={inputClass}
-                />
-                <input
-                  type="text"
-                  name="lastName"
-                  value={form.lastName}
-                  onChange={handleChange}
-                  placeholder="Last Name"
-                  required
-                  className={inputClass}
-                />
-              </div>
-              <input
-                type="email"
-                name="email"
-                value={form.email}
-                onChange={handleChange}
-                placeholder="Email Address"
-                required
-                className={inputClass}
-              />
-              <input
-                type="tel"
-                name="phone"
-                value={form.phone}
-                onChange={handleChange}
-                placeholder="Phone Number"
-                required
-                className={inputClass}
-              />
-              <textarea
-                name="address"
-                value={form.address}
-                onChange={handleChange}
-                placeholder="Delivery Address (include city and state)"
-                required
-                rows={4}
-                className={`${inputClass} resize-none`}
-              />
+        {!success ? (
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <input
+              type="text"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+              placeholder="First Name"
+              required
+              className={inputClass}
+            />
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Email Address"
+              required
+              className={inputClass}
+            />
 
-              {error && (
-                <p className="text-red-500 text-sm text-center">
-                  Something went wrong. Please try again or email{" "}
-                  <a href="mailto:coach@pelumiolawole.com" className="underline">
-                    coach@pelumiolawole.com
-                  </a>{" "}
-                  directly.
-                </p>
-              )}
-
-              <button
-                type="submit"
-                disabled={submitting}
-                className="w-full inline-flex items-center justify-center gap-2 px-6 py-4 rounded-xl bg-[#008e97] text-white text-base font-semibold hover:bg-[#007a82] disabled:opacity-60 transition-colors"
-              >
-                {submitting ? (
-                  <><Loader2 size={18} className="animate-spin" /> Submitting&hellip;</>
-                ) : (
-                  <>Confirm My Details <ArrowRight size={18} /></>
-                )}
-              </button>
-            </m.form>
-          ) : (
-            <m.div
-              className="text-center py-12"
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <div className="w-16 h-16 mx-auto mb-5 rounded-full bg-[#e6f6f7] flex items-center justify-center">
-                <Check className="w-8 h-8 text-[#008e97]" />
-              </div>
-              <h2 className="font-['Fraunces'] text-2xl font-bold text-[#0f1f20] mb-3">
-                Thank you, {form.firstName}. Your details are confirmed.
-              </h2>
-              <p className="text-[#3d5a5c] text-base leading-relaxed">
-                Check your email for your order confirmation &mdash; it includes a WhatsApp link
-                to finalise your delivery.
+            {error && (
+              <p className="text-red-500 text-sm text-center">
+                Something went wrong. Please try again or email{" "}
+                <a href="mailto:coach@pelumiolawole.com" className="underline">
+                  coach@pelumiolawole.com
+                </a>{" "}
+                directly.
               </p>
-            </m.div>
-          )}
-        </m.div>
+            )}
+
+            <button
+              type="submit"
+              disabled={submitting}
+              className="w-full inline-flex items-center justify-center gap-2 px-6 py-4 rounded-xl bg-[#008e97] text-white text-base font-semibold hover:bg-[#007a82] disabled:opacity-60 transition-colors"
+            >
+              {submitting ? (
+                <><Loader2 size={18} className="animate-spin" /> Submitting&hellip;</>
+              ) : (
+                "Yes, keep me updated"
+              )}
+            </button>
+
+            <p className="text-[#b3dde0] text-xs text-center leading-relaxed">
+              No spam. Coaching insights, book updates, and the occasional truth you didn&rsquo;t ask for.
+            </p>
+          </form>
+        ) : (
+          <div className="py-10">
+            <div className="w-14 h-14 mx-auto mb-6 rounded-full bg-[#e6f6f7] flex items-center justify-center">
+              <Check className="w-7 h-7 text-[#008e97]" />
+            </div>
+            <p className="font-['Fraunces'] text-xl font-bold text-[#0f1f20] mb-3 text-center">
+              You&rsquo;re on the list, {firstName}.
+            </p>
+            <p className="text-[#3d5a5c] text-base text-center leading-relaxed">
+              Check your inbox &mdash; something&rsquo;s coming.
+            </p>
+          </div>
+        )}
       </div>
     </main>
   );

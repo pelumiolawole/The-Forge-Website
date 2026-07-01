@@ -1,30 +1,16 @@
 "use client";
 
-import { useState } from "react";
 import { m, useReducedMotion } from "framer-motion";
-import { ArrowRight, Check, Loader2 } from "lucide-react";
+import { ArrowUp } from "lucide-react";
 import { staggerContainer, staggerItem } from "@/lib/motion";
 
 export function FinalCTA() {
   const reduce = useReducedMotion();
-  const [email, setEmail] = useState("");
-  const [submitting, setSubmitting] = useState(false);
-  const [success, setSuccess] = useState(false);
 
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    setSubmitting(true);
-    try {
-      await fetch("/api/subscribe", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, senderGroupId: "e7yoL1" }),
-      });
-    } catch {
-      // fail silently
-    }
-    setSuccess(true);
-    setSubmitting(false);
+  function scrollToRetailers() {
+    document.getElementById("retailer-links")?.scrollIntoView({
+      behavior: reduce ? "auto" : "smooth",
+    });
   }
 
   return (
@@ -52,45 +38,14 @@ export function FinalCTA() {
             The only question is whether they&rsquo;re running it for you or against you.
           </m.p>
 
-          <m.div className="flex flex-col sm:flex-row gap-4 justify-center mb-12" variants={staggerItem}>
-            <a
-              href="https://www.amazon.co.uk/dp/B0H4J1NYBY"
-              target="_blank"
-              rel="noopener noreferrer"
+          <m.div variants={staggerItem}>
+            <button
+              onClick={scrollToRetailers}
               className="inline-flex items-center justify-center gap-2 px-7 py-4 bg-white text-[#008e97] font-bold rounded-lg hover:bg-white/90 transition-colors text-sm"
             >
-              Kindle Edition &mdash; Order on Amazon
-              <ArrowRight size={16} />
-            </a>
-          </m.div>
-
-          <m.div variants={staggerItem}>
-            {!success ? (
-              <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="your@email.com"
-                  required
-                  className="flex-1 px-4 py-3 rounded-lg text-white font-medium placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-white/40 transition-all text-sm"
-                  style={{ background: "rgba(255,255,255,0.15)", border: "1px solid rgba(255,255,255,0.3)" }}
-                />
-                <button
-                  type="submit"
-                  disabled={submitting}
-                  className="px-5 py-3 bg-white text-[#008e97] font-bold rounded-lg hover:bg-white/90 transition-colors text-sm disabled:opacity-60 flex items-center justify-center gap-2"
-                >
-                  {submitting ? <Loader2 size={15} className="animate-spin" /> : null}
-                  Notify Me
-                </button>
-              </form>
-            ) : (
-              <div className="flex items-center justify-center gap-2 text-white font-medium">
-                <Check size={16} />
-                You&rsquo;re on the list.
-              </div>
-            )}
+              <ArrowUp size={16} />
+              Order Now
+            </button>
           </m.div>
         </m.div>
       </div>

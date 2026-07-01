@@ -1,7 +1,7 @@
 "use client";
 
 import { m, useReducedMotion } from "framer-motion";
-import { ArrowRight, ExternalLink } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import { staggerContainer, staggerItem, VIEWPORT_ONCE } from "@/lib/motion";
 
 export function NigeriaOrder() {
@@ -31,42 +31,15 @@ export function NigeriaOrder() {
             Order Your Physical Copy&nbsp;&mdash; Nigeria
           </m.h2>
 
-          <m.div className="space-y-2 mb-6" variants={staggerItem}>
+          <m.div className="space-y-2 mb-8" variants={staggerItem}>
             <p className="text-[#3d5a5c] text-base leading-relaxed">
               Paperback copies are available for delivery across Nigeria.
             </p>
             <p className="text-[#3d5a5c] text-base leading-relaxed">
               Copies ship mid to end of July 2026.
             </p>
-          </m.div>
-
-          {/* Delivery pricing */}
-          <m.div
-            className="bg-white border border-[#d0e8ea] rounded-xl p-5 mb-6"
-            variants={staggerItem}
-          >
-            <p className="text-[#0f1f20] font-semibold text-sm mb-3">Delivery</p>
-            <div className="space-y-2">
-              <div className="flex justify-between items-center">
-                <span className="text-[#3d5a5c] text-sm">Delivery within Lagos</span>
-                <span className="text-[#0f1f20] font-semibold text-sm">&#8358;5,000</span>
-              </div>
-              <div className="flex justify-between items-center">
-                <span className="text-[#3d5a5c] text-sm">Delivery outside Lagos</span>
-                <span className="text-[#0f1f20] font-semibold text-sm">&#8358;7,500</span>
-              </div>
-            </div>
-            <p className="text-[#7a9ea1] text-xs mt-3">Delivery cost is paid separately after purchase.</p>
-          </m.div>
-
-          {/* Disclaimer — above CTA */}
-          <m.div
-            className="bg-[#e6f6f7] border border-[#b3dde0] rounded-xl p-4 mb-6"
-            variants={staggerItem}
-          >
-            <p className="text-[#3d5a5c] text-sm leading-relaxed">
-              Delivery cost is not included in your order. Your location and delivery fee will be
-              confirmed via WhatsApp after purchase. Delivery timeline is mid-July to early August 2026.
+            <p className="text-[#3d5a5c] text-base leading-relaxed">
+              Book and delivery fee paid together at checkout.
             </p>
           </m.div>
 
@@ -76,20 +49,10 @@ export function NigeriaOrder() {
               href="https://selar.com/84957u1r65"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full inline-flex items-center justify-center gap-2 px-6 py-4 bg-[#008e97] text-white font-semibold rounded-xl hover:bg-[#007a82] transition-colors text-base mb-4"
+              className="w-full inline-flex items-center justify-center gap-2 px-6 py-4 bg-[#008e97] text-white font-semibold rounded-xl hover:bg-[#007a82] transition-colors text-base mb-5"
             >
               Order Now &mdash; &#8358;12,500
               <ExternalLink size={16} />
-            </a>
-          </m.div>
-
-          {/* Secondary CTA */}
-          <m.div className="text-center mb-5" variants={staggerItem}>
-            <a
-              href="/order-confirmed"
-              className="text-[#008e97] text-sm font-medium hover:underline inline-flex items-center gap-1"
-            >
-              Confirm your delivery details after payment <ArrowRight size={14} />
             </a>
           </m.div>
 
