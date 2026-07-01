@@ -8,12 +8,14 @@ const GROUP_IDS: Record<string, string> = {
   book: "bYYgWK",
 };
 
-interface ScorecardFields {
+// TODO: confirm "location" matches the exact custom field key in the Sender.net dashboard
+interface CustomFields {
   score?: number | string;
   dominant_domain?: string;
   result_bucket?: string;
   id_shift_statement?: string;
   daily_action?: string;
+  location?: string;
 }
 
 interface SubscribePayload {
@@ -21,7 +23,7 @@ interface SubscribePayload {
   firstName?: string;
   list?: keyof typeof GROUP_IDS;
   groupId?: string;
-  fields?: ScorecardFields;
+  fields?: CustomFields;
 }
 
 export async function POST(req: NextRequest) {
