@@ -164,7 +164,7 @@ export function H2PageClient() {
               <m.p variants={staggerItem}>
                 Before you set a single goal for the second half, you need to know who you&apos;re
                 actually setting it for. The H2 Blueprint starts where every other productivity
-                tool skips &mdash; your identity.
+                tool skips: your identity.
               </m.p>
               <m.p variants={staggerItem}>
                 Most people review their H1 results and set better H2 targets. This workbook
@@ -173,7 +173,7 @@ export function H2PageClient() {
               </m.p>
               <m.p variants={staggerItem}>
                 Because the version of you that didn&apos;t follow through on H1 is the same
-                version who will write the H2 goals &mdash; unless something changes first.
+                version who will write the H2 goals, unless something changes first.
                 This workbook changes it first.
               </m.p>
             </m.div>
