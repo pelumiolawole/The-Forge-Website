@@ -15,6 +15,7 @@ const footerLinks = {
   legal: [
     { label: "Privacy Policy",     href: "/privacy-policy" },
     { label: "Terms and Conditions", href: "/terms" },
+    { label: "Refund Policy",      href: "/refund-policy" },
   ],
   connect: [
     { label: "Book a Discovery Call", href: "https://calendly.com/olawolepelumisunday/30min", external: true },
