@@ -4,8 +4,19 @@ import React, { useState } from "react";
 import { ArrowRight, Download, X, Loader2, Check } from "lucide-react";
 import Link from "next/link";
 import { m } from "framer-motion";
-import { fadeLeft, fadeRight, staggerContainer, staggerItem, VIEWPORT_ONCE } from "@/lib/motion";
+import { fadeRight, staggerContainer, staggerItem, VIEWPORT_ONCE } from "@/lib/motion";
 import { BookTilt } from "@/components/book/BookTilt";
+
+const PLATFORMS = [
+  { label: "Amazon", links: [
+    { text: "UK", url: "https://www.amazon.co.uk/dp/B0H4J1NYBY" },
+    { text: "US", url: "https://www.amazon.com/dp/B0H4J1NYBY" },
+  ]},
+  { label: "Apple Books", links: [{ text: null, url: "https://books.apple.com/us/book/petty-little-things/id6784008007" }] },
+  { label: "Kobo", links: [] },
+  { label: "Google Play", links: [{ text: null, url: "https://play.google.com/store/books/details?id=bMTtEQAAQBAJ" }] },
+  { label: "Barnes & Noble", links: [{ text: null, url: "https://www.barnesandnoble.com/w/petty-little-things-pelumi-olawole/1150473408?ean=9798182503242" }] },
+];
 
 export function BookPreview() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -74,12 +85,62 @@ export function BookPreview() {
                 </p>
               </m.div>
 
+              {/* Platform availability */}
+              <m.div className="mt-6" variants={staggerItem}>
+                <p className="text-[#3d5a5c] text-sm leading-relaxed">
+                  Available now on{" "}
+                  {PLATFORMS.map((p, i) => (
+                    <React.Fragment key={p.label}>
+                      {i > 0 && <span className="text-[#b3dde0] mx-1">&middot;</span>}
+                      {p.links.length === 0 ? (
+                        <span className="text-[#3d5a5c]">{p.label}</span>
+                      ) : p.links.length === 1 ? (
+                        <a
+                          href={p.links[0].url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-[#008e97] hover:underline"
+                        >
+                          {p.label}
+                        </a>
+                      ) : (
+                        <span>
+                          {p.label}{" "}
+                          <span className="text-[#b3dde0]">(</span>
+                          {p.links.map((l, j) => (
+                            <React.Fragment key={l.text}>
+                              {j > 0 && <span className="text-[#b3dde0] mx-0.5">&middot;</span>}
+                              <a
+                                href={l.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-[#008e97] hover:underline"
+                              >
+                                {l.text}
+                              </a>
+                            </React.Fragment>
+                          ))}
+                          <span className="text-[#b3dde0]">)</span>
+                        </span>
+                      )}
+                    </React.Fragment>
+                  ))}
+                  .
+                </p>
+                <p className="mt-2 text-[#7a9ea1] text-sm">
+                  In Nigeria? Physical copies ship from mid-July.{" "}
+                  <Link href="/book" className="text-[#008e97] hover:underline">
+                    Full details on the book page.
+                  </Link>
+                </p>
+              </m.div>
+
               <m.div className="mt-8 md:mt-10 flex flex-col sm:flex-row gap-4" variants={staggerItem}>
                 <Link
                   href="/book"
                   className="primary-button inline-flex items-center justify-center gap-2 w-full sm:w-auto"
                 >
-                  Get the Book
+                  Order Your Copy
                   <ArrowRight size={18} />
                 </Link>
                 <button
