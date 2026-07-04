@@ -30,9 +30,9 @@ const config: Config = {
         "mid-grey":  "#7a9ea1",
       },
       fontFamily: {
-        serif:    ["Fraunces", "serif"],
-        fraunces: ["Fraunces", "serif"],
-        inter:    ["Inter", "sans-serif"],
+        serif:    ["var(--font-fraunces)", "serif"],
+        fraunces: ["var(--font-fraunces)", "serif"],
+        inter:    ["var(--font-inter)", "sans-serif"],
       },
       animation: {
         "marquee-left":  "marquee-left 40s linear infinite",

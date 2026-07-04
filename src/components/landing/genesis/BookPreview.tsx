@@ -194,7 +194,7 @@ export function BookPreview() {
                   <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-[#e6f6f7] flex items-center justify-center">
                     <Download className="text-[#008e97]" size={28} />
                   </div>
-                  <h3 className="text-xl md:text-2xl font-['Fraunces'] font-bold text-[#0f1f20] mb-2">
+                  <h3 className="text-xl md:text-2xl font-serif font-bold text-[#0f1f20] mb-2">
                     Read the First Chapter Free
                   </h3>
                   <p className="text-[#7a9ea1] text-sm">
@@ -229,7 +229,7 @@ export function BookPreview() {
                 <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-[#e6f6f7] flex items-center justify-center">
                   <Check className="w-8 h-8 text-[#008e97]" />
                 </div>
-                <h3 className="text-2xl font-['Fraunces'] font-bold text-[#0f1f20] mb-2">It is on its way.</h3>
+                <h3 className="text-2xl font-serif font-bold text-[#0f1f20] mb-2">It is on its way.</h3>
                 <p className="text-[#7a9ea1] text-sm mb-4">
                   Your sample is downloading now. Check your inbox for a copy and what comes next.
                 </p>

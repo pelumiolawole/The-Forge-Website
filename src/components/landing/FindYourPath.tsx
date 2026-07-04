@@ -92,7 +92,7 @@ export default function FindYourPath() {
                 </span>
 
                 {/* Title */}
-                <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-[#0f1f20] mb-3 tracking-tight font-['Fraunces']">
+                <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-[#0f1f20] mb-3 tracking-tight font-serif">
                   {path.title}
                 </h3>
 

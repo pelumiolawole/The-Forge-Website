@@ -24,7 +24,7 @@ export function NigeriaOrder() {
           </m.p>
 
           <m.h2
-            className="font-['Fraunces'] font-bold text-[#0f1f20] mb-5 leading-tight"
+            className="font-serif font-bold text-[#0f1f20] mb-5 leading-tight"
             style={{ fontSize: "clamp(1.6rem, 4vw, 2.4rem)", letterSpacing: "-0.01em" }}
             variants={staggerItem}
           >

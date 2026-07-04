@@ -41,7 +41,7 @@ export function H2DownloadClient() {
         <div className="w-10 h-[2px] bg-[#008e97] mx-auto mb-8" />
 
         <h1
-          className="font-['Fraunces'] font-black text-white mb-4 leading-[1.1]"
+          className="font-serif font-black text-white mb-4 leading-[1.1]"
           style={{ fontSize: "clamp(1.8rem, 5vw, 2.8rem)", letterSpacing: "-0.02em" }}
         >
           Your download is starting.

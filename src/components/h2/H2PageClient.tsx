@@ -90,7 +90,7 @@ export function H2PageClient() {
           />
 
           <m.h1
-            className="font-['Fraunces'] font-black text-white mb-6 leading-[1.1]"
+            className="font-serif font-black text-white mb-6 leading-[1.1]"
             style={{ fontSize: "clamp(2.4rem, 6vw, 4.5rem)", letterSpacing: "-0.02em" }}
             variants={staggerContainer}
           >
@@ -149,7 +149,7 @@ export function H2PageClient() {
             </m.p>
             <m.div className="w-10 h-[2px] bg-[#008e97] mx-auto mb-8" variants={lineReveal} />
             <m.h2
-              className="font-['Fraunces'] font-bold text-[#0f1f20] mb-10"
+              className="font-serif font-bold text-[#0f1f20] mb-10"
               style={{ fontSize: "clamp(1.8rem, 4vw, 3rem)", letterSpacing: "-0.015em" }}
               variants={fadeUp}
             >
@@ -218,7 +218,7 @@ export function H2PageClient() {
               Free Download
             </m.p>
             <m.h2
-              className="font-['Fraunces'] font-bold text-[#0f1f20] text-center mb-3"
+              className="font-serif font-bold text-[#0f1f20] text-center mb-3"
               style={{ fontSize: "clamp(1.6rem, 3.5vw, 2.4rem)", letterSpacing: "-0.015em" }}
               variants={fadeUp}
             >
@@ -283,7 +283,7 @@ export function H2PageClient() {
                 <div className="w-16 h-16 mx-auto mb-5 rounded-full bg-[#e6f6f7] flex items-center justify-center">
                   <Check className="w-8 h-8 text-[#008e97]" />
                 </div>
-                <h3 className="font-['Fraunces'] text-2xl font-bold text-[#0f1f20] mb-3">
+                <h3 className="font-serif text-2xl font-bold text-[#0f1f20] mb-3">
                   Check your email.
                 </h3>
                 <p className="text-[#3d5a5c] text-base leading-relaxed">

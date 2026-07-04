@@ -45,7 +45,7 @@ export function OrderConfirmedClient() {
         </p>
         <div className="w-10 h-[2px] bg-[#008e97] mb-8" />
         <h1
-          className="font-['Fraunces'] font-bold text-[#0f1f20] mb-5 leading-tight"
+          className="font-serif font-bold text-[#0f1f20] mb-5 leading-tight"
           style={{ fontSize: "clamp(1.8rem, 5vw, 2.8rem)", letterSpacing: "-0.02em" }}
         >
           Your order is confirmed.
@@ -127,7 +127,7 @@ export function OrderConfirmedClient() {
             <div className="w-14 h-14 mx-auto mb-6 rounded-full bg-[#e6f6f7] flex items-center justify-center">
               <Check className="w-7 h-7 text-[#008e97]" />
             </div>
-            <p className="font-['Fraunces'] text-xl font-bold text-[#0f1f20] mb-3">
+            <p className="font-serif text-xl font-bold text-[#0f1f20] mb-3">
               You&rsquo;re on the list, {firstName}.
             </p>
             <p className="text-[#3d5a5c] text-base leading-relaxed">
