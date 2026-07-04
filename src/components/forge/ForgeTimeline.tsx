@@ -12,7 +12,7 @@ const phases = [
   {
     phase: "01",
     name: "STRIP",
-    weeks: "Weeks 1–4",
+    weeks: "Weeks 1–3",
     desc: "We identify the beliefs, patterns, and identities that have been running you without your permission. Nothing is added here. We only look, name, and release.",
     color: "#008e97",
     video: "/videos/forge-strip.webm",
@@ -20,7 +20,7 @@ const phases = [
   {
     phase: "02",
     name: "FORGE",
-    weeks: "Weeks 5–8",
+    weeks: "Weeks 4–9",
     desc: "You begin to inhabit the identity that was always true of you. Not a new personality. A clearer one. We build the behaviours that flow from who you actually are.",
     color: "#007a82",
     video: "/videos/forge-forge.webm",
@@ -28,7 +28,7 @@ const phases = [
   {
     phase: "03",
     name: "LEAD",
-    weeks: "Weeks 9–12",
+    weeks: "Weeks 10–12",
     desc: "You practice operating from the new identity under real conditions. Pressure, decisions, relationships. This is where the shift becomes permanent.",
     color: "#006e75",
     video: "/videos/forge-lead.webm",
