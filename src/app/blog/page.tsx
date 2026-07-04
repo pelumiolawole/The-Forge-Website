@@ -19,7 +19,7 @@ export default function BlogPage() {
         <div className="max-w-7xl mx-auto">
           <span className="section-label block mb-4">Writing</span>
           <h1
-            className="font-['Fraunces'] font-black text-[#0f1f20] mt-4 mb-6 leading-tight"
+            className="font-serif font-black text-[#0f1f20] mt-4 mb-6 leading-tight"
             style={{ fontSize: "clamp(2.5rem, 6vw, 5rem)" }}
           >
             Ideas worth sitting with.
@@ -87,7 +87,7 @@ export default function BlogPage() {
                       )}
                     </div>
 
-                    <h2 className="font-['Fraunces'] text-[#0f1f20] text-xl md:text-2xl font-bold mb-4 leading-snug group-hover:text-[#008e97] transition-colors">
+                    <h2 className="font-serif text-[#0f1f20] text-xl md:text-2xl font-bold mb-4 leading-snug group-hover:text-[#008e97] transition-colors">
                       {post.title}
                     </h2>
 
@@ -132,7 +132,7 @@ export default function BlogPage() {
       <section className="px-6 md:px-12 lg:px-20 py-16 md:py-20 bg-[#0f1f20]">
         <div className="max-w-2xl mx-auto text-center">
           <p className="text-xs font-semibold tracking-[0.18em] uppercase text-[#008e97] mb-4">Stay in the Room</p>
-          <h2 className="font-['Fraunces'] text-2xl md:text-3xl text-white font-bold mb-4">
+          <h2 className="font-serif text-2xl md:text-3xl text-white font-bold mb-4">
             Essays. Thinking. The occasional hard truth.
           </h2>
           <p className="text-white/60 text-base leading-relaxed mb-8">
@@ -154,7 +154,7 @@ export default function BlogPage() {
       <section className="px-6 md:px-12 lg:px-20 py-16 md:py-24 bg-[#f4fafb] border-t border-[#d0e8ea]">
         <div className="max-w-3xl mx-auto text-center">
           <p className="section-label mb-4">Go Deeper</p>
-          <h2 className="font-['Fraunces'] text-2xl md:text-4xl text-[#0f1f20] font-bold mb-6">
+          <h2 className="font-serif text-2xl md:text-4xl text-[#0f1f20] font-bold mb-6">
             The audit is free. Start there.
           </h2>
           <p className="text-[#7a9ea1] text-base md:text-lg leading-relaxed mb-8 max-w-xl mx-auto">

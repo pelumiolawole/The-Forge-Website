@@ -52,7 +52,7 @@ export function AboutPreview() {
             <m.div variants={lineReveal}>
               <div className="w-12 h-[2px] bg-[#008e97] mb-4" />
             </m.div>
-            <m.h3 className="text-xl md:text-3xl font-['Fraunces'] text-[#008e97] mb-6 italic" variants={staggerItem}>
+            <m.h3 className="text-xl md:text-3xl font-serif text-[#008e97] mb-6 italic" variants={staggerItem}>
               Not for lack of trying.
             </m.h3>
 

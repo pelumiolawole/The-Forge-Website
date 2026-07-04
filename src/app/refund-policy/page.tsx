@@ -13,7 +13,7 @@ export default function RefundPolicyPage() {
           Legal
         </p>
         <h1
-          className="font-['Fraunces'] font-bold text-[#0f1f20] mb-3 leading-tight"
+          className="font-serif font-bold text-[#0f1f20] mb-3 leading-tight"
           style={{ fontSize: "clamp(2rem, 5vw, 3rem)", letterSpacing: "-0.02em" }}
         >
           Refund Policy

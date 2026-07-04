@@ -44,7 +44,7 @@ function AnimatedNumber({ target, suffix = "" }: { target: number; suffix?: stri
   }, [hasStarted, target]);
 
   return (
-    <div ref={ref} className="text-3xl md:text-4xl font-bold text-[#008e97] font-['Fraunces']">
+    <div ref={ref} className="text-3xl md:text-4xl font-bold text-[#008e97] font-serif">
       {count}{suffix}
     </div>
   );
@@ -110,7 +110,7 @@ export function Hero() {
 
         {/* Headline — word stagger */}
         <m.h1
-          className="font-['Fraunces'] font-black text-[#0f1f20] mb-4 max-w-4xl mx-auto"
+          className="font-serif font-black text-[#0f1f20] mb-4 max-w-4xl mx-auto"
           style={{
             fontSize: "clamp(2.5rem, 6vw, 5rem)",
             lineHeight: 1.1,

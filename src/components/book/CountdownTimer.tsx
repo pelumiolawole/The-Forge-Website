@@ -62,7 +62,7 @@ export function CountdownTimer({ targetDate, label = "Until launch", theme = "li
           <div key={unit.label} className="flex items-center gap-3">
             <div className="flex flex-col items-center">
               <div className={`min-w-[3.5rem] h-14 rounded-xl flex items-center justify-center ${digitBg}`}>
-                <span className={`text-2xl font-bold font-['Fraunces'] tabular-nums ${digitColor}`}>
+                <span className={`text-2xl font-bold font-serif tabular-nums ${digitColor}`}>
                   {String(unit.value).padStart(2, "0")}
                 </span>
               </div>

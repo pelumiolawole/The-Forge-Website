@@ -22,7 +22,7 @@ export default function LandingPage() {
       <section className="px-6 md:px-12 lg:px-20 py-20 md:py-28 bg-[#0f1f20]">
         <div className="max-w-2xl mx-auto text-center">
           <p className="text-xs font-semibold tracking-[0.18em] uppercase text-[#008e97] mb-4">The List</p>
-          <h2 className="font-['Fraunces'] text-3xl md:text-4xl text-white font-bold mb-4 leading-tight">
+          <h2 className="font-serif text-3xl md:text-4xl text-white font-bold mb-4 leading-tight">
             Ideas that move people.<br className="hidden md:block" /> Delivered when they're ready.
           </h2>
           <p className="text-white/60 text-base md:text-lg leading-relaxed mb-8">

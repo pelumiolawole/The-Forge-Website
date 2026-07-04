@@ -1,9 +1,24 @@
 import type { Metadata } from "next";
+import { Fraunces, Inter } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/react";
 import { MotionProvider } from "@/components/motion/MotionProvider";
 import { ScrollProgressBar } from "@/components/motion/ScrollProgressBar";
 import { ConditionalNav, ConditionalFooter } from "@/components/layout/ConditionalChrome";
+
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  axes: ["opsz"],
+  style: ["normal", "italic"],
+  variable: "--font-fraunces",
+  display: "swap",
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Coach PO | Identity Coach & Author",
@@ -23,11 +38,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-      </head>
+    <html lang="en" className={`${fraunces.variable} ${inter.variable}`}>
       <body className="antialiased">
         <MotionProvider>
           <ScrollProgressBar />

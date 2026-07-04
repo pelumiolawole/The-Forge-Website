@@ -42,7 +42,7 @@ export default function AboutPage() {
               <h1 className="font-serif text-3xl md:text-5xl lg:text-6xl text-[#0f1f20] leading-tight">
                 Coach. Author. Builder.
               </h1>
-              <p className="text-[#008e97] text-lg md:text-2xl font-['Fraunces'] italic">
+              <p className="text-[#008e97] text-lg md:text-2xl font-serif italic">
                 Founder of The Forge System.
               </p>
               <p className="text-[#3d5a5c] text-base md:text-lg leading-relaxed max-w-xl">

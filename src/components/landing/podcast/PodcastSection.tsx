@@ -122,7 +122,7 @@ export async function PodcastSection() {
 
               <div className="flex-1 min-w-0">
                 <div className="text-xs text-[#008E97] font-semibold uppercase tracking-wider mb-2">Latest Episode</div>
-                <h3 className="text-lg md:text-xl font-bold text-[#0A0A0A] mb-2 font-['Fraunces'] leading-snug">
+                <h3 className="text-lg md:text-xl font-bold text-[#0A0A0A] mb-2 font-serif leading-snug">
                   {displayEpisode.title}
                 </h3>
                 <p className="text-[#6B7280] text-sm mb-3 line-clamp-2">{displayEpisode.description}</p>
