@@ -30,6 +30,7 @@ const config: Config = {
         "mid-grey":  "#7a9ea1",
       },
       fontFamily: {
+        serif:    ["Fraunces", "serif"],
         fraunces: ["Fraunces", "serif"],
         inter:    ["Inter", "sans-serif"],
       },
