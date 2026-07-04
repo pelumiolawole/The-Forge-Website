@@ -149,7 +149,7 @@
     transform: scale(0.98);
   }
 
-  /* Legacy gold-button — now maps to primary teal */
+  /* Legacy gold-button — intentionally maps to teal, not gold. Do not change without explicit instruction. */
   .gold-button {
     background-color: var(--color-brand);
     color: #ffffff;
