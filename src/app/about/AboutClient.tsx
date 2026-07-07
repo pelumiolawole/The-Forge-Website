@@ -210,9 +210,9 @@ export function AboutClient() {
             <div className="lg:hidden absolute top-0 bottom-0 left-[1.5rem] w-px bg-[#008E97]/30" />
             <div className="grid lg:grid-cols-3 gap-10 lg:gap-8 relative">
               {[
-                { num: "01", name: "STRIP", weeks: "Weeks 1 to 3", desc: "Honest diagnosis. What patterns are actually running you?" },
-                { num: "02", name: "FORGE", weeks: "Weeks 4 to 9", desc: "Identity architecture. Who are you becoming?" },
-                { num: "03", name: "LEAD", weeks: "Weeks 10 to 12", desc: "Sustained self-leadership. Who are you now, every day?" },
+                { num: "01", name: "STRIP", weeks: "Weeks 1–4", desc: "Honest diagnosis. What patterns are actually running you?" },
+                { num: "02", name: "FORGE", weeks: "Weeks 5–8", desc: "Identity architecture. Who are you becoming?" },
+                { num: "03", name: "LEAD", weeks: "Weeks 9–12", desc: "Sustained self-leadership. Who are you now, every day?" },
               ].map((item) => (
                 <div key={item.num} className="relative pl-12 lg:pl-0">
                   <div className="absolute left-0 top-[1.5rem] lg:top-[1.5rem] w-3 h-3 rounded-full bg-[#008E97] lg:relative lg:mb-8" />
