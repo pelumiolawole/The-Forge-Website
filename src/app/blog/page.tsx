@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -5,6 +6,11 @@ import { ArrowRight } from "lucide-react";
 import { format } from "date-fns";
 import { getAllPosts } from "@/lib/posts";
 import { EmailCapture } from "@/components/ui/EmailCapture";
+
+export const metadata: Metadata = {
+  title: "Blog",
+  description: "Essays on identity, leadership, and the habits that quietly shape both.",
+};
 
 const categories = ["All", "Identity", "Petty Patterns", "Leadership"];
 

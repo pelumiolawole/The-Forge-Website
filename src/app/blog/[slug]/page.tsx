@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import React from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -12,6 +13,15 @@ interface Props {
 export async function generateStaticParams() {
   const posts = getAllPosts();
   return posts.map((post) => ({ slug: post.slug }));
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const post = getPostBySlug(params.slug);
+  if (!post) return { title: "Blog" };
+  return {
+    title: post.title,
+    description: post.excerpt,
+  };
 }
 
 export default async function BlogPostPage({ params }: Props) {

@@ -1,5 +1,11 @@
+import type { Metadata } from "next";
 import React from "react";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Privacy Policy",
+  description: "How this website collects, uses, and protects your personal information.",
+};
 
 export default function PrivacyPolicyPage() {
   const lastUpdated = "March 2026";
@@ -23,7 +29,7 @@ export default function PrivacyPolicyPage() {
           <section>
             <h2 className="font-serif text-xl md:text-2xl text-[#0f1f20] font-bold mb-4">Who we are</h2>
             <p>
-              This website is operated by Pelumi Olawole, trading as Coach PO / The Forge System, based in the United Kingdom. References to "we", "us", or "our" in this policy refer to Pelumi Olawole.
+              This website is operated by Pelumi Olawole, trading as The Forge System, based in the United Kingdom. References to "we", "us", or "our" in this policy refer to Pelumi Olawole.
             </p>
             <p className="mt-3">
               Contact: <a href="mailto:coach@pelumiolawole.com" className="text-[#008E97] hover:underline">coach@pelumiolawole.com</a>

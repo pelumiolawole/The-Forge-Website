@@ -27,7 +27,7 @@ export function AboutPreview() {
             <div className="relative aspect-[4/5] rounded-2xl overflow-hidden max-w-sm mx-auto lg:max-w-none shadow-[0_8px_40px_rgba(0,142,151,0.1)]">
               <Image
                 src="/images/pelumi-headshot-1.png"
-                alt="Pelumi Olawole — Coach PO"
+                alt="Pelumi Olawole"
                 fill
                 className="object-cover object-top"
                 sizes="(max-width: 1024px) 100vw, 50vw"

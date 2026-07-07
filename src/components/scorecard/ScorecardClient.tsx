@@ -449,7 +449,7 @@ export function ScorecardClient() {
           >
             Get Petty Little Things on Amazon <ArrowRight size={20} />
           </a>
-          <p className="text-sm mt-3 text-[#7a9ea1]">Kindle available now. Paperback from July 1.</p>
+          <p className="text-sm mt-3 text-[#7a9ea1]">Available Now — Kindle & Paperback</p>
         </div>
 
         {/* Coaching CTA */}

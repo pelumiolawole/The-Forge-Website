@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { H2PageClient } from "@/components/h2/H2PageClient";
 
 export const metadata: Metadata = {
-  title: "Personal Mastery H2 Blueprint | Pelumi Olawole",
+  title: "Personal Mastery H2 Blueprint",
   description:
     "A free identity audit workbook for the second half of your year. 40 pages. 5 domains. One honest reckoning.",
   robots: {

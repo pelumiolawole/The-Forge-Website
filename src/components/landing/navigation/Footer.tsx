@@ -43,7 +43,7 @@ export function Footer() {
               </div>
             </Link>
             <p className="text-[#7a9ea1] text-sm leading-relaxed mb-6">
-              Identity coaching for growth-driven professionals. Based in the UK. Building globally.
+              Identity-first leadership development. Based in the UK. Building globally.
             </p>
             <div className="flex items-center gap-3">
               <a
@@ -126,7 +126,7 @@ export function Footer() {
             &copy; {new Date().getFullYear()} Pelumi Olawole. All rights reserved.
           </p>
           <p className="text-[#b3dde0] text-xs">
-            The Forge System. Identity coaching for growth-driven professionals.
+            The Forge System. Identity-first leadership development.
           </p>
         </div>
       </div>
