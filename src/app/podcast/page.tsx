@@ -4,8 +4,8 @@ import Image from 'next/image';
 import EpisodeList from './EpisodeList';
 
 export const metadata: Metadata = {
-  title: 'Influence Podcast | Coach PO',
-  description: 'The Influence Podcast is a regular examination of what it takes to become a person of influence. Practical personal and business development thinking with Coach PO.',
+  title: 'Influence Podcast',
+  description: 'The Influence Podcast is a regular examination of what it takes to become a person of influence. Practical personal and business development thinking with Pelumi Olawole.',
 };
 
 async function getEpisodes() {

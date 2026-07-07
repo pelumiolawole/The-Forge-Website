@@ -1,5 +1,11 @@
+import type { Metadata } from "next";
 import React from "react";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Terms and Conditions",
+  description: "Terms governing your use of pelumiolawole.com and any services provided by Pelumi Olawole.",
+};
 
 export default function TermsPage() {
   const lastUpdated = "March 2026";
@@ -23,7 +29,7 @@ export default function TermsPage() {
           <section>
             <h2 className="font-serif text-xl md:text-2xl text-[#0f1f20] font-bold mb-4">About these terms</h2>
             <p>
-              These terms govern your use of this website (pelumiolawole.com) and any services provided by Pelumi Olawole, trading as Coach PO / The Forge System, based in the United Kingdom. By using this website or purchasing any service, you agree to these terms.
+              These terms govern your use of this website (pelumiolawole.com) and any services provided by Pelumi Olawole, trading as The Forge System, based in the United Kingdom. By using this website or purchasing any service, you agree to these terms.
             </p>
             <p className="mt-3">
               Contact: <a href="mailto:coach@pelumiolawole.com" className="text-[#008E97] hover:underline">coach@pelumiolawole.com</a>

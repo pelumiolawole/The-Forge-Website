@@ -1,28 +1,48 @@
 "use client";
 
 import { useState } from "react";
-import { m } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import { fadeIn, VIEWPORT_ONCE } from "@/lib/motion";
+import { CLIENTS, type Client } from "@/content/clients";
+import { CredentialBand } from "./CredentialBand";
 
-const clients = [
-  { abbr: "S3", name: "Seven30 Real Estate" },
-  { abbr: "EA", name: "Eyitayo Agri Hub" },
-  { abbr: "ED", name: "Eden Designs" },
-  { abbr: "AP", name: "Aphrodite" },
-  { abbr: "II", name: "IIC Networks" },
-  { abbr: "ZC", name: "Zoe Choosers Foundation" },
-  { abbr: "AF", name: "Dear Auntie Funmi" },
-  { abbr: "SC", name: "Suprano Clothing" },
-  { abbr: "NG", name: "Northgate Group" },
-  { abbr: "VY", name: "Vantage & York" },
-  { abbr: "TC", name: "Trellis Capital" },
-  { abbr: "GF", name: "Greyfield & Co" },
-  { abbr: "SH", name: "Stonehaven" },
-  { abbr: "EC", name: "Edgecore" },
-];
+function ClientBadge({ client }: { client: Client }) {
+  return (
+    <div className="flex items-center justify-center h-16 grayscale opacity-50 hover:opacity-100 hover:grayscale-0 transition-all duration-500">
+      <div className="flex items-center gap-3 text-[#0f1f20]">
+        <div className="w-10 h-10 rounded-lg bg-[#e6f6f7] border border-[#d0e8ea] flex items-center justify-center font-bold text-sm flex-shrink-0 text-[#008e97]">
+          {client.initials}
+        </div>
+        <span className="font-semibold text-sm whitespace-nowrap text-[#3d5a5c]">{client.name}</span>
+      </div>
+    </div>
+  );
+}
 
 export function SocialProof() {
   const [isPaused, setIsPaused] = useState(false);
+  const reduce = useReducedMotion();
+
+  // Only substantiated engagements render as logos. Until at least one
+  // entry in content/clients.ts is verified, the credential band carries
+  // this slot instead.
+  const verified = CLIENTS.filter((client) => client.verified);
+  if (verified.length === 0) return <CredentialBand />;
+
+  if (reduce) {
+    return (
+      <section className="relative z-0 py-16 bg-[#f4fafb] border-y border-[#d0e8ea]">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8 mb-8">
+          <p className="section-label text-center">Trusted by teams at</p>
+        </div>
+        <div className="max-w-6xl mx-auto px-6 lg:px-8 flex flex-wrap justify-center gap-x-12 gap-y-4">
+          {verified.map((client) => (
+            <ClientBadge key={client.name} client={client} />
+          ))}
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="relative z-0 py-16 bg-[#f4fafb] border-y border-[#d0e8ea]">
@@ -42,21 +62,11 @@ export function SocialProof() {
         onMouseLeave={() => setIsPaused(false)}
       >
         <div
-          className={`flex gap-12 ${isPaused ? '' : 'animate-marquee-left'}`}
+          className={`flex gap-12 ${isPaused ? "" : "animate-marquee-left"}`}
           style={{ width: "max-content" }}
         >
-          {[...clients, ...clients].map((client, index) => (
-            <div
-              key={index}
-              className="flex items-center justify-center h-16 grayscale opacity-50 hover:opacity-100 hover:grayscale-0 transition-all duration-500"
-            >
-              <div className="flex items-center gap-3 text-[#0f1f20]">
-                <div className="w-10 h-10 rounded-lg bg-[#e6f6f7] border border-[#d0e8ea] flex items-center justify-center font-bold text-sm flex-shrink-0 text-[#008e97]">
-                  {client.abbr}
-                </div>
-                <span className="font-semibold text-sm whitespace-nowrap text-[#3d5a5c]">{client.name}</span>
-              </div>
-            </div>
+          {[...verified, ...verified].map((client, index) => (
+            <ClientBadge key={index} client={client} />
           ))}
         </div>
       </div>

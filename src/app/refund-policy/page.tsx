@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Refund Policy | Pelumi Olawole",
+  title: "Refund Policy",
   description: "Refund policy for physical book orders delivered within Nigeria.",
 };
 

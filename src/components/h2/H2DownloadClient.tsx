@@ -28,9 +28,9 @@ export function H2DownloadClient() {
       <div className="fixed top-0 right-0 w-[500px] h-[400px] bg-[#008e97] rounded-full blur-[160px] opacity-10 pointer-events-none" />
 
       <div className="relative z-10 text-center max-w-md mx-auto">
-        {/* Coach PO wordmark */}
+        {/* Wordmark */}
         <p className="text-[#008e97] text-xs font-semibold uppercase tracking-[0.18em] mb-10">
-          Coach PO
+          Pelumi Olawole
         </p>
 
         {/* Animated download icon */}

@@ -6,6 +6,7 @@ import Link from "next/link";
 import { m, useReducedMotion } from "framer-motion";
 import { fadeUp, fadeIn, lineReveal, staggerContainer, staggerItem, VIEWPORT_ONCE } from "@/lib/motion";
 import { IdentityMorph } from "@/components/motion/IdentityMorph";
+import { CREDENTIALS } from "@/content/credentials";
 
 const IDENTITY_WORDS = [
   "achievers",
@@ -15,8 +16,13 @@ const IDENTITY_WORDS = [
   "founders",
 ];
 
+// The final value is the initial state so server-rendered HTML (and any
+// no-JS reader: crawlers, link previews, AI agents) always shows the real
+// number — never 0. The count-up only replays on hydration, animating up
+// to the same value.
 function AnimatedNumber({ target, suffix = "" }: { target: number; suffix?: string }) {
-  const [count, setCount] = useState(0);
+  const reduce = useReducedMotion();
+  const [count, setCount] = useState(target);
   const [hasStarted, setHasStarted] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -30,22 +36,23 @@ function AnimatedNumber({ target, suffix = "" }: { target: number; suffix?: stri
   }, [hasStarted]);
 
   useEffect(() => {
-    if (!hasStarted) return;
+    if (!hasStarted || reduce) return;
     const duration = 2000;
     const steps = 60;
     const increment = target / steps;
     let current = 0;
+    setCount(0);
     const timer = setInterval(() => {
       current += increment;
       if (current >= target) { setCount(target); clearInterval(timer); }
       else setCount(Math.floor(current));
     }, duration / steps);
     return () => clearInterval(timer);
-  }, [hasStarted, target]);
+  }, [hasStarted, reduce, target]);
 
   return (
     <div ref={ref} className="text-3xl md:text-4xl font-bold text-[#008e97] font-['Fraunces']">
-      {count}{suffix}
+      {`${count.toLocaleString("en-GB")}${suffix}`}
     </div>
   );
 }
@@ -99,7 +106,7 @@ export function Hero() {
       >
         {/* Eyebrow */}
         <m.div className="section-label mb-6" variants={fadeIn}>
-          Leadership Coach &amp; Author
+          Identity-First Leadership &middot; Author of Petty Little Things
         </m.div>
 
         {/* Teal rule — scaleX reveal */}
@@ -169,22 +176,22 @@ export function Hero() {
           variants={staggerContainer}
         >
           <m.div className="text-center" variants={staggerItem}>
-            <AnimatedNumber target={10} suffix="+" />
+            <AnimatedNumber target={CREDENTIALS.yearsCoaching} suffix="+" />
             <div className="text-xs md:text-sm text-[#7a9ea1] mt-1">Years Experience</div>
           </m.div>
           <m.div className="text-center border-x border-[#d0e8ea]" variants={staggerItem}>
-            <AnimatedNumber target={5000} suffix="+" />
+            <AnimatedNumber target={CREDENTIALS.professionalsTrained} suffix="+" />
             <div className="text-xs md:text-sm text-[#7a9ea1] mt-1">People Trained</div>
           </m.div>
           <m.div className="text-center" variants={staggerItem}>
-            <AnimatedNumber target={2} />
+            <AnimatedNumber target={CREDENTIALS.continents} />
             <div className="text-xs md:text-sm text-[#7a9ea1] mt-1">Continents</div>
           </m.div>
         </m.div>
       </m.div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 animate-bounce">
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 motion-safe:animate-bounce">
         <div className="w-6 h-10 rounded-full border-2 border-[#d0e8ea] flex justify-center pt-2">
           <div className="w-1 h-2 bg-[#008e97] rounded-full opacity-60" />
         </div>
