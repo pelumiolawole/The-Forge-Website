@@ -33,9 +33,6 @@ export function NigeriaOrder() {
 
           <m.div className="space-y-2 mb-8" variants={staggerItem}>
             <p className="text-[#3d5a5c] text-base leading-relaxed">
-              Paperback copies are available for delivery across Nigeria.
-            </p>
-            <p className="text-[#3d5a5c] text-base leading-relaxed">
               Paperback copies are in stock and delivering across Nigeria now.
             </p>
             <p className="text-[#3d5a5c] text-base leading-relaxed">

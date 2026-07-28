@@ -14,7 +14,7 @@ import { BulkOrders } from "@/components/book/BulkOrders";
 import { FinalCTA } from "@/components/book/FinalCTA";
 
 const description =
-  "50 habits quietly ruining your life — and how to fix them. Order now on Kindle, Paperback, Apple Books, Barnes & Noble, and Google Play Books.";
+  "50 habits quietly ruining your life — and how to fix them. Order on Kindle, Paperback, Apple Books, Barnes & Noble, and Google Play Books. Physical copies now delivering across Nigeria.";
 
 export const metadata: Metadata = {
   title: "Petty Little Things — 50 Habits Quietly Ruining Your Life",
