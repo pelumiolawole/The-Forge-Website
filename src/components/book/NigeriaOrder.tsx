@@ -36,10 +36,10 @@ export function NigeriaOrder() {
               Paperback copies are available for delivery across Nigeria.
             </p>
             <p className="text-[#3d5a5c] text-base leading-relaxed">
-              Copies ship mid to end of July 2026.
+              Paperback copies are in stock and delivering across Nigeria now.
             </p>
             <p className="text-[#3d5a5c] text-base leading-relaxed">
-              Book and delivery fee paid together at checkout.
+              Delivery fee is calculated and paid together at checkout.
             </p>
           </m.div>
 
@@ -51,7 +51,7 @@ export function NigeriaOrder() {
               rel="noopener noreferrer"
               className="w-full inline-flex items-center justify-center gap-2 px-6 py-4 bg-[#008e97] text-white font-semibold rounded-xl hover:bg-[#007a82] transition-colors text-base mb-5"
             >
-              Order Now &mdash; &#8358;12,500
+              Order Now &mdash; &#8358;12,500 + delivery
               <ExternalLink size={16} />
             </a>
           </m.div>
