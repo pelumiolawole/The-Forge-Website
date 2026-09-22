@@ -24,6 +24,17 @@ export function JobDetail({ job, onBack }: { job: JobPosting; onBack: () => void
         All roles
       </button>
 
+      {job.status === "closed" && (
+        <div className="mb-8 p-5 rounded-xl bg-[#e6f6f7] border border-[#d0e8ea]">
+          <p className="text-[#006e75] text-sm font-bold uppercase tracking-[0.1em]">
+            Applications Closed
+          </p>
+          <p className="text-[#7a9ea1] text-sm mt-1.5">
+            Thank you for the interest — check back for future openings.
+          </p>
+        </div>
+      )}
+
       <div>
         <p className="text-[#008e97] text-xs font-semibold uppercase tracking-[0.18em] mb-3">
           Open Role
@@ -121,13 +132,19 @@ export function JobDetail({ job, onBack }: { job: JobPosting; onBack: () => void
 
         {/* Apply */}
         <div>
-          <a
-            href={buildMailtoHref(job)}
-            className="inline-flex items-center justify-center gap-2 px-7 py-4 bg-[#008e97] text-white font-bold rounded-lg hover:bg-[#006e75] transition-colors text-sm"
-          >
-            <Mail size={16} />
-            Apply for this Role
-          </a>
+          {job.status === "closed" ? (
+            <p className="text-[#7a9ea1] text-sm">
+              This role is no longer accepting applications.
+            </p>
+          ) : (
+            <a
+              href={buildMailtoHref(job)}
+              className="inline-flex items-center justify-center gap-2 px-7 py-4 bg-[#008e97] text-white font-bold rounded-lg hover:bg-[#006e75] transition-colors text-sm"
+            >
+              <Mail size={16} />
+              Apply for this Role
+            </a>
+          )}
         </div>
       </div>
     </m.div>

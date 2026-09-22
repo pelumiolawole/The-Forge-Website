@@ -10,6 +10,8 @@ export type JobPosting = {
   compensation: string;
   applyEmail: { to: string[]; subjectTemplate: string; bodyTemplate: string };
   active: boolean;
+  status: "open" | "closed";
+  closedDate?: string; // ISO date, set when status becomes "closed" — used for JobPosting schema's validThrough
 };
 
 export const JOBS: JobPosting[] = [
@@ -71,5 +73,7 @@ export const JOBS: JobPosting[] = [
         "Hi Pelumi,\n\nI'm applying for the Social Media & Content Assistant role.\n\nHere are 2–3 examples of content I've made or managed (paste links, or note what you'll attach separately):\n1. \n2. \n3. \n\nWhy this role interests me:\n\n\nMy experience with editing tools (CapCut, Canva, etc.) and scheduling tools:\n\n\nThanks,\n[Your Name]",
     },
     active: true,
+    status: "closed",
+    closedDate: "2026-09-22",
   },
 ];

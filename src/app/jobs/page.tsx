@@ -37,6 +37,7 @@ const jobPostingsJsonLd = JOBS.filter((j) => j.active).map((job) => ({
     "@type": "Country",
     name: "Nigeria",
   },
+  ...(job.status === "closed" && job.closedDate ? { validThrough: job.closedDate } : {}),
 }));
 
 export default function JobsPage() {
