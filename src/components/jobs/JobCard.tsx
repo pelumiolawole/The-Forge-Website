@@ -14,9 +14,16 @@ export function JobCard({ job, onSelect }: { job: JobPosting; onSelect: () => vo
         className="w-full text-left flex items-center gap-4 py-6 group"
       >
         <div className="flex-1 min-w-0">
-          <h2 className="font-['Fraunces'] font-bold text-[#0f1f20] text-lg md:text-xl mb-1.5 group-hover:text-[#008e97] transition-colors">
-            {job.title}
-          </h2>
+          <div className="flex items-center gap-2.5 flex-wrap mb-1.5">
+            <h2 className="font-['Fraunces'] font-bold text-[#0f1f20] text-lg md:text-xl group-hover:text-[#008e97] transition-colors">
+              {job.title}
+            </h2>
+            {job.status === "closed" && (
+              <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-[#e6f6f7] border border-[#d0e8ea] text-[#7a9ea1] text-[10px] font-semibold uppercase tracking-[0.18em]">
+                Closed
+              </span>
+            )}
+          </div>
           <p className="text-[#3d5a5c] text-sm md:text-base leading-relaxed mb-3">
             {job.oneLiner}
           </p>
