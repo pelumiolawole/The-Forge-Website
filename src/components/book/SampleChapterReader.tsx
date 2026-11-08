@@ -260,7 +260,7 @@ export function SampleChapterReader() {
         {/* Header */}
         <div className="text-center mb-10">
           <h2 className="text-[#0f1f20] font-extrabold mb-3" style={{ fontSize: "clamp(1.5rem, 3vw, 2rem)" }}>
-            Read the First Chapter Free
+            Read a Free Sample
           </h2>
           <p className="text-[#3d5a5c]">No email required. No download. Just read.</p>
         </div>
