@@ -86,7 +86,7 @@ export function BookReveal() {
                 className="inline-flex items-center justify-center gap-2 px-6 py-4 border-[1.5px] border-[#008e97] text-[#008e97] font-semibold rounded-lg hover:bg-[#e6f6f7] transition-colors text-sm"
               >
                 <Download size={16} />
-                Read the First Chapter Free
+                Read a Free Sample
               </a>
             </m.div>
           </m.div>

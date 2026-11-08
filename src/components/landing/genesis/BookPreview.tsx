@@ -195,7 +195,7 @@ export function BookPreview() {
                     <Download className="text-[#008e97]" size={28} />
                   </div>
                   <h3 className="text-xl md:text-2xl font-['Fraunces'] font-bold text-[#0f1f20] mb-2">
-                    Read the First Chapter Free
+                    Read a Free Sample
                   </h3>
                   <p className="text-[#7a9ea1] text-sm">
                     Enter your email and we will send you a sample chapter from Petty Little Things instantly.

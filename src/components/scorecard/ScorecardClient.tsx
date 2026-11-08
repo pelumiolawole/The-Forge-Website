@@ -373,7 +373,7 @@ export function ScorecardClient() {
 
         <p className="text-center mt-6">
           <Link href="/book" className="text-sm font-medium underline text-[#008e97]">
-            Rather not share your email? Read the first chapter free instead.
+            Rather not share your email? Read a free sample instead.
           </Link>
         </p>
       </section>
