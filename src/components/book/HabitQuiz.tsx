@@ -8,14 +8,14 @@ import { VIEWPORT_ONCE } from "@/lib/motion";
 const habits = [
   { num: "01", name: "Hitting Snooze", roast: "You're teaching yourself that your commitments are optional — before 6am." },
   { num: "02", name: "Checking Your Phone First Thing", roast: "Before you've thought a single original thought, you've downloaded everyone else's emergencies into your brain." },
-  { num: "03", name: "Endless Research Mode", roast: "You've read 47 articles, watched 23 videos, and joined 14 groups. You have enough information to begin. You just refuse to." },
-  { num: "04", name: "Waiting for Motivation", roast: "Motivation doesn't create action. Action creates motivation. You have it backwards." },
-  { num: "05", name: "Perfectionism Disguised as Standards", roast: "You're not being thorough. You're hiding. Perfectionism is just fear wearing a blazer." },
-  { num: "06", name: "Saying Yes to Everything", roast: "You're not being helpful. You're being a pushover with a calendar." },
-  { num: "07", name: "Comparing Your Progress to Others", roast: "You're measuring your chapter three against someone else's chapter twenty. It's not a fair fight and you set it up yourself." },
-  { num: "08", name: "Making To-Do Lists You Never Use", roast: "The list is tidy. The work is untouched. You reorganised the deck chairs." },
-  { num: "09", name: "Overcomplicating Simple Tasks", roast: "You need to send an email. It should take 5 minutes. It has now taken 45. It's an email. Not the Gettysburg Address." },
-  { num: "10", name: "Avoiding Difficult Conversations", roast: "You'd rather let something rot than have one uncomfortable conversation. And you wonder why the problem is still there." },
+  { num: "15", name: "Endless Research Mode", roast: "You've read 47 articles, watched 23 videos, and joined 14 groups. You have enough information to begin. You just refuse to." },
+  { num: "17", name: "Waiting for Motivation", roast: "Motivation doesn't create action. Action creates motivation. You have it backwards." },
+  { num: "18", name: "Perfectionism Disguised as Standards", roast: "You're not being thorough. You're hiding. Perfectionism is just fear wearing a blazer." },
+  { num: "29", name: "Saying Yes to Everything", roast: "You're not being helpful. You're being a pushover with a calendar." },
+  { num: "08", name: "Comparing Your Progress to Others", roast: "You're measuring your chapter three against someone else's chapter twenty. It's not a fair fight and you set it up yourself." },
+  { num: "14", name: "Making To-Do Lists You Never Use", roast: "The list is tidy. The work is untouched. You reorganised the deck chairs." },
+  { num: "16", name: "Overcomplicating Simple Tasks", roast: "You need to send an email. It should take 5 minutes. It has now taken 45. It's an email. Not the Gettysburg Address." },
+  { num: "27", name: "Avoiding Difficult Conversations", roast: "You'd rather let something rot than have one uncomfortable conversation. And you wonder why the problem is still there." },
 ];
 
 export function HabitQuiz() {
