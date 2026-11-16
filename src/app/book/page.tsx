@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     type: "book",
     images: [
       {
-        url: "/images/book/plt-og.png",
+        url: "https://pelumiolawole.com/images/book/plt-og-v2.png",
         width: 1200,
         height: 630,
         alt: "Petty Little Things — 50 Habits Quietly Ruining Your Life, by Pelumi Olawole",
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Petty Little Things by Pelumi Olawole",
     description,
-    images: ["/images/book/plt-og.png"],
+    images: ["https://pelumiolawole.com/images/book/plt-og-v2.png"],
   },
 };
 
