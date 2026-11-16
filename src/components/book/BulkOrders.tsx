@@ -24,11 +24,12 @@ export function BulkOrders() {
           {/* Pull quote from the foreword */}
           <blockquote className="border-l-[3px] border-[#008e97] bg-[#e6f6f7] rounded-r-lg px-6 py-5 mb-8 text-left max-w-xl mx-auto">
             <p className="text-[#0f1f20] italic" style={{ fontSize: "1.1rem", lineHeight: 1.7 }}>
-              &ldquo;But there was a gap &mdash; The gap between what I knew and who I actually was.&rdquo;
+              &ldquo;I knew exactly what to do.&rdquo;
             </p>
             <footer className="text-[#7a9ea1] text-[13px] leading-relaxed mt-3">
               &mdash; Kehinde Fawumi<br />
-              Director, Global Product Development at Mastercard
+              Director, Global Product Development at Mastercard<br />
+              <em>Foreword, Petty Little Things</em>
             </footer>
           </blockquote>
 

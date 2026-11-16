@@ -32,49 +32,96 @@ export function ForewoodStory() {
           whileInView="visible"
           viewport={VIEWPORT_ONCE}
         >
-          It was 10:47 PM. I was driving home from the office. My phone had just died — but before it did, I saw the video my wife had sent me. Our daughter was standing on stage at her kindergarten graduation. Singing. Looking into the audience for me. Not finding me.
+          I&rsquo;m going to start this foreword by telling you about the night I cried in my car.
         </m.p>
 
         {/* Para 2 */}
         <m.p
           className="text-[#3d5a5c] mb-6"
           style={{ fontSize: "1.125rem", lineHeight: 1.85 }}
-          variants={fadeUp(0.15)}
+          variants={fadeUp(0.1)}
           initial={reduce ? "visible" : "hidden"}
           whileInView="visible"
           viewport={VIEWPORT_ONCE}
         >
-          I wasn&rsquo;t there. I had been in back-to-back meetings. I checked my inbox one more time before leaving work. Then another message came in. Then I thought, I&rsquo;ll just finish this one thing. That one thing became three things. By the time I looked up, it was 7 PM. The graduation had started at 6 PM.
+          It was 10:47 PM. I was driving home from the office. My phone had just died, but before it did, I saw the video my wife had sent me. Our daughter was standing on stage at her kindergarten graduation. Singing. Looking into the audience for me. Not finding me.
         </m.p>
 
         {/* Para 3 */}
         <m.p
-          className="text-[#3d5a5c] mb-10"
+          className="text-[#3d5a5c] mb-6"
+          style={{ fontSize: "1.125rem", lineHeight: 1.85 }}
+          variants={fadeUp(0.2)}
+          initial={reduce ? "visible" : "hidden"}
+          whileInView="visible"
+          viewport={VIEWPORT_ONCE}
+        >
+          I wasn&rsquo;t there.
+        </m.p>
+
+        {/* Para 4 */}
+        <m.p
+          className="text-[#3d5a5c] mb-6"
           style={{ fontSize: "1.125rem", lineHeight: 1.85 }}
           variants={fadeUp(0.3)}
           initial={reduce ? "visible" : "hidden"}
           whileInView="visible"
           viewport={VIEWPORT_ONCE}
         >
-          I was not lazy. I was not undisciplined. I had systems. Strategy. Frameworks. By every external measure, I was successful. But there was a gap — between what I knew and who I actually was.
+          I had been in back-to-back meetings. I checked my inbox one more time before leaving work. Then another message came in. Then I thought, I&rsquo;ll just finish this one thing. That one thing became three things. By the time I looked up, it was 7 PM. The graduation had started at 6 PM.
         </m.p>
 
-        {/* Pivot callout */}
-        <m.div
-          className="border-l-[3px] border-[#008e97] bg-[#e6f6f7] rounded-r-lg px-6 py-5 mb-10"
-          variants={fadeUp(0.45)}
+        {/* Para 5 */}
+        <m.p
+          className="text-[#3d5a5c] mb-6"
+          style={{ fontSize: "1.125rem", lineHeight: 1.85 }}
+          variants={fadeUp(0.4)}
           initial={reduce ? "visible" : "hidden"}
           whileInView="visible"
           viewport={VIEWPORT_ONCE}
         >
-          <p className="text-[#0f1f20] font-semibold" style={{ fontSize: "1.2rem", lineHeight: 1.7 }}>
-            The problem wasn&rsquo;t laziness. It was a gap — between the person he knew he was and the way he was actually living.
-          </p>
-        </m.div>
+          I called my wife from the car. She put the phone to our daughter&rsquo;s ear. I heard her voice - confused, then disappointed. &ldquo;Daddy, where are you?&rdquo;
+        </m.p>
+
+        {/* Para 6 */}
+        <m.p
+          className="text-[#3d5a5c] mb-6"
+          style={{ fontSize: "1.125rem", lineHeight: 1.85 }}
+          variants={fadeUp(0.5)}
+          initial={reduce ? "visible" : "hidden"}
+          whileInView="visible"
+          viewport={VIEWPORT_ONCE}
+        >
+          I told her I was sorry. I told her I loved her. I told her I was coming home. Then I hung up. And cried for the next thirty minutes. Now here is what you should understand. I wasn&rsquo;t lazy. I wasn&rsquo;t undisciplined. I had systems. Strategy. Frameworks. I was building products, leading teams, and optimizing everything for excellence. By every external measure, I was successful. But I was losing everything that actually mattered.
+        </m.p>
+
+        {/* Para 7 */}
+        <m.p
+          className="text-[#3d5a5c] mb-6"
+          style={{ fontSize: "1.125rem", lineHeight: 1.85 }}
+          variants={fadeUp(0.6)}
+          initial={reduce ? "visible" : "hidden"}
+          whileInView="visible"
+          viewport={VIEWPORT_ONCE}
+        >
+          The problem wasn&rsquo;t that I didn&rsquo;t know what to do. I knew exactly what to do. I&rsquo;d read the books. I understood work-life balance. But there was a gap - The gap between what I knew and who I actually was. I opened my inbox before I opened my eyes. I skipped breakfast because I was &ldquo;too busy.&rdquo; I stayed up late being &ldquo;productive&rdquo; while slowly burning out. I compared my progress to everyone else&rsquo;s highlight reel. And through it all I told myself a comforting story:
+        </m.p>
+
+        {/* Para 8 */}
+        <m.p
+          className="text-[#3d5a5c] mb-10"
+          style={{ fontSize: "1.125rem", lineHeight: 1.85 }}
+          variants={fadeUp(0.7)}
+          initial={reduce ? "visible" : "hidden"}
+          whileInView="visible"
+          viewport={VIEWPORT_ONCE}
+        >
+          This is what dedication looks like. It wasn&rsquo;t. It was what self-sabotage looks like, dressed up as ambition.
+        </m.p>
 
         {/* Attribution */}
         <m.div
-          variants={fadeUp(0.55)}
+          variants={fadeUp(0.8)}
           initial={reduce ? "visible" : "hidden"}
           whileInView="visible"
           viewport={VIEWPORT_ONCE}

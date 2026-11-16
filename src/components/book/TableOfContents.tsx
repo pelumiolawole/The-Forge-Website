@@ -31,14 +31,14 @@ const parts = [
     label: "Part 3B",
     title: "The Problem Is in Your Day",
     habits: "Habits 23–40",
-    pills: ["Attending Meetings That Don't Need You", "Checking The Time Every 5 Minutes", "Micromanaging Everything", "Confusing Activity With Accomplishment"],
+    pills: ["Attending Meetings That Don't Need You", "Micromanaging Everything", "Avoiding Difficult Conversations", "Saying Yes To Everything"],
   },
   {
     id: "part-4",
     label: "Part 4",
     title: "Being Everyone's Helper Except Your Own",
     habits: "Habits 41–45",
-    pills: ["Apologizing For Everything", "Taking On Other People's Emotions", "Checking Other People's Opinions Before You Act"],
+    pills: ["Taking On Other People's Emotions", "Fixing Everyone's Problems"],
   },
   {
     id: "part-5",
