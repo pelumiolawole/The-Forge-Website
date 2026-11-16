@@ -20,7 +20,7 @@ export function ForewoodStory() {
           style={{ fontSize: 80, lineHeight: 1 }}
           aria-hidden
         >
-          &ldquo;
+          “
         </div>
 
         {/* Para 1 */}
@@ -32,7 +32,7 @@ export function ForewoodStory() {
           whileInView="visible"
           viewport={VIEWPORT_ONCE}
         >
-          I&rsquo;m going to start this foreword by telling you about the night I cried in my car.
+          I’m going to start this foreword by telling you about the night I cried in my car.
         </m.p>
 
         {/* Para 2 */}
@@ -56,7 +56,7 @@ export function ForewoodStory() {
           whileInView="visible"
           viewport={VIEWPORT_ONCE}
         >
-          I wasn&rsquo;t there.
+          I wasn’t there.
         </m.p>
 
         {/* Para 4 */}
@@ -68,7 +68,7 @@ export function ForewoodStory() {
           whileInView="visible"
           viewport={VIEWPORT_ONCE}
         >
-          I had been in back-to-back meetings. I checked my inbox one more time before leaving work. Then another message came in. Then I thought, I&rsquo;ll just finish this one thing. That one thing became three things. By the time I looked up, it was 7 PM. The graduation had started at 6 PM.
+          I had been in back-to-back meetings. I checked my inbox one more time before leaving work. Then another message came in. Then I thought, I’ll just finish this one thing. That one thing became three things. By the time I looked up, it was 7 PM. The graduation had started at 6 PM.
         </m.p>
 
         {/* Para 5 */}
@@ -80,7 +80,7 @@ export function ForewoodStory() {
           whileInView="visible"
           viewport={VIEWPORT_ONCE}
         >
-          I called my wife from the car. She put the phone to our daughter&rsquo;s ear. I heard her voice - confused, then disappointed. &ldquo;Daddy, where are you?&rdquo;
+          I called my wife from the car. She put the phone to our daughter’s ear. I heard her voice - confused, then disappointed. “Daddy, where are you?”
         </m.p>
 
         {/* Para 6 */}
@@ -92,7 +92,7 @@ export function ForewoodStory() {
           whileInView="visible"
           viewport={VIEWPORT_ONCE}
         >
-          I told her I was sorry. I told her I loved her. I told her I was coming home. Then I hung up. And cried for the next thirty minutes. Now here is what you should understand. I wasn&rsquo;t lazy. I wasn&rsquo;t undisciplined. I had systems. Strategy. Frameworks. I was building products, leading teams, and optimizing everything for excellence. By every external measure, I was successful. But I was losing everything that actually mattered.
+          I told her I was sorry. I told her I loved her. I told her I was coming home. Then I hung up. And cried for the next thirty minutes. Now here is what you should understand. I wasn’t lazy. I wasn’t undisciplined. I had systems. Strategy. Frameworks. I was building products, leading teams, and optimizing everything for excellence. By every external measure, I was successful. But I was losing everything that actually mattered.
         </m.p>
 
         {/* Para 7 */}
@@ -104,7 +104,7 @@ export function ForewoodStory() {
           whileInView="visible"
           viewport={VIEWPORT_ONCE}
         >
-          The problem wasn&rsquo;t that I didn&rsquo;t know what to do. I knew exactly what to do. I&rsquo;d read the books. I understood work-life balance. But there was a gap - The gap between what I knew and who I actually was. I opened my inbox before I opened my eyes. I skipped breakfast because I was &ldquo;too busy.&rdquo; I stayed up late being &ldquo;productive&rdquo; while slowly burning out. I compared my progress to everyone else&rsquo;s highlight reel. And through it all I told myself a comforting story:
+          The problem wasn’t that I didn’t know what to do. I knew exactly what to do. I’d read the books. I understood work-life balance. But there was a gap - The gap between what I knew and who I actually was. I opened my inbox before I opened my eyes. I skipped breakfast because I was “too busy.” I stayed up late being “productive” while slowly burning out. I compared my progress to everyone else’s highlight reel. And through it all I told myself a comforting story:
         </m.p>
 
         {/* Para 8 */}
@@ -116,7 +116,7 @@ export function ForewoodStory() {
           whileInView="visible"
           viewport={VIEWPORT_ONCE}
         >
-          This is what dedication looks like. It wasn&rsquo;t. It was what self-sabotage looks like, dressed up as ambition.
+          This is what dedication looks like. It wasn’t. It was what self-sabotage looks like, dressed up as ambition.
         </m.p>
 
         {/* Attribution */}
