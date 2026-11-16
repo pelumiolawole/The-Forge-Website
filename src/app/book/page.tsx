@@ -75,13 +75,13 @@ export default function BookPage() {
       <section id="retailer-links"><RetailerLinks /></section>
       <section id="nigeria-order"><NigeriaOrder /></section>
       <section id="foreword-story"><ForewoodStory /></section>
+      <BulkOrders />
       <section id="book-reveal"><BookReveal /></section>
       <section id="habit-quiz"><HabitQuiz /></section>
       <section id="table-of-contents"><TableOfContents /></section>
       <section id="method-preview"><MethodPreview /></section>
       <section id="sample-reader"><SampleChapterReader /></section>
       <section id="social-proof"><SocialProof /></section>
-      <section id="bulk-orders"><BulkOrders /></section>
       <section id="final-cta"><FinalCTA /></section>
     </main>
   );

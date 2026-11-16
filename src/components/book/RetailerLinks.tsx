@@ -157,6 +157,13 @@ export function RetailerLinks() {
             Get Your Copy
           </m.h2>
 
+          <m.p
+            className="text-[#7a9ea1] text-sm mb-6"
+            variants={staggerItem}
+          >
+            UK paperback £9.99 on Amazon UK
+          </m.p>
+
           <m.ul className="divide-y divide-[#d0e8ea]" variants={staggerContainer}>
             {retailers.map((r) => (
               <m.li key={r.name} variants={staggerItem}>
