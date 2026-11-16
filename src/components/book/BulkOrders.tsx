@@ -11,7 +11,7 @@ export function BulkOrders() {
 
           <div className="space-y-4 text-[#3d5a5c] text-base md:text-lg leading-relaxed max-w-xl mx-auto mb-8 text-left">
             <p>
-              Petty Little Things is 50 small habits that shape how people work, each with a fix small enough to try the same day. The workplace habits managers recognise first, such as micromanaging everything and saying yes to everything, are covered in the book.
+              Petty Little Things is 50 small habits that shape how people work, each with a fix small enough to try the same day. The workplace habits managers recognise first, such as micromanaging everything and saying yes to everything, are covered in Part 3.
             </p>
             <p>
               Order 25 or more copies for your team and I will run a free 45-minute lunch-and-learn, with dates from the first half of next year.
@@ -24,7 +24,7 @@ export function BulkOrders() {
           {/* Pull quote from the foreword */}
           <blockquote className="border-l-[3px] border-[#008e97] bg-[#e6f6f7] rounded-r-lg px-6 py-5 mb-8 text-left max-w-xl mx-auto">
             <p className="text-[#0f1f20] italic" style={{ fontSize: "1.1rem", lineHeight: 1.7 }}>
-              &ldquo;But there was a gap &mdash; between what I knew and who I actually was.&rdquo;
+              &ldquo;The gap between what I knew and who I actually was.&rdquo;
             </p>
             <footer className="text-[#7a9ea1] text-[13px] leading-relaxed mt-3">
               &mdash; Kehinde Fawumi<br />
