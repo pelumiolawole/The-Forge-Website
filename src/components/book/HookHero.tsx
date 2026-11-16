@@ -77,6 +77,16 @@ export function HookHero() {
           initial={init}
           animate="visible"
         />
+
+        <m.p
+          className="text-[#7a9ea1] mt-6"
+          style={{ fontSize: "0.95rem" }}
+          variants={fadeUpVariant(1.1)}
+          initial={init}
+          animate="visible"
+        >
+          50 small habits that shape how people work, each with a fix small enough to try the same day.
+        </m.p>
       </div>
     </section>
   );
