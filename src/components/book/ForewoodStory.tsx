@@ -129,7 +129,7 @@ export function ForewoodStory() {
           <p className="text-[#7a9ea1] text-[13px] leading-relaxed">
             — Kehinde Fawumi<br />
             Director, Global Product Development at Mastercard<br />
-            <em>Foreword, Petty Little Things</em>
+            <em>From the Foreword to Petty Little Things</em>
           </p>
         </m.div>
       </div>
