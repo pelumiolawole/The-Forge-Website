@@ -11,6 +11,31 @@ const nextConfig = {
     };
     return config;
   },
+  async redirects() {
+    return [
+      // /h2 is already linked from emails and posts — keep it working
+      // permanently, preserving UTM query strings (Next.js forwards
+      // the incoming query string by default when the destination
+      // doesn't declare its own).
+      {
+        source: "/h2/",
+        destination: "/resources/h2/",
+        permanent: true,
+      },
+      {
+        source: "/h2/download/",
+        destination: "/resources/h2/download/",
+        permanent: true,
+      },
+      // No /resources index page yet — temporary (not permanent) so
+      // this is easy to replace once a real index page exists.
+      {
+        source: "/resources/",
+        destination: "/",
+        permanent: false,
+      },
+    ];
+  },
   async headers() {
     return [
       {

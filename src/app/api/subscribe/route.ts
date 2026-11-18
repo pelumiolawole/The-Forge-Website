@@ -2,10 +2,13 @@ import { NextRequest, NextResponse } from "next/server";
 
 const SENDER_API_KEY = process.env.SENDER_API_KEY;
 
-const GROUP_IDS: Record<string, string> = {
+const GROUP_IDS: Record<string, string | undefined> = {
   newsletter: "e5wB0A",
   waitlist: "bYYgWK",
   book: "bYYgWK",
+  // EOYGS group is created in the Sender.net dashboard, not hardcoded —
+  // unset until SENDER_GROUP_ID_EOYGS is configured in the hosting env.
+  eoygs: process.env.SENDER_GROUP_ID_EOYGS,
 };
 
 // TODO: confirm "location" matches the exact custom field key in the Sender.net dashboard
@@ -39,6 +42,11 @@ export async function POST(req: NextRequest) {
     }
 
     const resolvedGroupId = groupId ?? GROUP_IDS[list] ?? GROUP_IDS.newsletter;
+
+    if (!resolvedGroupId) {
+      console.error(`Subscribe route: no group ID resolved for list "${list}"`);
+      return NextResponse.json({ error: "Service unavailable" }, { status: 503 });
+    }
 
     const body: Record<string, unknown> = {
       email,
