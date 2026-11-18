@@ -71,14 +71,9 @@ export async function POST(req: NextRequest) {
       body: JSON.stringify(body),
     });
 
-    // TEMPORARY diagnostic logging — remove once EOYGS group assignment is confirmed working.
-    const resText = await res.text();
-    console.log(
-      `Subscribe diag: list="${list}" resolvedGroupId="${resolvedGroupId}" status=${res.status} body=${resText.slice(0, 500)}`
-    );
-
     if (!res.ok && res.status !== 409) {
-      console.error("Sender error:", resText);
+      const err = await res.text();
+      console.error("Sender error:", err);
       return NextResponse.json({ error: "Subscription failed" }, { status: 500 });
     }
 
